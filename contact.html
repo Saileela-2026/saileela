@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Saileela Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact.html">
+<div id="site-header"></div>
+
+<section class="page-hero"><div class="wrap"><div class="crumb"><a href="index.html">Home</a><span>›</span>Contact</div><h1>We're here to help</h1><p>Questions about an order, a product, or bulk gifting? Our devotee support team in Shirdi is happy to assist.</p></div></section>
+
+<section class="block"><div class="wrap contact-grid">
+  <div class="contact-info reveal">
+    <div class="ci-item"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></div><div><h4>WhatsApp</h4><p>+91 90000 00000 · fastest way to reach us</p></div></div>
+    <div class="ci-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><h4>Email</h4><p>care@saileelastore.com</p></div></div>
+    <div class="ci-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><h4>Visit us</h4><p>Shirdi, Ahilyanagar, Maharashtra 423109</p></div></div>
+    <div class="ci-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h4>Support hours</h4><p>Mon–Sat, 9 AM – 8 PM IST · Guruvar till 10 PM</p></div></div>
+    <div style="border-radius:12px;overflow:hidden;border:1px solid var(--line-l);height:200px;background:radial-gradient(60% 60% at 50% 40%,rgba(227,154,43,.25),transparent),linear-gradient(150deg,var(--paper-3),#E8D4AA);display:grid;place-items:center;color:var(--ink-soft);font-size:.85rem;margin-top:8px">🗺️ Map placeholder — embed Google Maps of your Shirdi location</div>
+  </div>
+  <div class="reveal">
+    <div style="background:var(--paper-2);border:1px solid var(--line-l);border-radius:12px;padding:30px">
+      <h3 style="margin:0 0 18px;color:var(--kumkum-deep)">Send us a message</h3>
+      <form onsubmit="return Saileela.subscribe(event)">
+        <div class="field"><label>Your name</label><input required placeholder="Full name"></div>
+        <div class="field"><label>Email or phone</label><input required placeholder="So we can reply"></div>
+        <div class="field"><label>Order number <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label><input placeholder="e.g. SL-10234"></div>
+        <div class="field"><label>Message</label><textarea rows="4" required placeholder="How can we help?"></textarea></div>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send message</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));</script>
+</body></html>
