@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saileela TV — Live devotional television from Shirdi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Rozha+One&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="saileela-tv.html">
+<div id="site-header"></div>
+
+<!-- 1. LIVE TV -->
+<section class="tv-hero"><div class="wrap tv-hero-grid">
+  <div class="reveal">
+    <div class="eyebrow">Live · 24×7 devotional television</div>
+    <h1>Saileela TV</h1>
+    <p>Devotion on air, all day — live bhajans, aarti, discourses and Sai stories, streamed from Shirdi to homes across the world.</p>
+    <div class="tv-live-chips">
+      <a href="#" class="btn btn-gold">▶ Watch live now</a>
+      <a href="#schedule" class="btn btn-light">Today's schedule</a>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="player">
+      <span class="live-tag"><span class="dot"></span>LIVE</span>
+      <span class="play-big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      <div class="now-bar"><span>Now playing</span><b id="nowTitle">Prabhat Bhajan Sandhya</b></div>
+    </div>
+    <p style="text-align:center;color:rgba(251,247,238,.55);font-size:.8rem;margin:12px 0 0">Live player is a prototype placeholder — connect your real stream (YouTube Live / HLS) here.</p>
+  </div>
+</div></section>
+
+<div class="trust"><div class="wrap trust-row">
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>24×7 on air</b><span>Live all day, every day</span></div></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16v11H4zM9 20h6M12 16v4"/></svg><div><b>DTH & Cable</b><span>Across major networks</span></div></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg><div><b>OTT & apps</b><span>Stream anywhere</span></div></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c2 5 5 6 9 6-2 6-5 10-9 12-4-2-7-6-9-12 4 0 7-1 9-6Z"/></svg><div><b>From Shirdi</b><span>Devotional programming</span></div></div>
+</div></div>
+
+<!-- 2. POPULAR PROGRAMMES -->
+<section class="block" id="programmes"><div class="wrap">
+  <div class="head reveal"><div class="eyebrow">What devotees love</div><h2>Popular programmes</h2><p>A daily rhythm of devotion — from dawn bhajans to evening aarti and Sai katha.</p></div>
+  <div class="prog-grid" id="progGrid"></div>
+</div></section>
+
+<!-- 3. DAILY LIVE SCHEDULE -->
+<section class="block sched" id="schedule"><div class="wrap">
+  <div class="head reveal"><div class="eyebrow">Plan your darshan of the day</div><h2>Daily live schedule</h2><p>Today's programming (IST). The current show is highlighted.</p></div>
+  <div class="sched-wrap reveal" id="schedWrap"></div>
+  <p style="text-align:center;color:var(--ash-2);font-size:.82rem;margin-top:18px">Times are indicative placeholders — wire this to your real programming grid.</p>
+</div></section>
+
+<!-- 4. DISTRIBUTION -->
+<section class="block" id="distribution"><div class="wrap">
+  <div class="head reveal"><div class="eyebrow">Find us everywhere</div><h2>Distribution — DTH, Cable & OTT</h2><p>Saileela TV reaches devotees across direct-to-home, cable networks and streaming platforms.</p></div>
+  <div class="dist-grid">
+    <div class="dist reveal">
+      <div class="dh"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 15a8 8 0 0 1 8-8M4 15a4 4 0 0 1 4-4M4 15h2"/><circle cx="6" cy="17" r="1.5" fill="currentColor" stroke="none"/><rect x="12" y="4" width="8" height="14" rx="1"/></svg></div><div><h3>DTH</h3><span>Direct-to-home</span></div></div>
+      <ul>
+        <li>Tata Play <span class="num">Ch 1•••</span></li>
+        <li>Airtel Digital TV <span class="num">Ch 1•••</span></li>
+        <li>Dish TV <span class="num">Ch 1•••</span></li>
+        <li>d2h <span class="num">Ch 1•••</span></li>
+        <li>Sun Direct <span class="num">Ch 1•••</span></li>
+      </ul>
+    </div>
+    <div class="dist reveal">
+      <div class="dh"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><h3>Cable</h3><span>Regional networks</span></div></div>
+      <ul>
+        <li>GTPL <span class="num">Ch •••</span></li>
+        <li>Hathway <span class="num">Ch •••</span></li>
+        <li>DEN Networks <span class="num">Ch •••</span></li>
+        <li>Siti Cable <span class="num">Ch •••</span></li>
+        <li>Local MSOs (Maharashtra) <span class="num">Ch •••</span></li>
+      </ul>
+    </div>
+    <div class="dist reveal">
+      <div class="dh"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></div><div><h3>OTT & Apps</h3><span>Stream anywhere</span></div></div>
+      <ul>
+        <li>YouTube Live <span class="num app">Subscribe</span></li>
+        <li>Saileela TV App <span class="num app">iOS · Android</span></li>
+        <li>JioTV <span class="num app">Live</span></li>
+        <li>Facebook Live <span class="num app">Follow</span></li>
+        <li>Website live player <span class="num app">Watch</span></li>
+      </ul>
+    </div>
+  </div>
+  <p style="text-align:center;color:var(--ash-2);font-size:.82rem;margin-top:22px">Channel numbers shown as placeholders — replace with your actual LCN/platform placements.</p>
+</div></section>
+
+<!-- 5. SOCIAL MEDIA PRESENCE -->
+<section class="block social" id="social"><div class="wrap">
+  <div class="head reveal"><div class="eyebrow">Join the community</div><h2>Social media presence</h2><p>Millions of devotees connect with Saileela every day. Follow for live darshan clips, festival specials and daily blessings.</p></div>
+  <div class="soc-grid">
+    <div class="soc reveal"><div class="si" style="background:#c4302b"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></div><div class="plat">YouTube</div><b>1.2M</b><div class="lbl">subscribers</div><a href="#">Subscribe →</a></div>
+    <div class="soc reveal"><div class="si" style="background:#1877f2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></div><div class="plat">Facebook</div><b>860K</b><div class="lbl">followers</div><a href="#">Follow →</a></div>
+    <div class="soc reveal"><div class="si" style="background:linear-gradient(45deg,#f09433,#bc1888)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></div><div class="plat">Instagram</div><b>540K</b><div class="lbl">followers</div><a href="#">Follow →</a></div>
+    <div class="soc reveal"><div class="si" style="background:#25d366"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></div><div class="plat">WhatsApp</div><b>Join</b><div class="lbl">daily blessings channel</div><a href="#">Join →</a></div>
+  </div>
+</div></section>
+
+<div class="guruvar"><div class="wrap inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2.6" fill="currentColor" stroke="none"/></svg><b>Guruvar special broadcast.</b><span>Extended live programming every Thursday, Baba's day.</span></div></div>
+
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+  const progs=[
+    {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
+    {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
+    {n:'Sai Satcharitra Parayan',w:'Daily · 9:00 AM',d:'A chapter-a-day reading of Baba\u2019s life and leelas, in Marathi & Hindi.',icon:'book'},
+    {n:'Sai Katha & Pravachan',w:'Daily · 11:00 AM',d:'Discourses and stories from respected speakers on Baba\u2019s teachings.',icon:'kalash'},
+    {n:'Bal Sai — Kids\u2019 Stories',w:'Weekends · 4:00 PM',d:'Animated Sai stories and values, made for young devotees.',icon:'frame'},
+    {n:'Sai Leela — Devotee Diaries',w:'Guruvar · 8:00 PM',d:'Real devotees share the miracles and grace they\u2019ve experienced.',icon:'hands'},
+  ];
+  document.getElementById('progGrid').innerHTML=progs.map((p,i)=>`<article class="prog reveal"><div class="thumb" style="background:${Saileela.tint(i)}"><span class="tag">▶ Programme</span><div style="width:34%">${Saileela.ICON[p.icon]}</div></div><div class="pbody"><h3>${p.n}</h3><div class="when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${p.w}</div><p>${p.d}</p></div></article>`).join('');
+
+  const sched=[
+    ['5:30 AM','Prabhat Bhajan Sandhya','Morning bhajans & keertan'],
+    ['7:00 AM','Sai Aarti Live','Kakad-time morning aarti'],
+    ['9:00 AM','Sai Satcharitra Parayan','Daily chapter reading'],
+    ['11:00 AM','Sai Katha & Pravachan','Discourse of the day'],
+    ['1:00 PM','Bhajan & Abhang','Devotional music hour'],
+    ['4:00 PM','Bal Sai Stories','For young devotees'],
+    ['6:30 PM','Sai Aarti Live','Evening aarti'],
+    ['8:00 PM','Sai Leela — Devotee Diaries','Devotee experiences'],
+    ['10:00 PM','Shej Bhajan','Night devotional wind-down'],
+  ];
+  const now=new Date();const mins=now.getHours()*60+now.getMinutes();
+  const toMin=s=>{const m=s.match(/(\d+):(\d+)\s*(AM|PM)/);let h=+m[1]%12+(m[3]==='PM'?12:0);return h*60+ +m[2];};
+  let onIdx=0;sched.forEach((r,i)=>{if(mins>=toMin(r[0]))onIdx=i;});
+  document.getElementById('schedWrap').innerHTML=sched.map((r,i)=>`<div class="sched-row ${i===onIdx?'on':''}"><div class="time">${r[0]}</div><div class="prog-name">${r[1]}<small>${r[2]}</small></div>${i===onIdx?'<div class="onair"><span class="dot"></span>ON AIR</div>':'<div style="font-size:.72rem;color:var(--ash-2)">Upcoming</div>'}</div>`).join('');
+  document.getElementById('nowTitle').textContent=sched[onIdx][1];
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+</script>
+</body></html>
