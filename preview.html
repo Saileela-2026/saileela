@@ -542,6 +542,12 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
   .sched-row{grid-template-columns:84px 1fr;row-gap:4px}.sched-row .onair,.sched-row .up{grid-column:2}
 }
 
+/* button aliases used by TV/product pages */
+.btn-gold{background:var(--foil);color:#3a2b0e;box-shadow:0 10px 26px rgba(138,106,44,.34)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(138,106,44,.44)}
+.btn-light{border:1px solid var(--line-d);color:var(--glow)}
+.btn-light:hover{border-color:var(--marigold);color:var(--marigold);background:rgba(239,127,26,.08)}
+
 </style>
 </head>
 <body data-page="index">
@@ -554,9 +560,9 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
   <div class="hero-photo" role="img" aria-label="Shree Sai Baba"></div>
   <div class="hero-inner">
     <div class="hero-copy reveal">
-      <div class="hero-brandline"><span class="deva-body">॥ हर हर साई • घर घर साई ॥</span></div>
-      <h1>The one-stop store for<br>every <em>Sai devotee</em></h1>
-      <p class="hero-sub">Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.</p>
+      <div class="hero-brandline"><span class="deva-body" data-bind="heroTagline">॥ हर हर साई • घर घर साई ॥</span></div>
+      <h1 data-bind="heroTitle">The one-stop store for<br>every <em>Sai devotee</em></h1>
+      <p class="hero-sub" data-bind="heroSub">Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.</p>
       <form class="hero-search" onsubmit="return Saileela.search(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" name="q" placeholder="Search idols, books, malas, frames…" aria-label="Search products">
@@ -616,7 +622,7 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 
 <div class="guruvar"><div class="wrap inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2.6" fill="currentColor" stroke="none"/></svg><b>Guruvar is Baba's day.</b><span>Every Thursday we release fresh arrivals and dispatch with extra devotion.</span></div></div>
 
-<section class="festival"><div class="wrap inner reveal"><div class="eyebrow">Limited festival drop</div><h2>Vijayadashami Special Hampers</h2><p class="punya">॥ Celebrate the festival with Baba's blessings ॥</p><p>A once-a-year collection of hand-curated gift boxes. Only 200 pieces, each packed with devotion in Shirdi.</p>
+<section class="festival"><div class="wrap inner reveal"><div class="eyebrow">Limited festival drop</div><h2 data-bind="festivalName">Vijayadashami Special Hampers</h2><p class="punya">॥ Celebrate the festival with Baba's blessings ॥</p><p>A once-a-year collection of hand-curated gift boxes. Only 200 pieces, each packed with devotion in Shirdi.</p>
   <div class="countdown"><div class="cd"><b id="dd">05</b><span>Days</span></div><div class="cd"><b id="hh">12</b><span>Hours</span></div><div class="cd"><b id="mm">40</b><span>Mins</span></div><div class="cd"><b id="ss">18</b><span>Secs</span></div></div>
   <a href="#shop" class="btn btn-primary">Reserve your hamper</a></div></section>
 
@@ -677,14 +683,14 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
     <h1>Saileela TV</h1>
     <p>Devotion on air, all day — live bhajans, aarti, discourses and Sai stories, streamed from Shirdi to homes across the world.</p>
     <div class="tv-live-chips">
-      <a href="#" class="btn btn-gold">▶ Watch live now</a>
+      <a href="#" data-live class="btn btn-gold">▶ Watch live now</a>
       <a href="#schedule" class="btn btn-light">Today's schedule</a>
     </div>
   </div>
   <div class="reveal">
     <div class="player">
       <span class="live-tag"><span class="dot"></span>LIVE</span>
-      <span class="play-big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      <a href="#" data-live class="play-big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
       <div class="now-bar"><span>Now playing</span><b id="nowTitle">Prabhat Bhajan Sandhya</b></div>
     </div>
     <p style="text-align:center;color:rgba(251,247,238,.55);font-size:.8rem;margin:12px 0 0">Live player is a prototype placeholder — connect your real stream (YouTube Live / HLS) here.</p>
@@ -708,56 +714,20 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 <section class="block sched" id="schedule"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">Plan your darshan of the day</div><h2>Daily live schedule</h2><p>Today's programming (IST). The current show is highlighted.</p></div>
   <div class="sched-wrap reveal" id="schedWrap"></div>
-  <p style="text-align:center;color:var(--ash-2);font-size:.82rem;margin-top:18px">Times are indicative placeholders — wire this to your real programming grid.</p>
+  <p style="text-align:center;color:var(--ink-faint);font-size:.82rem;margin-top:18px">Times are indicative placeholders — wire this to your real programming grid.</p>
 </div></section>
 
 <!-- 4. DISTRIBUTION -->
 <section class="block" id="distribution"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">Find us everywhere</div><h2>Distribution — DTH, Cable & OTT</h2><p>Saileela TV reaches devotees across direct-to-home, cable networks and streaming platforms.</p></div>
-  <div class="dist-grid">
-    <div class="dist reveal">
-      <div class="dh"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 15a8 8 0 0 1 8-8M4 15a4 4 0 0 1 4-4M4 15h2"/><circle cx="6" cy="17" r="1.5" fill="currentColor" stroke="none"/><rect x="12" y="4" width="8" height="14" rx="1"/></svg></div><div><h3>DTH</h3><span>Direct-to-home</span></div></div>
-      <ul>
-        <li>Tata Play <span class="num">Ch 1•••</span></li>
-        <li>Airtel Digital TV <span class="num">Ch 1•••</span></li>
-        <li>Dish TV <span class="num">Ch 1•••</span></li>
-        <li>d2h <span class="num">Ch 1•••</span></li>
-        <li>Sun Direct <span class="num">Ch 1•••</span></li>
-      </ul>
-    </div>
-    <div class="dist reveal">
-      <div class="dh"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><h3>Cable</h3><span>Regional networks</span></div></div>
-      <ul>
-        <li>GTPL <span class="num">Ch •••</span></li>
-        <li>Hathway <span class="num">Ch •••</span></li>
-        <li>DEN Networks <span class="num">Ch •••</span></li>
-        <li>Siti Cable <span class="num">Ch •••</span></li>
-        <li>Local MSOs (Maharashtra) <span class="num">Ch •••</span></li>
-      </ul>
-    </div>
-    <div class="dist reveal">
-      <div class="dh"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></div><div><h3>OTT & Apps</h3><span>Stream anywhere</span></div></div>
-      <ul>
-        <li>YouTube Live <span class="num app">Subscribe</span></li>
-        <li>Saileela TV App <span class="num app">iOS · Android</span></li>
-        <li>JioTV <span class="num app">Live</span></li>
-        <li>Facebook Live <span class="num app">Follow</span></li>
-        <li>Website live player <span class="num app">Watch</span></li>
-      </ul>
-    </div>
-  </div>
-  <p style="text-align:center;color:var(--ash-2);font-size:.82rem;margin-top:22px">Channel numbers shown as placeholders — replace with your actual LCN/platform placements.</p>
+  <div class="dist-grid" id="distGrid"></div>
+  <p style="text-align:center;color:var(--ink-faint);font-size:.82rem;margin-top:22px">Channel numbers shown as placeholders — set them in the Admin dashboard.</p>
 </div></section>
 
 <!-- 5. SOCIAL MEDIA PRESENCE -->
 <section class="block social" id="social"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">Join the community</div><h2>Social media presence</h2><p>Millions of devotees connect with Saileela every day. Follow for live darshan clips, festival specials and daily blessings.</p></div>
-  <div class="soc-grid">
-    <div class="soc reveal"><div class="si" style="background:#c4302b"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></div><div class="plat">YouTube</div><b>1.2M</b><div class="lbl">subscribers</div><a href="#">Subscribe →</a></div>
-    <div class="soc reveal"><div class="si" style="background:#1877f2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></div><div class="plat">Facebook</div><b>860K</b><div class="lbl">followers</div><a href="#">Follow →</a></div>
-    <div class="soc reveal"><div class="si" style="background:linear-gradient(45deg,#f09433,#bc1888)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></div><div class="plat">Instagram</div><b>540K</b><div class="lbl">followers</div><a href="#">Follow →</a></div>
-    <div class="soc reveal"><div class="si" style="background:#25d366"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></div><div class="plat">WhatsApp</div><b>Join</b><div class="lbl">daily blessings channel</div><a href="#">Join →</a></div>
-  </div>
+  <div class="soc-grid" id="socGrid"></div>
 </div></section>
 
 <div class="guruvar"><div class="wrap inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2.6" fill="currentColor" stroke="none"/></svg><b>Guruvar special broadcast.</b><span>Extended live programming every Thursday, Baba's day.</span></div></div>
@@ -852,27 +822,87 @@ const ICON = {
   care:'<svg viewBox="0 0 80 80" fill="none"><rect x="22" y="36" width="36" height="26" rx="3" fill="#2A2016"/><path d="M20 36h40v6H20z" fill="#B18E3E"/><path d="M40 36v26" stroke="#EBCF86" stroke-width="1.4"/><path d="M40 32c-2-4-9-4-9 1.5 0 4.5 9 8.5 9 8.5s9-4 9-8.5C49 28 42 28 40 32Z" fill="#E0A32E"/></svg>',
   tv:'<svg viewBox="0 0 80 80" fill="none"><rect x="16" y="22" width="48" height="34" rx="5" fill="#2A2016"/><rect x="21" y="27" width="38" height="24" rx="2" fill="#FCF5E1"/><path d="M36 33v12l11-6z" fill="#E0A32E"/><path d="M30 62h20M40 56v6" stroke="#B18E3E" stroke-width="2.6" stroke-linecap="round"/></svg>'
 };
-const TINTS=['linear-gradient(145deg,#F3E4C6,#EBCF86)','linear-gradient(145deg,#F6E7DA,#E9C4A0)','linear-gradient(145deg,#EFE0DE,#D8A9AE)','linear-gradient(145deg,#EDE7D2,#D9CBA0)','linear-gradient(145deg,#F4E9D2,#E3C486)'];
-const tint=i=>'';   /* niches are styled in CSS now; keep signature return for callers */
-const money=n=>'₹'+Number(n).toLocaleString('en-IN');
+const tint=i=>'';   /* niches styled in CSS */
 
-/* ---------- shared catalog ---------- */
-const CATALOG=[
-  {id:'p1',n:'Sandal Agarbatti — Gift Box',p:299,o:399,icon:'incense',cat:'Pooja Samagri',r:4.9,c:820,badge:'new',desc:'A premium box of long-burning sandalwood agarbatti, ideal for daily aarti and a calm, fragrant home mandir.'},
-  {id:'p2',n:'Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',desc:'The beloved life and teachings of Sai Baba, in a clean, readable Marathi edition on quality paper.'},
-  {id:'p3',n:'Rudraksha 108 Mala',p:699,o:899,icon:'mala',cat:'Malas',r:4.8,c:560,badge:'',desc:'A traditional 108-bead rudraksha mala, hand-knotted and finished for daily japa and everyday wear.'},
-  {id:'p4',n:'Marble Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
-  {id:'p5',n:'Saffron Prayer Shawl',p:849,o:1099,icon:'shawl',cat:'Apparel',r:4.7,c:295,badge:'',desc:'A soft saffron shawl with a gold border, comfortable for prayer, parayan and festival wear.'},
-  {id:'p6',n:'Sai Leela Photo Frame',p:599,o:799,icon:'frame',cat:'Frames',r:4.8,c:670,badge:'',desc:'An elegant framed photo with a warm gold finish, ready to hang or stand in your pooja space.'},
-  {id:'p7',n:'Lotus Brass Diya Set',p:499,o:null,icon:'lotus',cat:'Pooja Samagri',r:4.9,c:930,badge:'new',desc:'A set of lotus-shaped brass diyas that bring a soft, steady glow to your daily worship.'},
-  {id:'p8',n:'Brass Palki Showpiece',p:1999,o:2499,icon:'palki',cat:'Frames',r:4.9,c:180,badge:'',desc:'A detailed brass palki showpiece, a graceful decorative tribute for mandir or living room.'},
-  {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
-  {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
-  {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
-  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'},
+/* ================= DATA LAYER (localStorage + JSON export/import) ================= */
+const DEFAULT_PRODUCTS=[
+  {id:'p1',n:'Sandal Agarbatti — Gift Box',p:299,o:399,icon:'incense',cat:'Pooja Samagri',r:4.9,c:820,badge:'new',stock:120,active:true,desc:'A premium box of long-burning sandalwood agarbatti, ideal for daily aarti and a calm, fragrant home mandir.'},
+  {id:'p2',n:'Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',stock:60,active:true,desc:'The beloved life and teachings of Sai Baba, in a clean, readable Marathi edition on quality paper.'},
+  {id:'p3',n:'Rudraksha 108 Mala',p:699,o:899,icon:'mala',cat:'Malas',r:4.8,c:560,badge:'',stock:75,active:true,desc:'A traditional 108-bead rudraksha mala, hand-knotted and finished for daily japa and everyday wear.'},
+  {id:'p4',n:'Marble Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',stock:24,active:true,desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
+  {id:'p5',n:'Saffron Prayer Shawl',p:849,o:1099,icon:'shawl',cat:'Apparel',r:4.7,c:295,badge:'',stock:40,active:true,desc:'A soft saffron shawl with a gold border, comfortable for prayer, parayan and festival wear.'},
+  {id:'p6',n:'Sai Leela Photo Frame',p:599,o:799,icon:'frame',cat:'Frames',r:4.8,c:670,badge:'',stock:90,active:true,desc:'An elegant framed photo with a warm gold finish, ready to hang or stand in your pooja space.'},
+  {id:'p7',n:'Lotus Brass Diya Set',p:499,o:null,icon:'lotus',cat:'Pooja Samagri',r:4.9,c:930,badge:'new',stock:110,active:true,desc:'A set of lotus-shaped brass diyas that bring a soft, steady glow to your daily worship.'},
+  {id:'p8',n:'Brass Palki Showpiece',p:1999,o:2499,icon:'palki',cat:'Frames',r:4.9,c:180,badge:'',stock:18,active:true,desc:'A detailed brass palki showpiece, a graceful decorative tribute for mandir or living room.'},
+  {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',stock:30,active:true,desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
+  {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',stock:22,active:true,desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
+  {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
+  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'}
 ];
-const CATS=['All','Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
-const findProduct=id=>CATALOG.find(p=>p.id===id);
+const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
+const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
+const DEFAULT_SETTINGS={
+  storeName:'Saileela Store', currency:'₹',
+  announceDeva:'॥ हर हर साई • घर घर साई ॥',
+  announceMsg:'<b>Guruvar drop</b> every Thursday from Shirdi',
+  freeShipThreshold:999, shipFee:60,
+  heroTagline:'॥ हर हर साई • घर घर साई ॥',
+  heroTitle:'The one-stop store for<br>every <em>Sai devotee</em>',
+  heroSub:'Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.',
+  festivalName:'Vijayadashami Special Hampers',
+  festivalDate:'2026-10-20',
+  whatsapp:'', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
+};
+const DEFAULT_TV={
+  nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'',
+  programmes:[
+    {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
+    {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
+    {n:'Sai Satcharitra Parayan',w:'Daily · 9:00 AM',d:'A chapter-a-day reading of Baba life and leelas, in Marathi & Hindi.',icon:'book'},
+    {n:'Sai Katha & Pravachan',w:'Daily · 11:00 AM',d:'Discourses and stories from respected speakers on Baba teachings.',icon:'kalash'},
+    {n:'Bal Sai — Kids Stories',w:'Weekends · 4:00 PM',d:'Animated Sai stories and values, made for young devotees.',icon:'frame'},
+    {n:'Sai Leela — Devotee Diaries',w:'Guruvar · 8:00 PM',d:'Real devotees share the miracles and grace they have experienced.',icon:'hands'}
+  ],
+  schedule:[
+    {t:'5:30 AM',n:'Prabhat Bhajan Sandhya',d:'Morning bhajans & keertan'},
+    {t:'7:00 AM',n:'Sai Aarti Live',d:'Kakad-time morning aarti'},
+    {t:'9:00 AM',n:'Sai Satcharitra Parayan',d:'Daily chapter reading'},
+    {t:'11:00 AM',n:'Sai Katha & Pravachan',d:'Discourse of the day'},
+    {t:'1:00 PM',n:'Bhajan & Abhang',d:'Devotional music hour'},
+    {t:'4:00 PM',n:'Bal Sai Stories',d:'For young devotees'},
+    {t:'6:30 PM',n:'Sai Aarti Live',d:'Evening aarti'},
+    {t:'8:00 PM',n:'Sai Leela — Devotee Diaries',d:'Devotee experiences'},
+    {t:'10:00 PM',n:'Shej Bhajan',d:'Night devotional wind-down'}
+  ],
+  distribution:{
+    dth:[{name:'Tata Play',num:'Ch •••'},{name:'Airtel Digital TV',num:'Ch •••'},{name:'Dish TV',num:'Ch •••'},{name:'d2h',num:'Ch •••'},{name:'Sun Direct',num:'Ch •••'}],
+    cable:[{name:'GTPL',num:'Ch •••'},{name:'Hathway',num:'Ch •••'},{name:'DEN Networks',num:'Ch •••'},{name:'Siti Cable',num:'Ch •••'},{name:'Local MSOs (Maharashtra)',num:'Ch •••'}],
+    ott:[{name:'YouTube Live',num:'Subscribe'},{name:'Saileela TV App',num:'iOS · Android'},{name:'JioTV',num:'Live'},{name:'Facebook Live',num:'Follow'},{name:'Website live player',num:'Watch'}]
+  },
+  socials:[
+    {plat:'YouTube',count:'1.2M',label:'subscribers',cta:'Subscribe',url:'#',color:'#c4302b'},
+    {plat:'Facebook',count:'860K',label:'followers',cta:'Follow',url:'#',color:'#1877f2'},
+    {plat:'Instagram',count:'540K',label:'followers',cta:'Follow',url:'#',color:'linear-gradient(45deg,#f09433,#bc1888)'},
+    {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'#',color:'#25d366'}
+  ]
+};
+const DATA_KEY='saileela_data_v1';
+const Store={
+  _d:null,
+  defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
+  load(){ if(this._d)return this._d; let d=null; try{d=JSON.parse(localStorage.getItem(DATA_KEY))}catch(e){} const def=this.defaults(); d=d||{};
+    this._d={ products:Array.isArray(d.products)?d.products:def.products, cats:Array.isArray(d.cats)?d.cats:def.cats, orders:Array.isArray(d.orders)?d.orders:[], settings:Object.assign({},def.settings,d.settings||{}), tv:Object.assign({},def.tv,d.tv||{}) };
+    this._d.tv.distribution=Object.assign({},def.tv.distribution,(d.tv&&d.tv.distribution)||{});
+    return this._d; },
+  save(){ try{localStorage.setItem(DATA_KEY,JSON.stringify(this._d))}catch(e){} document.dispatchEvent(new Event('data:change')); },
+  set(d){ this._d=d; this.save(); },
+  reset(){ this._d=this.defaults(); this.save(); },
+  exportJSON(){ return JSON.stringify(this.load(),null,2); },
+  importJSON(t){ const d=JSON.parse(t); const def=this.defaults(); this._d={products:d.products||def.products,cats:d.cats||def.cats,orders:d.orders||[],settings:Object.assign({},def.settings,d.settings||{}),tv:Object.assign({},def.tv,d.tv||{})}; this.save(); }
+};
+const money=n=>String(Store.load().settings.currency||'₹')+Number(n||0).toLocaleString('en-IN');
+const findProduct=id=>Store.load().products.find(p=>p.id===id);
+
 
 /* ---------- cart (persists across pages, falls back to memory) ---------- */
 const Cart={
@@ -892,11 +922,12 @@ const NAV=[['#index','Home'],['#shop','Shop'],['#saileela-tv','Saileela TV'],['#
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
 
 function renderHeader(){
+  const _s=Store.load().settings;
   const page=document.body.dataset.page||'#index';
   const links=NAV.map(([h,l])=>`<a href="${h}" class="${h===page?'active':''}">${l}</a>`).join('');
   const mlinks=NAV.map(([h,l])=>`<a href="${h}">${l}</a>`).join('');
   const html=`
-  <div class="announce"><span class="deva-body">॥ हर हर साई • घर घर साई ॥</span><span class="sep">✦</span><b>Guruvar drop</b> every Thursday from Shirdi<span class="sep">✦</span>Free shipping over ₹999</div>
+  <div class="announce"><span class="deva-body">${_s.announceDeva}</span><span class="sep">✦</span>${_s.announceMsg}<span class="sep">✦</span>Free shipping over ${money(_s.freeShipThreshold)}</div>
   <header id="header"><div class="nav">
     <a class="brand" href="#index" aria-label="Saileela Store home">
       <img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="48" height="48">
@@ -938,7 +969,7 @@ function renderFooter(){
     <div><h4>Coming soon</h4><ul><li><a href="#">Hotel booking</a></li><li><a href="#">Cabs & transfers</a></li><li><a href="#">Tour packages</a></li><li><a href="#">Pandit & pooja services</a></li></ul></div>
   </div>
   <div class="foot-bottom"><span>© 2026 Saileela Store · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust.</span>
-    <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span></div></div>
+    <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span><a class="chip" href="admin.html" style="text-decoration:none">⚙ Admin</a></div></div>
   </div></footer>`;
   document.getElementById('site-footer').innerHTML=html;
 }
@@ -962,7 +993,13 @@ function injectOverlays(){
 
 /* ---------- public API + wiring ---------- */
 const Saileela={
-  money,ICON,tint,CATALOG,CATS,findProduct,Cart,
+  money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
+  get CATALOG(){return Store.load().products.filter(p=>p.active!==false);},
+  get CATS(){return ['All',...Store.load().cats];},
+  settings(){return Store.load().settings;},
+  tv(){return Store.load().tv;},
+  placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
+  applyContent(){const s=Store.load().settings;document.querySelectorAll('[data-bind]').forEach(el=>{const k=el.dataset.bind;if(s[k]!=null)el.innerHTML=s[k];});},
   productCard(p,i=0){
     return `<article class="card reveal">
       <div class="tile" style="background:${tint(i)}">${p.badge?`<span class="badge ${p.badge==='new'?'new':''}">${p.badge==='new'?'New':p.badge}</span>`:''}<a class="tilelink" href="#product?id=${p.id}" aria-label="${p.n}">${ICON[p.icon]}</a></div>
@@ -991,7 +1028,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays();
+  renderHeader(); renderFooter(); injectOverlays(); Saileela.applyContent();
   Saileela.bump();
   const header=document.getElementById('header');
   addEventListener('scroll',()=>header&&header.classList.toggle('shrunk',scrollY>20));
@@ -1016,10 +1053,10 @@ window.__init['index']=function(){
   document.getElementById('exGrid').innerHTML=Saileela.CATALOG.filter(p=>p.badge==='Exclusive').map((x,i)=>`<article class="ex-card" onclick="location.href='#product?id=${x.id}'"><div class="ex-tile" style="background:${Saileela.tint(i)}"><span class="ex-tag">Exclusive</span>${Saileela.ICON[x.icon]}</div><h3>${x.n}</h3><div class="price">${Saileela.money(x.p)}${x.o?`<s>${Saileela.money(x.o)}</s>`:''}</div></article>`).join('');
   const cats=[['Idols & Murtis','Brass · Marble · Silver','kalash'],['Pooja Samagri','Diyas · Agarbatti · Kumkum','incense'],['Books & Media','Satcharitra & aartis','book'],['Frames & Décor','Photos · Palki · Wall art','frame'],['Apparel & Malas','Shawls · Rudraksha','shawl'],['Gifting & Hampers','Festivals · Return gifts','hamper']];
   document.getElementById('catGrid').innerHTML=cats.map((c,i)=>`<a href="#shop" class="cat"><div class="cat-bg" style="background:${Saileela.tint(i)}"></div><div class="cat-icon">${Saileela.ICON[c[2]]}</div><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>`).join('');
-  const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct);
+  const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown
-  let t=new Date();t.setDate(t.getDate()+5);t.setHours(t.getHours()+12,t.getMinutes()+40,18);
+  const _fd=Saileela.settings().festivalDate; let t=_fd?new Date(_fd+'T09:00:00'):new Date(Date.now()+5*864e5);
   setInterval(()=>{let d=Math.max(0,t-new Date());const D=d/864e5|0,H=d%864e5/36e5|0,M=d%36e5/6e4|0,S=d%6e4/1e3|0,p=x=>String(x).padStart(2,'0');dd.textContent=p(D);hh.textContent=p(H);mm.textContent=p(M);ss.textContent=p(S);},1000);
 };
 window.__init['shop']=function(){
@@ -1082,8 +1119,9 @@ const root=document.getElementById('cartRoot');
   let pay='UPI';
   function render(){
     const items=Saileela.Cart.detailed();
-    if(!items.length){ root.innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><h2 style="color:var(--maroon-deep);margin:0 0 8px">Your cart is empty</h2><p style="margin:0 0 22px">May Baba guide you to something meaningful.</p><a href="#shop" class="btn btn-primary">Browse the collection</a></div>`; return; }
-    const sub=Saileela.Cart.subtotal(); const ship=sub>=999?0:60; const total=sub+ship;
+    if(!items.length){ root.innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><h2 style="color:var(--kumkum-deep);margin:0 0 8px">Your cart is empty</h2><p style="margin:0 0 22px">May Baba guide you to something meaningful.</p><a href="#shop" class="btn btn-primary">Browse the collection</a></div>`; return; }
+    const st=Saileela.settings(); const thr=+st.freeShipThreshold||999; const fee=+st.shipFee||60;
+    const sub=Saileela.Cart.subtotal(); const ship=sub>=thr?0:fee; const total=sub+ship;
     root.innerHTML=`<div class="cart-grid">
       <div>
         <div class="cart-list">${items.map((c,i)=>`<div class="cart-row"><div class="ct" style="background:${Saileela.tint(i)}"><div style="width:70%">${Saileela.ICON[c.icon]}</div></div>
@@ -1094,12 +1132,13 @@ const root=document.getElementById('cartRoot');
         <h3>Order summary</h3>
         <div class="row"><span>Subtotal</span><span>${Saileela.money(sub)}</span></div>
         <div class="row"><span>Shipping</span><span>${ship?Saileela.money(ship):'Free'}</span></div>
-        ${ship?`<div class="row" style="color:var(--saffron-deep);font-size:.82rem"><span>Add ${Saileela.money(999-sub)} for free shipping</span></div>`:''}
+        ${ship?`<div class="row" style="color:var(--marigold-deep);font-size:.82rem"><span>Add ${Saileela.money(thr-sub)} for free shipping</span></div>`:''}
         <div class="row total"><span>Total</span><b>${Saileela.money(total)}</b></div>
         <div style="margin-top:18px"><div style="font-size:.82rem;font-weight:600;margin-bottom:8px">Payment method</div>
           <div class="pay-opts">${['UPI','Card','Cash on delivery'].map(o=>`<label class="pay-opt ${pay===o?'sel':''}" onclick="setPay('${o}')"><input type="radio" name="pay" ${pay===o?'checked':''}> ${o}</label>`).join('')}</div></div>
-        <div class="field"><label>Deliver to</label><input placeholder="Full name"></div>
-        <div class="field"><input placeholder="Address, city, PIN code"></div>
+        <div class="field"><label>Deliver to</label><input id="bName" placeholder="Full name"></div>
+        <div class="field"><input id="bPhone" placeholder="Phone number"></div>
+        <div class="field"><input id="bAddr" placeholder="Address, city, PIN code"></div>
         <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="placeOrder()">Place order · ${Saileela.money(total)}</button>
         <div class="drawer-foot" style="border:none;background:none;padding:14px 0 0"><div class="note">🕉 Ships from Shirdi · secure Razorpay checkout · 7-day returns</div></div>
       </div></div>`;
@@ -1107,37 +1146,38 @@ const root=document.getElementById('cartRoot');
   window.rm=id=>{Saileela.Cart.remove(id);Saileela.bump();render();};
   window.setq=(id,q)=>{Saileela.Cart.setQty(id,q);Saileela.bump();render();};
   window.setPay=o=>{pay=o;render();};
-  window.placeOrder=()=>{Saileela.Cart.clear();Saileela.bump();root.innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="m8 12 2.5 2.5L16 9"/></svg><h2 style="color:var(--maroon-deep);margin:0 0 8px">Order placed 🙏</h2><p style="margin:0 0 22px">This is a prototype checkout — no payment was taken. In the live store, Razorpay would confirm your order here.</p><a href="#shop" class="btn btn-primary">Continue shopping</a></div>`;};
+  window.placeOrder=()=>{
+    const items=Saileela.Cart.detailed(); if(!items.length)return;
+    const st=Saileela.settings(); const thr=+st.freeShipThreshold||999; const fee=+st.shipFee||60;
+    const sub=Saileela.Cart.subtotal(); const ship=sub>=thr?0:fee;
+    const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+    Saileela.placeOrder({items:items.map(c=>({id:c.id,n:c.n,p:c.p,qty:c.qty})),subtotal:sub,shipping:ship,total:sub+ship,pay:pay,name:g('bName'),phone:g('bPhone'),address:g('bAddr')});
+    Saileela.Cart.clear();Saileela.bump();root.innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="m8 12 2.5 2.5L16 9"/></svg><h2 style="color:var(--kumkum-deep);margin:0 0 8px">Order placed 🙏</h2><p style="margin:0 0 22px">This is a prototype checkout — no payment was taken. In the live store, Razorpay would confirm your order here.</p><a href="#shop" class="btn btn-primary">Continue shopping</a></div>`;};
   document.addEventListener('cart:render',render);
   render();
 };
 window.__init['saileela-tv']=function(){
-const progs=[
-    {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
-    {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
-    {n:'Sai Satcharitra Parayan',w:'Daily · 9:00 AM',d:'A chapter-a-day reading of Baba\u2019s life and leelas, in Marathi & Hindi.',icon:'book'},
-    {n:'Sai Katha & Pravachan',w:'Daily · 11:00 AM',d:'Discourses and stories from respected speakers on Baba\u2019s teachings.',icon:'kalash'},
-    {n:'Bal Sai — Kids\u2019 Stories',w:'Weekends · 4:00 PM',d:'Animated Sai stories and values, made for young devotees.',icon:'frame'},
-    {n:'Sai Leela — Devotee Diaries',w:'Guruvar · 8:00 PM',d:'Real devotees share the miracles and grace they\u2019ve experienced.',icon:'hands'},
-  ];
-  document.getElementById('progGrid').innerHTML=progs.map((p,i)=>`<article class="prog reveal"><div class="thumb" style="background:${Saileela.tint(i)}"><span class="tag">▶ Programme</span><div style="width:34%">${Saileela.ICON[p.icon]}</div></div><div class="pbody"><h3>${p.n}</h3><div class="when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${p.w}</div><p>${p.d}</p></div></article>`).join('');
-
-  const sched=[
-    ['5:30 AM','Prabhat Bhajan Sandhya','Morning bhajans & keertan'],
-    ['7:00 AM','Sai Aarti Live','Kakad-time morning aarti'],
-    ['9:00 AM','Sai Satcharitra Parayan','Daily chapter reading'],
-    ['11:00 AM','Sai Katha & Pravachan','Discourse of the day'],
-    ['1:00 PM','Bhajan & Abhang','Devotional music hour'],
-    ['4:00 PM','Bal Sai Stories','For young devotees'],
-    ['6:30 PM','Sai Aarti Live','Evening aarti'],
-    ['8:00 PM','Sai Leela — Devotee Diaries','Devotee experiences'],
-    ['10:00 PM','Shej Bhajan','Night devotional wind-down'],
-  ];
+const tv=Saileela.tv();
+  const clk='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  document.getElementById('progGrid').innerHTML=tv.programmes.map((p,i)=>`<article class="prog reveal"><div class="thumb"><span class="tag">▶ Programme</span><div style="width:34%">${Saileela.ICON[p.icon]||Saileela.ICON.tv}</div></div><div class="pbody"><h3>${p.n}</h3><div class="when">${clk}${p.w}</div><p>${p.d}</p></div></article>`).join('');
   const now=new Date();const mins=now.getHours()*60+now.getMinutes();
-  const toMin=s=>{const m=s.match(/(\d+):(\d+)\s*(AM|PM)/);let h=+m[1]%12+(m[3]==='PM'?12:0);return h*60+ +m[2];};
-  let onIdx=0;sched.forEach((r,i)=>{if(mins>=toMin(r[0]))onIdx=i;});
-  document.getElementById('schedWrap').innerHTML=sched.map((r,i)=>`<div class="sched-row ${i===onIdx?'on':''}"><div class="time">${r[0]}</div><div class="prog-name">${r[1]}<small>${r[2]}</small></div>${i===onIdx?'<div class="onair"><span class="dot"></span>ON AIR</div>':'<div style="font-size:.72rem;color:var(--ash-2)">Upcoming</div>'}</div>`).join('');
-  document.getElementById('nowTitle').textContent=sched[onIdx][1];
+  const toMin=t=>{const m=String(t).match(/(\d+):(\d+)\s*(AM|PM)/i);if(!m)return 0;let h=(+m[1]%12)+(/PM/i.test(m[3])?12:0);return h*60+ +m[2];};
+  let onIdx=0;tv.schedule.forEach((r,i)=>{if(mins>=toMin(r.t))onIdx=i;});
+  document.getElementById('schedWrap').innerHTML=tv.schedule.map((r,i)=>`<div class="sched-row ${i===onIdx?'on':''}"><div class="time">${r.t}</div><div class="prog-name">${r.n}<small>${r.d||''}</small></div>${i===onIdx?'<div class="onair"><span class="dot"></span>ON AIR</div>':'<div class="up">Upcoming</div>'}</div>`).join('');
+  const nowT=document.getElementById('nowTitle'); if(nowT) nowT.textContent=tv.nowTitle||tv.schedule[onIdx].n;
+  const distSvg={
+    dth:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 15a8 8 0 0 1 8-8M4 15a4 4 0 0 1 4-4M4 15h2"/><circle cx="6" cy="17" r="1.5" fill="currentColor" stroke="none"/><rect x="12" y="4" width="8" height="14" rx="1"/></svg>',
+    cable:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    ott:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg>'};
+  const distMeta=[['dth','DTH','Direct-to-home'],['cable','Cable','Regional networks'],['ott','OTT & Apps','Stream anywhere']];
+  document.getElementById('distGrid').innerHTML=distMeta.map(([k,title,sub])=>`<div class="dist reveal"><div class="dh"><div class="ic">${distSvg[k]}</div><div><h3>${title}</h3><span>${sub}</span></div></div><ul>${(tv.distribution[k]||[]).map(x=>`<li>${x.name} <span class="num ${k==='ott'?'app':''}">${x.num||''}</span></li>`).join('')}</ul></div>`).join('');
+  const socSvg={
+    YouTube:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg>',
+    Facebook:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg>',
+    Instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg>',
+    WhatsApp:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>'};
+  document.getElementById('socGrid').innerHTML=tv.socials.map(x=>`<div class="soc reveal"><div class="si" style="background:${x.color}">${socSvg[x.plat]||socSvg.YouTube}</div><div class="plat">${x.plat}</div><b>${x.count}</b><div class="lbl">${x.label}</div><a href="${x.url||'#'}">${x.cta} →</a></div>`).join('');
+  if(tv.liveUrl){document.querySelectorAll('[data-live]').forEach(a=>{a.href=tv.liveUrl;a.target='_blank';a.rel='noopener';});}
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 };
 window.__init['about']=function(){

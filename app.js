@@ -18,27 +18,87 @@ const ICON = {
   care:'<svg viewBox="0 0 80 80" fill="none"><rect x="22" y="36" width="36" height="26" rx="3" fill="#2A2016"/><path d="M20 36h40v6H20z" fill="#B18E3E"/><path d="M40 36v26" stroke="#EBCF86" stroke-width="1.4"/><path d="M40 32c-2-4-9-4-9 1.5 0 4.5 9 8.5 9 8.5s9-4 9-8.5C49 28 42 28 40 32Z" fill="#E0A32E"/></svg>',
   tv:'<svg viewBox="0 0 80 80" fill="none"><rect x="16" y="22" width="48" height="34" rx="5" fill="#2A2016"/><rect x="21" y="27" width="38" height="24" rx="2" fill="#FCF5E1"/><path d="M36 33v12l11-6z" fill="#E0A32E"/><path d="M30 62h20M40 56v6" stroke="#B18E3E" stroke-width="2.6" stroke-linecap="round"/></svg>'
 };
-const TINTS=['linear-gradient(145deg,#F3E4C6,#EBCF86)','linear-gradient(145deg,#F6E7DA,#E9C4A0)','linear-gradient(145deg,#EFE0DE,#D8A9AE)','linear-gradient(145deg,#EDE7D2,#D9CBA0)','linear-gradient(145deg,#F4E9D2,#E3C486)'];
-const tint=i=>'';   /* niches are styled in CSS now; keep signature return for callers */
-const money=n=>'₹'+Number(n).toLocaleString('en-IN');
+const tint=i=>'';   /* niches styled in CSS */
 
-/* ---------- shared catalog ---------- */
-const CATALOG=[
-  {id:'p1',n:'Sandal Agarbatti — Gift Box',p:299,o:399,icon:'incense',cat:'Pooja Samagri',r:4.9,c:820,badge:'new',desc:'A premium box of long-burning sandalwood agarbatti, ideal for daily aarti and a calm, fragrant home mandir.'},
-  {id:'p2',n:'Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',desc:'The beloved life and teachings of Sai Baba, in a clean, readable Marathi edition on quality paper.'},
-  {id:'p3',n:'Rudraksha 108 Mala',p:699,o:899,icon:'mala',cat:'Malas',r:4.8,c:560,badge:'',desc:'A traditional 108-bead rudraksha mala, hand-knotted and finished for daily japa and everyday wear.'},
-  {id:'p4',n:'Marble Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
-  {id:'p5',n:'Saffron Prayer Shawl',p:849,o:1099,icon:'shawl',cat:'Apparel',r:4.7,c:295,badge:'',desc:'A soft saffron shawl with a gold border, comfortable for prayer, parayan and festival wear.'},
-  {id:'p6',n:'Sai Leela Photo Frame',p:599,o:799,icon:'frame',cat:'Frames',r:4.8,c:670,badge:'',desc:'An elegant framed photo with a warm gold finish, ready to hang or stand in your pooja space.'},
-  {id:'p7',n:'Lotus Brass Diya Set',p:499,o:null,icon:'lotus',cat:'Pooja Samagri',r:4.9,c:930,badge:'new',desc:'A set of lotus-shaped brass diyas that bring a soft, steady glow to your daily worship.'},
-  {id:'p8',n:'Brass Palki Showpiece',p:1999,o:2499,icon:'palki',cat:'Frames',r:4.9,c:180,badge:'',desc:'A detailed brass palki showpiece, a graceful decorative tribute for mandir or living room.'},
-  {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
-  {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
-  {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
-  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'},
+/* ================= DATA LAYER (localStorage + JSON export/import) ================= */
+const DEFAULT_PRODUCTS=[
+  {id:'p1',n:'Sandal Agarbatti — Gift Box',p:299,o:399,icon:'incense',cat:'Pooja Samagri',r:4.9,c:820,badge:'new',stock:120,active:true,desc:'A premium box of long-burning sandalwood agarbatti, ideal for daily aarti and a calm, fragrant home mandir.'},
+  {id:'p2',n:'Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',stock:60,active:true,desc:'The beloved life and teachings of Sai Baba, in a clean, readable Marathi edition on quality paper.'},
+  {id:'p3',n:'Rudraksha 108 Mala',p:699,o:899,icon:'mala',cat:'Malas',r:4.8,c:560,badge:'',stock:75,active:true,desc:'A traditional 108-bead rudraksha mala, hand-knotted and finished for daily japa and everyday wear.'},
+  {id:'p4',n:'Marble Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',stock:24,active:true,desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
+  {id:'p5',n:'Saffron Prayer Shawl',p:849,o:1099,icon:'shawl',cat:'Apparel',r:4.7,c:295,badge:'',stock:40,active:true,desc:'A soft saffron shawl with a gold border, comfortable for prayer, parayan and festival wear.'},
+  {id:'p6',n:'Sai Leela Photo Frame',p:599,o:799,icon:'frame',cat:'Frames',r:4.8,c:670,badge:'',stock:90,active:true,desc:'An elegant framed photo with a warm gold finish, ready to hang or stand in your pooja space.'},
+  {id:'p7',n:'Lotus Brass Diya Set',p:499,o:null,icon:'lotus',cat:'Pooja Samagri',r:4.9,c:930,badge:'new',stock:110,active:true,desc:'A set of lotus-shaped brass diyas that bring a soft, steady glow to your daily worship.'},
+  {id:'p8',n:'Brass Palki Showpiece',p:1999,o:2499,icon:'palki',cat:'Frames',r:4.9,c:180,badge:'',stock:18,active:true,desc:'A detailed brass palki showpiece, a graceful decorative tribute for mandir or living room.'},
+  {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',stock:30,active:true,desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
+  {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',stock:22,active:true,desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
+  {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
+  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'}
 ];
-const CATS=['All','Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
-const findProduct=id=>CATALOG.find(p=>p.id===id);
+const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
+const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
+const DEFAULT_SETTINGS={
+  storeName:'Saileela Store', currency:'₹',
+  announceDeva:'॥ हर हर साई • घर घर साई ॥',
+  announceMsg:'<b>Guruvar drop</b> every Thursday from Shirdi',
+  freeShipThreshold:999, shipFee:60,
+  heroTagline:'॥ हर हर साई • घर घर साई ॥',
+  heroTitle:'The one-stop store for<br>every <em>Sai devotee</em>',
+  heroSub:'Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.',
+  festivalName:'Vijayadashami Special Hampers',
+  festivalDate:'2026-10-20',
+  whatsapp:'', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
+};
+const DEFAULT_TV={
+  nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'',
+  programmes:[
+    {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
+    {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
+    {n:'Sai Satcharitra Parayan',w:'Daily · 9:00 AM',d:'A chapter-a-day reading of Baba life and leelas, in Marathi & Hindi.',icon:'book'},
+    {n:'Sai Katha & Pravachan',w:'Daily · 11:00 AM',d:'Discourses and stories from respected speakers on Baba teachings.',icon:'kalash'},
+    {n:'Bal Sai — Kids Stories',w:'Weekends · 4:00 PM',d:'Animated Sai stories and values, made for young devotees.',icon:'frame'},
+    {n:'Sai Leela — Devotee Diaries',w:'Guruvar · 8:00 PM',d:'Real devotees share the miracles and grace they have experienced.',icon:'hands'}
+  ],
+  schedule:[
+    {t:'5:30 AM',n:'Prabhat Bhajan Sandhya',d:'Morning bhajans & keertan'},
+    {t:'7:00 AM',n:'Sai Aarti Live',d:'Kakad-time morning aarti'},
+    {t:'9:00 AM',n:'Sai Satcharitra Parayan',d:'Daily chapter reading'},
+    {t:'11:00 AM',n:'Sai Katha & Pravachan',d:'Discourse of the day'},
+    {t:'1:00 PM',n:'Bhajan & Abhang',d:'Devotional music hour'},
+    {t:'4:00 PM',n:'Bal Sai Stories',d:'For young devotees'},
+    {t:'6:30 PM',n:'Sai Aarti Live',d:'Evening aarti'},
+    {t:'8:00 PM',n:'Sai Leela — Devotee Diaries',d:'Devotee experiences'},
+    {t:'10:00 PM',n:'Shej Bhajan',d:'Night devotional wind-down'}
+  ],
+  distribution:{
+    dth:[{name:'Tata Play',num:'Ch •••'},{name:'Airtel Digital TV',num:'Ch •••'},{name:'Dish TV',num:'Ch •••'},{name:'d2h',num:'Ch •••'},{name:'Sun Direct',num:'Ch •••'}],
+    cable:[{name:'GTPL',num:'Ch •••'},{name:'Hathway',num:'Ch •••'},{name:'DEN Networks',num:'Ch •••'},{name:'Siti Cable',num:'Ch •••'},{name:'Local MSOs (Maharashtra)',num:'Ch •••'}],
+    ott:[{name:'YouTube Live',num:'Subscribe'},{name:'Saileela TV App',num:'iOS · Android'},{name:'JioTV',num:'Live'},{name:'Facebook Live',num:'Follow'},{name:'Website live player',num:'Watch'}]
+  },
+  socials:[
+    {plat:'YouTube',count:'1.2M',label:'subscribers',cta:'Subscribe',url:'#',color:'#c4302b'},
+    {plat:'Facebook',count:'860K',label:'followers',cta:'Follow',url:'#',color:'#1877f2'},
+    {plat:'Instagram',count:'540K',label:'followers',cta:'Follow',url:'#',color:'linear-gradient(45deg,#f09433,#bc1888)'},
+    {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'#',color:'#25d366'}
+  ]
+};
+const DATA_KEY='saileela_data_v1';
+const Store={
+  _d:null,
+  defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
+  load(){ if(this._d)return this._d; let d=null; try{d=JSON.parse(localStorage.getItem(DATA_KEY))}catch(e){} const def=this.defaults(); d=d||{};
+    this._d={ products:Array.isArray(d.products)?d.products:def.products, cats:Array.isArray(d.cats)?d.cats:def.cats, orders:Array.isArray(d.orders)?d.orders:[], settings:Object.assign({},def.settings,d.settings||{}), tv:Object.assign({},def.tv,d.tv||{}) };
+    this._d.tv.distribution=Object.assign({},def.tv.distribution,(d.tv&&d.tv.distribution)||{});
+    return this._d; },
+  save(){ try{localStorage.setItem(DATA_KEY,JSON.stringify(this._d))}catch(e){} document.dispatchEvent(new Event('data:change')); },
+  set(d){ this._d=d; this.save(); },
+  reset(){ this._d=this.defaults(); this.save(); },
+  exportJSON(){ return JSON.stringify(this.load(),null,2); },
+  importJSON(t){ const d=JSON.parse(t); const def=this.defaults(); this._d={products:d.products||def.products,cats:d.cats||def.cats,orders:d.orders||[],settings:Object.assign({},def.settings,d.settings||{}),tv:Object.assign({},def.tv,d.tv||{})}; this.save(); }
+};
+const money=n=>String(Store.load().settings.currency||'₹')+Number(n||0).toLocaleString('en-IN');
+const findProduct=id=>Store.load().products.find(p=>p.id===id);
+
 
 /* ---------- cart (persists across pages, falls back to memory) ---------- */
 const Cart={
@@ -58,11 +118,12 @@ const NAV=[['index.html','Home'],['shop.html','Shop'],['saileela-tv.html','Saile
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
 
 function renderHeader(){
+  const _s=Store.load().settings;
   const page=document.body.dataset.page||'index.html';
   const links=NAV.map(([h,l])=>`<a href="${h}" class="${h===page?'active':''}">${l}</a>`).join('');
   const mlinks=NAV.map(([h,l])=>`<a href="${h}">${l}</a>`).join('');
   const html=`
-  <div class="announce"><span class="deva-body">॥ हर हर साई • घर घर साई ॥</span><span class="sep">✦</span><b>Guruvar drop</b> every Thursday from Shirdi<span class="sep">✦</span>Free shipping over ₹999</div>
+  <div class="announce"><span class="deva-body">${_s.announceDeva}</span><span class="sep">✦</span>${_s.announceMsg}<span class="sep">✦</span>Free shipping over ${money(_s.freeShipThreshold)}</div>
   <header id="header"><div class="nav">
     <a class="brand" href="index.html" aria-label="Saileela Store home">
       <img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="48" height="48">
@@ -104,7 +165,7 @@ function renderFooter(){
     <div><h4>Coming soon</h4><ul><li><a href="#">Hotel booking</a></li><li><a href="#">Cabs & transfers</a></li><li><a href="#">Tour packages</a></li><li><a href="#">Pandit & pooja services</a></li></ul></div>
   </div>
   <div class="foot-bottom"><span>© 2026 Saileela Store · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust.</span>
-    <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span></div></div>
+    <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span><a class="chip" href="admin.html" style="text-decoration:none">⚙ Admin</a></div></div>
   </div></footer>`;
   document.getElementById('site-footer').innerHTML=html;
 }
@@ -128,7 +189,13 @@ function injectOverlays(){
 
 /* ---------- public API + wiring ---------- */
 const Saileela={
-  money,ICON,tint,CATALOG,CATS,findProduct,Cart,
+  money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
+  get CATALOG(){return Store.load().products.filter(p=>p.active!==false);},
+  get CATS(){return ['All',...Store.load().cats];},
+  settings(){return Store.load().settings;},
+  tv(){return Store.load().tv;},
+  placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
+  applyContent(){const s=Store.load().settings;document.querySelectorAll('[data-bind]').forEach(el=>{const k=el.dataset.bind;if(s[k]!=null)el.innerHTML=s[k];});},
   productCard(p,i=0){
     return `<article class="card reveal">
       <div class="tile" style="background:${tint(i)}">${p.badge?`<span class="badge ${p.badge==='new'?'new':''}">${p.badge==='new'?'New':p.badge}</span>`:''}<a class="tilelink" href="product.html?id=${p.id}" aria-label="${p.n}">${ICON[p.icon]}</a></div>
@@ -157,7 +224,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays();
+  renderHeader(); renderFooter(); injectOverlays(); Saileela.applyContent();
   Saileela.bump();
   const header=document.getElementById('header');
   addEventListener('scroll',()=>header&&header.classList.toggle('shrunk',scrollY>20));

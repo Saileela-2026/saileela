@@ -14,9 +14,9 @@
   <div class="hero-photo" role="img" aria-label="Shree Sai Baba"></div>
   <div class="hero-inner">
     <div class="hero-copy reveal">
-      <div class="hero-brandline"><span class="deva-body">॥ हर हर साई • घर घर साई ॥</span></div>
-      <h1>The one-stop store for<br>every <em>Sai devotee</em></h1>
-      <p class="hero-sub">Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.</p>
+      <div class="hero-brandline"><span class="deva-body" data-bind="heroTagline">॥ हर हर साई • घर घर साई ॥</span></div>
+      <h1 data-bind="heroTitle">The one-stop store for<br>every <em>Sai devotee</em></h1>
+      <p class="hero-sub" data-bind="heroSub">Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.</p>
       <form class="hero-search" onsubmit="return Saileela.search(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" name="q" placeholder="Search idols, books, malas, frames…" aria-label="Search products">
@@ -76,7 +76,7 @@
 
 <div class="guruvar"><div class="wrap inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2.6" fill="currentColor" stroke="none"/></svg><b>Guruvar is Baba's day.</b><span>Every Thursday we release fresh arrivals and dispatch with extra devotion.</span></div></div>
 
-<section class="festival"><div class="wrap inner reveal"><div class="eyebrow">Limited festival drop</div><h2>Vijayadashami Special Hampers</h2><p class="punya">॥ Celebrate the festival with Baba's blessings ॥</p><p>A once-a-year collection of hand-curated gift boxes. Only 200 pieces, each packed with devotion in Shirdi.</p>
+<section class="festival"><div class="wrap inner reveal"><div class="eyebrow">Limited festival drop</div><h2 data-bind="festivalName">Vijayadashami Special Hampers</h2><p class="punya">॥ Celebrate the festival with Baba's blessings ॥</p><p>A once-a-year collection of hand-curated gift boxes. Only 200 pieces, each packed with devotion in Shirdi.</p>
   <div class="countdown"><div class="cd"><b id="dd">05</b><span>Days</span></div><div class="cd"><b id="hh">12</b><span>Hours</span></div><div class="cd"><b id="mm">40</b><span>Mins</span></div><div class="cd"><b id="ss">18</b><span>Secs</span></div></div>
   <a href="shop.html" class="btn btn-primary">Reserve your hamper</a></div></section>
 
@@ -99,10 +99,10 @@
   document.getElementById('exGrid').innerHTML=Saileela.CATALOG.filter(p=>p.badge==='Exclusive').map((x,i)=>`<article class="ex-card" onclick="location.href='product.html?id=${x.id}'"><div class="ex-tile" style="background:${Saileela.tint(i)}"><span class="ex-tag">Exclusive</span>${Saileela.ICON[x.icon]}</div><h3>${x.n}</h3><div class="price">${Saileela.money(x.p)}${x.o?`<s>${Saileela.money(x.o)}</s>`:''}</div></article>`).join('');
   const cats=[['Idols & Murtis','Brass · Marble · Silver','kalash'],['Pooja Samagri','Diyas · Agarbatti · Kumkum','incense'],['Books & Media','Satcharitra & aartis','book'],['Frames & Décor','Photos · Palki · Wall art','frame'],['Apparel & Malas','Shawls · Rudraksha','shawl'],['Gifting & Hampers','Festivals · Return gifts','hamper']];
   document.getElementById('catGrid').innerHTML=cats.map((c,i)=>`<a href="shop.html" class="cat"><div class="cat-bg" style="background:${Saileela.tint(i)}"></div><div class="cat-icon">${Saileela.ICON[c[2]]}</div><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>`).join('');
-  const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct);
+  const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown
-  let t=new Date();t.setDate(t.getDate()+5);t.setHours(t.getHours()+12,t.getMinutes()+40,18);
+  const _fd=Saileela.settings().festivalDate; let t=_fd?new Date(_fd+'T09:00:00'):new Date(Date.now()+5*864e5);
   setInterval(()=>{let d=Math.max(0,t-new Date());const D=d/864e5|0,H=d%864e5/36e5|0,M=d%36e5/6e4|0,S=d%6e4/1e3|0,p=x=>String(x).padStart(2,'0');dd.textContent=p(D);hh.textContent=p(H);mm.textContent=p(M);ss.textContent=p(S);},1000);
 </script>
 </body></html>
