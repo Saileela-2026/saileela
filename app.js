@@ -6,7 +6,7 @@ const ICON = {
   diya:'<svg viewBox="0 0 80 80" fill="none"><path d="M18 42c0 12 10 18 22 18s22-6 22-18c-6 6-16 8-22 8s-16-2-22-8Z" fill="#2A2016"/><path d="M40 44c-8-6 2-14-2-24 10 8 14 18 2 24Z" fill="#E0A32E"/><path d="M40 40c-4-4 1-8-1-13 5 4 7 9 1 13Z" fill="#EBCF86"/></svg>',
   mala:'<svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="22" stroke="#2A2016" stroke-width="2" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="40" cy="18" r="5" fill="#E0A32E"/><path d="M40 62v10" stroke="#2A2016" stroke-width="2"/><circle cx="40" cy="74" r="3" fill="#B18E3E"/></svg>',
   book:'<svg viewBox="0 0 80 80" fill="none"><path d="M18 20h20a4 4 0 0 1 4 4v34H22a4 4 0 0 1-4-4V20Z" fill="#2A2016"/><path d="M62 20H42a4 4 0 0 0-4 4v34h20a4 4 0 0 0 4-4V20Z" fill="#A82D22"/><path d="M26 30h10M26 38h10" stroke="#EBCF86" stroke-width="2" stroke-linecap="round"/></svg>',
-  frame:'<svg viewBox="0 0 80 80" fill="none"><rect x="20" y="16" width="40" height="48" rx="3" fill="#2A2016"/><rect x="27" y="23" width="26" height="34" rx="2" fill="#FCF5E1"/><text x="40" y="46" text-anchor="middle" fill="#B18E3E" font-family="Rozha One" font-size="18">ॐ</text></svg>',
+  frame:'<svg viewBox="0 0 80 80" fill="none"><rect x="20" y="16" width="40" height="48" rx="3" fill="#2A2016"/><rect x="27" y="23" width="26" height="34" rx="2" fill="#FCF5E1"/><text x="40" y="46" text-anchor="middle" fill="#B18E3E" font-family="Tiro Devanagari Hindi" font-size="18">ॐ</text></svg>',
   incense:'<svg viewBox="0 0 80 80" fill="none"><path d="M30 64h20M34 24v40M40 20v44M46 24v40" stroke="#2A2016" stroke-width="2.4" stroke-linecap="round"/><circle cx="34" cy="22" r="3" fill="#E0A32E"/><circle cx="40" cy="18" r="3" fill="#E0A32E"/><circle cx="46" cy="22" r="3" fill="#E0A32E"/></svg>',
   kalash:'<svg viewBox="0 0 80 80" fill="none"><path d="M28 36c-2 12 4 26 12 26s14-14 12-26Z" fill="#2A2016"/><path d="M26 34h28l-4-6H30Z" fill="#B18E3E"/><path d="M40 28c-3-6 3-6 0-12-3 6 3 6 0 12Z" fill="#E0A32E"/><path d="M34 46h12" stroke="#EBCF86" stroke-width="2" stroke-linecap="round"/></svg>',
   shawl:'<svg viewBox="0 0 80 80" fill="none"><path d="M20 22c8 6 32 6 40 0l-4 40c-12 4-20 4-32 0Z" fill="#E0A32E"/><path d="M24 26v32M56 26v32" stroke="#B18E3E" stroke-width="2"/><path d="M26 58h28" stroke="#2A2016" stroke-width="2" stroke-dasharray="2 3"/></svg>',
@@ -43,8 +43,8 @@ const DEFAULT_SETTINGS={
   announceMsg:'<b>Guruvar drop</b> every Thursday from Shirdi',
   freeShipThreshold:999, shipFee:60,
   heroTagline:'॥ हर हर साई • घर घर साई ॥',
-  heroTitle:'The one-stop store for<br>every <em>Sai devotee</em>',
-  heroSub:'Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.',
+  heroTitle:'Everything a Sai<br>Devotee <em>Needs</em>',
+  heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
   whatsapp:'', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
@@ -112,27 +112,34 @@ const Cart={
   subtotal(){ return this.read().reduce((s,x)=>{const p=findProduct(x.id);return s+(p?p.p*x.qty:0)},0); },
   detailed(){ return this.read().map(x=>({...findProduct(x.id),qty:x.qty})).filter(x=>x.id); }
 };
+const Wish={
+  read(){try{return JSON.parse(localStorage.getItem('saileela_wish'))||[]}catch(e){return[]}},
+  write(a){try{localStorage.setItem('saileela_wish',JSON.stringify(a))}catch(e){} document.dispatchEvent(new Event('wish:change'));},
+  has(id){return this.read().includes(id)},
+  toggle(id){let a=this.read();if(a.includes(id))a=a.filter(x=>x!==id);else a.push(id);this.write(a);return a.includes(id)},
+  count(){return this.read().length}
+};
 
 /* ---------- header + footer ---------- */
-const NAV=[['index.html','Home'],['shop.html','Shop'],['saileela-tv.html','Saileela TV'],['about.html','About'],['contact.html','Contact']];
+const NAV=[['shop.html','Shop'],['index.html#exclusive','Saileela Exclusive'],['shop.html#collections','Collections'],['saileela-tv.html','Saileela TV'],['about.html','Our Story']];
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
 
 function renderHeader(){
   const _s=Store.load().settings;
   const page=document.body.dataset.page||'index.html';
-  const links=NAV.map(([h,l])=>`<a href="${h}" class="${h===page?'active':''}">${l}</a>`).join('');
+  const links=NAV.map(([h,l])=>`<a href="${h}" class="${h.split('#')[0]===page?'active':''}">${l}</a>`).join('');
   const mlinks=NAV.map(([h,l])=>`<a href="${h}">${l}</a>`).join('');
   const html=`
-  <div class="announce"><span class="deva-body">${_s.announceDeva}</span><span class="sep">✦</span>${_s.announceMsg}<span class="sep">✦</span>Free shipping over ${money(_s.freeShipThreshold)}</div>
+  <div class="announce"><span>Ships from Shirdi</span><span class="sep">•</span><span>Free shipping above ${money(_s.freeShipThreshold)}</span><span class="sep">•</span><span>Carefully packed</span></div>
   <header id="header"><div class="nav">
-    <a class="brand" href="index.html" aria-label="Saileela Store home">
-      <img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="48" height="48">
-      <div class="brand-name">Saileela<span class="deva">॥ हर हर साई ॥</span></div></a>
+    <a class="brand" href="index.html" aria-label="Saileela home">
+      <img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="46" height="46">
+      <div class="brand-name">Saileela</div></a>
     <nav class="links" aria-label="Primary">${links}</nav>
     <div class="nav-actions">
-      <span class="locpill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Ships from Shirdi 423109</span>
-      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
-      <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount">0</span></a>
+      <button class="icon-btn" aria-label="Search" onclick="Saileela.openSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <a class="icon-btn" href="shop.html?wish=1" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg><span class="wish-count" id="wishCount">0</span></a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h13l-1.2 9.5a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount">0</span></a>
       <button class="icon-btn burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div></div></header>
   <div class="mnav" id="mnav" aria-hidden="true">
@@ -145,33 +152,39 @@ function renderFooter(){
   const html=`
   <section class="news"><div class="wrap inner reveal">
     <div class="eyebrow">Join the Saileela family</div>
-    <h2>Baba's blessings, in your inbox</h2>
-    <p>Guruvar drops, new arrivals and stories from Shirdi — plus ₹100 off your first order.</p>
-    <form onsubmit="return Saileela.subscribe(event)"><input type="email" placeholder="Your email address" aria-label="Email address" required><button class="btn btn-gold" type="submit">Subscribe</button></form>
+    <h2>New arrivals & stories from Shirdi</h2>
+    <p>Guruvar selections, new arrivals and stories from Shirdi — with ₹100 off your first order.</p>
+    <form onsubmit="return Saileela.subscribe(event)"><input type="email" placeholder="Your email address" aria-label="Email address" required><button class="btn btn-primary" type="submit">Subscribe</button></form>
     <span class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Z"/></svg> Prefer WhatsApp? Get updates on WhatsApp</span>
   </div></section>
   <footer><div class="wrap"><div class="foot-grid">
-    <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="52" height="52"><span class="brand-name" style="font-family:Fraunces;font-size:1.45rem">Saileela Store</span></div>
+    <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name" style="font-family:Fraunces;font-size:1.4rem">Saileela</span></div>
       <div class="malik-f">॥ श्रद्धा • सबुरी • समर्पण ॥</div>
-      <p>A complete Shirdi solution for Sai devotees — authentic products today, hotels, cabs and pooja services soon.</p>
+      <p>A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.</p>
       <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shirdi, Ahilyanagar, Maharashtra 423109</div>
+      <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
+    </div>
+    <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html#collections">Collections</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
+    <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="saileela-tv.html">Saileela TV</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="contact.html">Shipping</a></li><li><a href="contact.html">Returns</a></li><li><a href="contact.html">FAQ</a></li><li><a href="contact.html">Order support</a></li></ul></div>
+    <div><h4>Follow</h4>
       <div class="socials">
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
         <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
         <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></a>
-      </div></div>
-    <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="shop.html">Idols & Murtis</a></li><li><a href="shop.html">Pooja Samagri</a></li><li><a href="shop.html">Books & Media</a></li><li><a href="shop.html">Gifting & Hampers</a></li></ul></div>
-    <div><h4>Saileela TV</h4><ul><li><a href="saileela-tv.html">Watch live</a></li><li><a href="saileela-tv.html#programmes">Popular programmes</a></li><li><a href="saileela-tv.html#schedule">Live schedule</a></li><li><a href="saileela-tv.html#distribution">DTH · Cable · OTT</a></li><li><a href="saileela-tv.html#social">Social media</a></li></ul></div>
-    <div><h4>Coming soon</h4><ul><li><a href="#">Hotel booking</a></li><li><a href="#">Cabs & transfers</a></li><li><a href="#">Tour packages</a></li><li><a href="#">Pandit & pooja services</a></li></ul></div>
+      </div>
+    </div>
   </div>
-  <div class="foot-bottom"><span>© 2026 Saileela Store · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust.</span>
-    <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span><a class="chip" href="admin.html" style="text-decoration:none">⚙ Admin</a></div></div>
+  <div class="foot-bottom"><span>© 2026 Saileela · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust. <a href="admin.html" style="color:inherit;opacity:.35;text-decoration:none">·</a></span>
+    <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span></div></div>
   </div></footer>`;
   document.getElementById('site-footer').innerHTML=html;
 }
 
 /* ---------- drawer + toast (injected once) ---------- */
 function injectOverlays(){
+  const _s=Store.load().settings; const wa=(_s.whatsapp||'').replace(/\D/g,'');
   const el=document.createElement('div');
   el.innerHTML=`
   <div class="scrim" id="scrim"></div>
@@ -181,9 +194,14 @@ function injectOverlays(){
     <div class="drawer-foot" id="drawerFoot" style="display:none">
       <div class="row"><span>Subtotal</span><b id="dSub">₹0</b></div>
       <a href="cart.html" class="btn btn-primary" style="width:100%;justify-content:center">View cart & checkout</a>
-      <div class="note">🕉 Every order ships with devotion, straight from Shirdi</div></div>
+      <div class="note">Packed with care in Shirdi.</div></div>
   </aside>
-  <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7"/></svg><span id="toastMsg">Added to cart</span></div>`;
+  <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7"/></svg><span id="toastMsg">Added to cart</span></div>
+  <div class="search-ov" id="searchOv"><div class="sbox">
+    <form class="sform" onsubmit="return Saileela.search(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Search idols, books, malas, frames…" aria-label="Search products"><span class="sclose" onclick="Saileela.closeSearch()">Esc</span></form>
+    <div class="ssug"><p>Popular</p><a href="shop.html?cat=Idols">Idols</a><a href="shop.html?cat=Books">Books</a><a href="shop.html?cat=Malas">Malas</a><a href="shop.html?cat=Frames">Frames</a><a href="shop.html?cat=Gifting">Gifting</a></div>
+  </div></div>
+  <a class="wa-fab" href="${wa?('https://wa.me/'+wa):'contact.html'}" ${wa?'target="_blank" rel="noopener"':''} aria-label="Chat with Saileela on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg><span class="wa-txt">Chat with Saileela</span></a>`;
   document.body.appendChild(el);
 }
 
@@ -197,13 +215,19 @@ const Saileela={
   placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
   applyContent(){const s=Store.load().settings;document.querySelectorAll('[data-bind]').forEach(el=>{const k=el.dataset.bind;if(s[k]!=null)el.innerHTML=s[k];});},
   productCard(p,i=0){
+    const b=(p.badge||'').toLowerCase();
+    const badge=p.badge?`<span class="badge ${b==='new'?'new':(b==='exclusive'?'excl':'')}">${b==='new'?'New':p.badge}</span>`:'';
+    const on=Wish.has(p.id)?'on':'';
     return `<article class="card reveal">
-      <div class="tile" style="background:${tint(i)}">${p.badge?`<span class="badge ${p.badge==='new'?'new':''}">${p.badge==='new'?'New':p.badge}</span>`:''}<a class="tilelink" href="product.html?id=${p.id}" aria-label="${p.n}">${ICON[p.icon]}</a></div>
+      <div class="tile">${badge}<button class="wish ${on}" aria-label="Save ${p.n} to wishlist" onclick="Saileela.toggleWish('${p.id}',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg></button><a class="tilelink" href="product.html?id=${p.id}" aria-label="${p.n}">${ICON[p.icon]}</a></div>
       <div class="body"><div class="cat-label">${p.cat}</div><h3><a href="product.html?id=${p.id}">${p.n}</a></h3>
-        <div class="stars">★★★★★ <span>${p.r} (${p.c})</span></div>
         <div class="foot"><div class="price">${money(p.p)}${p.o?`<s>${money(p.o)}</s>`:''}</div>
-          <button class="add" aria-label="Add ${p.n} to cart" onclick="Saileela.addToCart('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div></article>`;
+          <button class="add" aria-label="Add ${p.n} to cart" onclick="Saileela.addToCart('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h13l-1.2 9.5a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></button></div></div></article>`;
   },
+  toggleWish(id,btn){const on=Wish.toggle(id);if(btn)btn.classList.toggle('on',on);this.wishBump();this.toast(on?'Saved to wishlist':'Removed from wishlist');},
+  wishBump(){const el=document.getElementById('wishCount');if(!el)return;const n=Wish.count();el.textContent=n;el.classList.toggle('show',n>0);},
+  openSearch(){const o=document.getElementById('searchOv');if(!o)return;o.classList.add('open');const i=o.querySelector('input');if(i)setTimeout(()=>i.focus(),60);},
+  closeSearch(){const o=document.getElementById('searchOv');if(o)o.classList.remove('open');},
   addToCart(id,qty=1){ Cart.add(id,qty); const p=findProduct(id); this.toast(`${p?p.n:'Item'} added to cart`); this.bump(); },
   toast(msg){ const t=document.getElementById('toast'); if(!t)return; document.getElementById('toastMsg').textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200); },
   bump(){ const el=document.getElementById('cartCount'); if(!el)return; const q=Cart.count(); el.textContent=q; el.classList.toggle('show',q>0); el.style.transform='scale(1.4)'; setTimeout(()=>el.style.transform='',180); this.renderDrawer(); },
@@ -212,7 +236,7 @@ const Saileela={
   renderDrawer(){
     const box=document.getElementById('drawerItems'),foot=document.getElementById('drawerFoot'); if(!box)return;
     const items=Cart.detailed();
-    if(!items.length){ box.innerHTML=`<div class="drawer-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><p>Your cart is waiting for Baba's blessings.</p></div>`; foot.style.display='none'; return; }
+    if(!items.length){ box.innerHTML=`<div class="drawer-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><p>Your cart is empty.</p></div>`; foot.style.display='none'; return; }
     box.innerHTML=items.map((c,i)=>`<div class="ditem"><div class="dt" style="background:${tint(i)}">${ICON[c.icon]}</div><div><h4>${c.n}</h4><div class="dp">${money(c.p)} × ${c.qty}</div><div class="rm" role="button" tabindex="0" onclick="Saileela.removeFromCart('${c.id}')" onkeydown="if(event.key==='Enter')Saileela.removeFromCart('${c.id}')">Remove</div></div></div>`).join('');
     document.getElementById('dSub').textContent=money(Cart.subtotal()); foot.style.display='block';
   },
@@ -225,7 +249,8 @@ window.Saileela=Saileela;
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
   renderHeader(); renderFooter(); injectOverlays(); Saileela.applyContent();
-  Saileela.bump();
+  Saileela.bump(); Saileela.wishBump();
+  const sov=document.getElementById('searchOv'); if(sov)sov.onclick=e=>{if(e.target.id==='searchOv')Saileela.closeSearch();};
   const header=document.getElementById('header');
   addEventListener('scroll',()=>header&&header.classList.toggle('shrunk',scrollY>20));
   document.getElementById('drawerClose').onclick=()=>Saileela.closeAll();
@@ -233,7 +258,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{document.getElementById('mnav').classList.add('open');document.getElementById('scrim').classList.add('open');};
   const mc=document.getElementById('mnavClose'); if(mc)mc.onclick=()=>Saileela.closeAll();
   document.querySelectorAll('.mnav a').forEach(a=>a.onclick=()=>Saileela.closeAll());
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')Saileela.closeAll();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){Saileela.closeAll();Saileela.closeSearch();}});
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 });

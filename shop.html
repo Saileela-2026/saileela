@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shop — Saileela Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Rozha+One&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="shop.html">
@@ -18,7 +18,8 @@
 
 <section class="block"><div class="wrap">
   <form class="shop-search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="shopq" type="search" placeholder="Search idols, books, malas, frames…" aria-label="Search products"></form>
-  <div class="filters" id="filters"></div>
+  <div class="shop-toolbar"><div class="filters" id="filters"></div>
+    <select id="sortby" aria-label="Sort products"><option value="featured">Featured</option><option value="new">New arrivals</option><option value="ph">Price: high to low</option><option value="pl">Price: low to high</option></select></div>
   <div class="prod-grid" id="grid"></div>
 </div></section>
 
@@ -28,25 +29,34 @@
   const params=new URLSearchParams(location.search);
   let active=params.get('cat')||'All'; if(!Saileela.CATS.includes(active))active='All';
   let query=(params.get('q')||'').trim();
-  const fbox=document.getElementById('filters'),grid=document.getElementById('grid'),sq=document.getElementById('shopq');
+  const wishOnly=params.get('wish')==='1';
+  let sortby='featured';
+  const wishList=(function(){try{return JSON.parse(localStorage.getItem('saileela_wish'))||[]}catch(e){return[]}})();
+  const fbox=document.getElementById('filters'),grid=document.getElementById('grid'),sq=document.getElementById('shopq'),sortSel=document.getElementById('sortby');
+  if(sortSel)sortSel.addEventListener('change',()=>{sortby=sortSel.value;renderGrid();});
   if(sq){ sq.value=query; sq.addEventListener('input',()=>{query=sq.value.trim();renderGrid();}); }
   function renderFilters(){
     fbox.innerHTML=Saileela.CATS.map(c=>`<button class="chip-filter ${c===active?'active':''}" onclick="setCat('${c}')">${c}</button>`).join('')+`<span class="result-count" id="rc"></span>`;
   }
   function match(p){
-    if(active!=='All'&&p.cat!==active)return false;
+    if(wishOnly&&!wishList.includes(p.id))return false;
     if(query){ const q=query.toLowerCase(); return ((p.n||'')+' '+(p.cat||'')+' '+(p.desc||'')).toLowerCase().includes(q); }
     return true;
   }
   function renderGrid(){
-    const list=Saileela.CATALOG.filter(match);
+    let list=Saileela.CATALOG.filter(match);
+    if(sortby==='pl')list=list.slice().sort((a,b)=>a.p-b.p);
+    else if(sortby==='ph')list=list.slice().sort((a,b)=>b.p-a.p);
+    else if(sortby==='new')list=list.slice().sort((a,b)=>((b.badge||'').toLowerCase()==='new'?1:0)-((a.badge||'').toLowerCase()==='new'?1:0));
     grid.innerHTML=list.length
       ? list.map((p,i)=>Saileela.productCard(p,i)).join('')
-      : `<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:48px 20px">No products match “${query}”. Try another search, or browse a category above.</p>`;
+      : `<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:48px 20px">${wishOnly?'Your wishlist is empty. Tap the ♡ on any product to save it here.':'No products match “'+'${query}'+'”. Try another search, or browse a category.'}</p>`;
     document.getElementById('rc').textContent=list.length+' product'+(list.length!==1?'s':'')+(query?(' for “'+query+'”'):'');
     grid.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
   }
-  window.setCat=c=>{active=c;renderFilters();renderGrid();};
+  window.setCat=c=>{active=c;if(wishOnly){const h=document.querySelector('.page-hero h1');if(h)h.textContent='Your Wishlist';const c=document.querySelector('.crumb');if(c)c.innerHTML='<a href="index.html">Home</a><span>\u203a</span>Wishlist';}
+  renderFilters();renderGrid();};
+  if(wishOnly){const h=document.querySelector('.page-hero h1');if(h)h.textContent='Your Wishlist';const c=document.querySelector('.crumb');if(c)c.innerHTML='<a href="index.html">Home</a><span>\u203a</span>Wishlist';}
   renderFilters();renderGrid();
 </script>
 </body></html>

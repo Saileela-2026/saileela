@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Saileela Store — From Shirdi, for every Sai devotee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Rozha+One&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="index.html">
@@ -15,16 +15,15 @@
   <div class="hero-inner">
     <div class="hero-copy reveal">
       <div class="hero-brandline"><span class="deva-body" data-bind="heroTagline">॥ हर हर साई • घर घर साई ॥</span></div>
-      <h1 data-bind="heroTitle">The one-stop store for<br>every <em>Sai devotee</em></h1>
-      <p class="hero-sub" data-bind="heroSub">Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.</p>
+      <h1 data-bind="heroTitle">Everything a Sai<br>Devotee <em>Needs</em></h1>
+      <p class="hero-sub" data-bind="heroSub">Thoughtfully selected in Shirdi. Delivered to your home.</p>
+      <div class="hero-cta"><a href="shop.html" class="btn btn-primary">Shop now</a><a href="index.html#exclusive" class="btn btn-line on-dark">Explore Saileela Exclusive</a></div>
       <form class="hero-search" onsubmit="return Saileela.search(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" name="q" placeholder="Search idols, books, malas, frames…" aria-label="Search products">
-        <button type="submit" class="btn btn-primary">Search</button>
       </form>
-      <div class="hero-chips"><span>Popular</span><a href="shop.html?cat=Idols">Idols</a><a href="shop.html?cat=Books">Books</a><a href="shop.html?cat=Frames">Frames</a><a href="shop.html?cat=Malas">Malas</a><a href="shop.html?cat=Pooja%20Samagri">Pooja Samagri</a></div>
-      <div class="hero-cta"><a href="shop.html" class="btn btn-foil">Shop all products</a><a href="saileela-tv.html" class="btn btn-line on-dark">Watch Saileela TV</a></div>
-      <div class="hero-trustline"><b>✦</b> Free shipping over ₹999 &nbsp;·&nbsp; Cash on Delivery &nbsp;·&nbsp; Ships from Shirdi</div>
+      <div class="hero-supporting">Saileela Exclusive • Idols • Books • Frames • Daily Devotion • Gifting</div>
+      <div class="hero-trustline"><b>✦</b> Free shipping above ₹999 &nbsp;·&nbsp; Cash on Delivery &nbsp;·&nbsp; Ships from Shirdi</div>
     </div>
   </div>
   <div class="hero-credit">Shree Sai Baba — an exclusive image by Saileela TV</div>
@@ -37,14 +36,15 @@
   <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5"/><circle cx="7" cy="18" r="1.7"/><circle cx="18" cy="18" r="1.7"/></svg><div><b>Pan-India delivery</b><span>Tracked & insured</span></div></div>
 </div></div>
 
-<section class="block exclusive" id="exclusive"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow">The signature line</div><h2>Saileela Exclusive</h2><p>Limited, hand-curated pieces you won't find anywhere else — made with devotion, only for the Saileela family.</p></div>
-  <div class="ex-grid" id="exGrid"></div>
+<section class="block night-sec exclusive" id="exclusive"><div class="wrap">
+  <div class="head reveal"><div class="eyebrow">The signature line</div><h2>Saileela Exclusive</h2><p>Curated in Shirdi, exclusively for the Saileela family.</p></div>
+  <div class="excl-hero reveal" id="exHero"></div>
+  <div class="prod-grid" id="exGrid" style="margin-top:26px"></div>
   <div class="ex-cta reveal"><a href="shop.html" class="btn btn-gold">Explore the full collection</a></div>
 </div></section>
 
 <section class="block sacred"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow"><svg class="neemsprig" viewBox="0 0 24 16" fill="none"><path d="M12 15V4" stroke="#6B7F4E" stroke-width="1.4"/><path d="M12 8c-4 0-7-2-8-5 4-1 7 1 8 5Z" fill="#6B7F4E" opacity=".55"/><path d="M12 6c4 0 7-2 8-4-4-1-7 0-8 4Z" fill="#6B7F4E" opacity=".8"/></svg> Rooted in Shirdi</div><h2>A devotee store, run from Baba's town</h2><p>Saileela isn't a faceless warehouse. We're a small team of devotees in Shirdi who choose every piece by hand and send it out with the care we'd give our own home mandir.</p></div>
+  <div class="head reveal"><div class="eyebrow"><svg class="neemsprig" viewBox="0 0 24 16" fill="none"><path d="M12 15V4" stroke="#6B7F4E" stroke-width="1.4"/><path d="M12 8c-4 0-7-2-8-5 4-1 7 1 8 5Z" fill="#6B7F4E" opacity=".55"/><path d="M12 6c4 0 7-2 8-4-4-1-7 0-8 4Z" fill="#6B7F4E" opacity=".8"/></svg> Rooted in Shirdi</div><h2>A devotee store, rooted in Shirdi</h2><p>Saileela isn't a faceless warehouse. We're a small team of devotees in Shirdi who choose every piece by hand and send it out with the care we'd give our own home mandir.</p></div>
   <p class="map-note reveal">॥ श्रद्धा • सबुरी — faith and patience in all that we send ॥</p>
   <div class="spots">
     <div class="spot reveal"><div class="glyph"></div><div class="mr">Our home</div><h3>Sourced in Shirdi</h3><p>Every idol, book and keepsake is chosen by hand in Baba's own town.</p></div>
@@ -76,12 +76,12 @@
 
 <div class="guruvar"><div class="wrap inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2.6" fill="currentColor" stroke="none"/></svg><b>Guruvar is Baba's day.</b><span>Every Thursday we release fresh arrivals and dispatch with extra devotion.</span></div></div>
 
-<section class="festival"><div class="wrap inner reveal"><div class="eyebrow">Limited festival drop</div><h2 data-bind="festivalName">Vijayadashami Special Hampers</h2><p class="punya">॥ Celebrate the festival with Baba's blessings ॥</p><p>A once-a-year collection of hand-curated gift boxes. Only 200 pieces, each packed with devotion in Shirdi.</p>
+<section class="festival"><div class="wrap inner reveal"><div class="eyebrow">Limited festival drop</div><h2 data-bind="festivalName">Vijayadashami Special Hampers</h2><p class="punya deva-body">॥ श्रद्धा • सबुरी • समर्पण ॥</p><p>A once-a-year collection of hand-curated gift boxes. Only 200 pieces, each packed with devotion in Shirdi.</p>
   <div class="countdown"><div class="cd"><b id="dd">05</b><span>Days</span></div><div class="cd"><b id="hh">12</b><span>Hours</span></div><div class="cd"><b id="mm">40</b><span>Mins</span></div><div class="cd"><b id="ss">18</b><span>Secs</span></div></div>
   <a href="shop.html" class="btn btn-primary">Reserve your hamper</a></div></section>
 
 <section class="block"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow">Devotee voices</div><h2>Blessings, shared</h2></div>
+  <div class="head reveal"><div class="eyebrow">Devotee voices</div><h2>What devotees say</h2></div>
   <div class="test-grid">
     <div class="test reveal"><div class="q">”</div><p>The murti reached me in perfect condition and the care that went into the packing brought tears to my eyes. This is not just shopping — it feels like a blessing.</p><div class="who"><div class="av">L</div><div><b>Lakshmi R.</b><span>Hyderabad</span></div></div></div>
     <div class="test reveal"><div class="q">”</div><p>Ordered a hamper for my parents on Guru Purnima. The packing, the quality, the little Saileela touches — everything was premium. Baba bless this team.</p><div class="who"><div class="av">A</div><div><b>Anil Deshmukh</b><span>Pune</span></div></div></div>
@@ -96,9 +96,13 @@
   const gl=['pin','hands','care','tv'];
   document.querySelectorAll('.spots .glyph').forEach((g,i)=>g.innerHTML=Saileela.ICON[gl[i]]);
   // exclusive + bestsellers
-  document.getElementById('exGrid').innerHTML=Saileela.CATALOG.filter(p=>p.badge==='Exclusive').map((x,i)=>`<article class="ex-card" onclick="location.href='product.html?id=${x.id}'"><div class="ex-tile" style="background:${Saileela.tint(i)}"><span class="ex-tag">Exclusive</span>${Saileela.ICON[x.icon]}</div><h3>${x.n}</h3><div class="price">${Saileela.money(x.p)}${x.o?`<s>${Saileela.money(x.o)}</s>`:''}</div></article>`).join('');
-  const cats=[['Idols & Murtis','Brass · Marble · Silver','kalash'],['Pooja Samagri','Diyas · Agarbatti · Kumkum','incense'],['Books & Media','Satcharitra & aartis','book'],['Frames & Décor','Photos · Palki · Wall art','frame'],['Apparel & Malas','Shawls · Rudraksha','shawl'],['Gifting & Hampers','Festivals · Return gifts','hamper']];
-  document.getElementById('catGrid').innerHTML=cats.map((c,i)=>`<a href="shop.html" class="cat"><div class="cat-bg" style="background:${Saileela.tint(i)}"></div><div class="cat-icon">${Saileela.ICON[c[2]]}</div><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>`).join('');
+  const excl=Saileela.CATALOG.filter(p=>p.badge==='Exclusive');
+  if(excl.length){const f=excl[0];
+    document.getElementById('exHero').innerHTML=`<div class="ex-img">${Saileela.ICON[f.icon]}</div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Created in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}</div><a class="btn btn-foil" href="product.html?id=${f.id}">Discover</a></div>`;
+    document.getElementById('exGrid').innerHTML=excl.slice(1).map((x,i)=>Saileela.productCard(x,i)).join('');
+  }
+  const cats=[['Sai Idols & Murtis','Brass · Marble · Silver','kalash','Idols'],['Pooja Essentials','Diyas · Incense · Samagri','incense','Pooja Samagri'],['Books & Parayan','Satcharitra & aartis','book','Books'],['Frames & Décor','Photos · Palki · Wall art','frame','Frames'],['Mala & Accessories','Rudraksha · Shawls','mala','Malas'],['Gifting & Hampers','Festive · Return gifts','hamper','Gifting']];
+  document.getElementById('catGrid').innerHTML=cats.map((c)=>`<a href="shop.html?cat=${encodeURIComponent(c[3])}" class="cat"><div class="cat-photo">${Saileela.ICON[c[2]]}</div><div class="cat-body"><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
   const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown
