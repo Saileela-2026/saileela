@@ -533,3 +533,9 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
   .foot-grid{grid-template-columns:1fr}.wrap{padding:0 20px}section.block{padding:62px 0}
   .sched-row{grid-template-columns:84px 1fr;row-gap:4px}.sched-row .onair,.sched-row .up{grid-column:2}
 }
+
+/* button aliases used by TV/product pages */
+.btn-gold{background:var(--foil);color:#3a2b0e;box-shadow:0 10px 26px rgba(138,106,44,.34)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(138,106,44,.44)}
+.btn-light{border:1px solid var(--line-d);color:var(--glow)}
+.btn-light:hover{border-color:var(--marigold);color:var(--marigold);background:rgba(239,127,26,.08)}
