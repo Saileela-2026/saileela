@@ -136,10 +136,9 @@ nav.links a:hover::after,nav.links a.active::after{left:0;right:0}
 .page-hero p{color:var(--glow-soft);margin:0;max-width:60ch;font-size:1.02rem}
 
 /* ---------- HERO (home) — copy left, exclusive Baba photograph right ---------- */
-.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("shirdi-hero-bg.jpg") center/cover no-repeat}
+.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero.jpg") center/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(50,5,3,.74) 0%,rgba(50,5,3,.4) 32%,rgba(50,5,3,.06) 52%,transparent 66%);pointer-events:none}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;background:radial-gradient(42% 45% at 20% 42%,rgba(239,127,26,.2),transparent 62%)}
-.hero-photo{position:absolute;top:0;right:0;bottom:0;width:54%;z-index:0;background:#320503 url("baba.jpg") center 13%/cover no-repeat}
-.hero-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night-3) 0%,rgba(50,5,3,.82) 22%,rgba(50,5,3,.2) 52%,transparent 78%),linear-gradient(0deg,rgba(50,5,3,.6),transparent 44%)}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;padding:64px 28px}
 .hero-copy{max-width:560px;color:var(--glow)}
 .hero-brandline{font-family:"Tiro Devanagari Hindi",serif;color:var(--marigold);font-size:clamp(1rem,2vw,1.25rem);letter-spacing:.03em;margin-bottom:14px}
@@ -158,12 +157,11 @@ nav.links a:hover::after,nav.links a.active::after{left:0;right:0}
 .hero-trustline{margin-top:22px;color:var(--glow-faint);font-size:.82rem;font-family:"Manrope",system-ui,sans-serif}
 .hero-trustline b{color:var(--marigold)}
 .hero-credit{position:absolute;right:20px;bottom:14px;z-index:2;font-family:"Manrope",system-ui,sans-serif;font-size:.64rem;letter-spacing:.06em;color:var(--glow-faint)}
-@media(max-width:900px){ .hero-photo{width:64%} .hero-copy{max-width:480px} }
+@media(max-width:900px){ .hero-copy{max-width:520px} }
 @media(max-width:760px){
-  .hero{min-height:auto;display:block;background:var(--night)}
-  .hero-photo{position:relative;width:100%;height:62vw;inset:auto;top:auto;right:auto;bottom:auto}
-  .hero-photo::before{background:linear-gradient(0deg,var(--night) 2%,rgba(50,5,3,.32) 46%,transparent 78%)}
-  .hero-inner{padding:22px 28px 52px}
+  .hero{min-height:86vh;align-items:flex-end;background-position:72% 12%}
+  .hero::before{background:linear-gradient(180deg,transparent 24%,rgba(50,5,3,.72) 60%,var(--night) 100%)}
+  .hero-inner{padding:22px 24px 44px}
   .hero-copy{max-width:none}
   .hero-search{max-width:none}
   .hero-credit{position:static;padding:8px 0 0;text-align:left}
@@ -675,7 +673,6 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 
 <template id="tpl-index">
 <section class="hero">
-  <div class="hero-photo" role="img" aria-label="Shree Sai Baba"></div>
   <div class="hero-inner">
     <div class="hero-copy reveal">
       <div class="hero-brandline"><span class="deva-body" data-bind="heroTagline">॥ हर हर साई • घर घर साई ॥</span></div>
