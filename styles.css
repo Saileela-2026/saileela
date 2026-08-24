@@ -278,7 +278,7 @@ section.block{padding:100px 0}
   border-radius:48% 48% 6px 6px/32% 32% 6px 6px;overflow:hidden;
   background:radial-gradient(85% 62% at 50% 14%,rgba(239,127,26,.2),transparent 60%),linear-gradient(180deg,var(--paper-3),var(--paper-2))}
 .pd-gallery .main-tile::after{content:"";position:absolute;inset:8px;border:1px solid rgba(138,106,44,.18);border-radius:47% 47% 5px 5px/31% 31% 5px 5px}
-.pd-thumbs{display:flex;gap:12px;margin-top:16px;justify-content:center}
+.pd-thumbs{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;justify-content:center}
 .pd-thumbs .th{width:76px;height:76px;display:grid;place-items:center;border:1px solid var(--line-l);border-radius:11px;cursor:pointer;overflow:hidden;transition:.2s;background:linear-gradient(168deg,#FCF6E9,#F0E2C6)}
 .pd-thumbs .th.active,.pd-thumbs .th:hover{border-color:var(--kumkum)}
 .pd-info .cat-label{font-family:"Manrope";font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--kumkum)}
