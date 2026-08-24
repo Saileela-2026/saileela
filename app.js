@@ -253,9 +253,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const sov=document.getElementById('searchOv'); if(sov)sov.onclick=e=>{if(e.target.id==='searchOv')Saileela.closeSearch();};
   const header=document.getElementById('header');
   addEventListener('scroll',()=>header&&header.classList.toggle('shrunk',scrollY>20));
-  document.getElementById('drawerClose').onclick=()=>Saileela.closeAll();
-  document.getElementById('scrim').onclick=()=>Saileela.closeAll();
-  const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{document.getElementById('mnav').classList.add('open');document.getElementById('scrim').classList.add('open');};
+  const dc=document.getElementById('drawerClose'); if(dc)dc.onclick=()=>Saileela.closeAll();
+  const scr=document.getElementById('scrim'); if(scr)scr.onclick=()=>Saileela.closeAll();
+  const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
   const mc=document.getElementById('mnavClose'); if(mc)mc.onclick=()=>Saileela.closeAll();
   document.querySelectorAll('.mnav a').forEach(a=>a.onclick=()=>Saileela.closeAll());
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){Saileela.closeAll();Saileela.closeSearch();}});
