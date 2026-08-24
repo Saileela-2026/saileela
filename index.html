@@ -131,10 +131,11 @@
   const gl=['pin','hands','care','tv'];
   document.querySelectorAll('.spots .glyph').forEach((g,i)=>g.innerHTML=Saileela.ICON[gl[i]]);
   // exclusive + bestsellers
-  const excl=Saileela.CATALOG.filter(p=>p.badge==='Exclusive');
-  if(excl.length){const f=excl[0];
-    document.getElementById('exHero').innerHTML=`<div class="ex-img">${f.img?`<img class="ph-img" src="${f.img}" alt="${f.n}">`:`<span class="ph-mark">${Saileela.ICON[f.icon]}</span>`}<span class="ph-shadow"></span></div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Signature Edition • Curated in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}</div><a class="btn btn-foil" href="product.html?id=${f.id}">Discover</a></div>`;
-    document.getElementById('exGrid').innerHTML=excl.slice(1).map((x,i)=>Saileela.productCard(x,i)).join('');
+  const exclList=Saileela.CATALOG.filter(p=>p.excl||p.badge==='Exclusive');
+  const f=Saileela.CATALOG.find(p=>p.featured)||exclList[0];
+  if(f){
+    document.getElementById('exHero').innerHTML=`<div class="ex-img">${f.img?`<img class="ph-img" src="${f.img}" alt="${f.n}">`:`<span class="ph-mark">${Saileela.ICON[f.icon]}</span>`}<span class="ph-shadow"></span></div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Signature Edition • Curated in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}${f.o?` <s style="opacity:.6;font-size:.7em">${Saileela.money(f.o)}</s>`:''}</div><a class="btn btn-foil" href="product.html?id=${f.id}">Discover</a></div>`;
+    document.getElementById('exGrid').innerHTML=exclList.filter(x=>x.id!==f.id).slice(0,4).map((x,i)=>Saileela.productCard(x,i)).join('');
   }
   const cats=[['Sai Idols & Murtis','Brass · Marble · Silver','kalash','Idols'],['Pooja Essentials','Diyas · Incense · Samagri','incense','Pooja Samagri'],['Books & Parayan','Satcharitra & aartis','book','Books'],['Frames & Décor','Photos · Palki · Wall art','frame','Frames'],['Mala & Accessories','Rudraksha · Shawls','mala','Malas'],['Gifting & Hampers','Festive · Return gifts','hamper','Gifting']];
   document.getElementById('catGrid').innerHTML=cats.map((c)=>`<a href="shop.html?cat=${encodeURIComponent(c[3])}" class="cat"><div class="cat-photo"><span class="ph-mark">${Saileela.ICON[c[2]]}</span><span class="ph-shadow"></span></div><div class="cat-body"><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
@@ -155,7 +156,7 @@
       v.play&&v.play().catch(()=>{});
     }
   })();
-  const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct).filter(Boolean);
+  const best=['sagunopasna-kit','divya-darshan-kit','divya-swaroop-kit','sai-akash-jyoti','divya-ganesh-jyoti','ram-jyoti','p4','p1'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown
   const _fd=Saileela.settings().festivalDate; let t=_fd?new Date(_fd+'T09:00:00'):new Date(Date.now()+5*864e5);

@@ -33,7 +33,34 @@ const DEFAULT_PRODUCTS=[
   {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',stock:30,active:true,desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
   {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',stock:22,active:true,desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
   {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
-  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'}
+  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'},
+  {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
+   img:'sagunopasna-kit-box.jpg',
+   images:['sagunopasna-kit-box.jpg','sagunopasna-kit-box-2.jpg','kit-murti.jpg','kit-mukut.jpg','kit-vastra-red.jpg','kit-vastra-pink.jpg','kit-kalash.jpg','kit-katori.jpg','kit-diya.jpg','kit-agarbatti-stand.jpg','kit-bell.jpg','kit-chandan-tika.jpg','kit-chandan-agarbatti.jpg'],
+   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   desc:'A thoughtfully curated devotional kit for performing Shree Sai Sagunopasana with श्रद्धा and devotion. Ideal for daily worship, special occasions and gifting to Sai devotees. Every item is chosen by hand and carefully packed in Shirdi.'},
+  {id:'divya-darshan-kit',n:'Shree Sai Divya Darshan Kit',p:1599,o:2100,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
+   img:'sagunopasna-kit-box.jpg',
+   images:['sagunopasna-kit-box.jpg','sagunopasna-kit-box-2.jpg','kit-murti.jpg','kit-mukut.jpg','kit-vastra-red.jpg','kit-vastra-pink.jpg','kit-chandan-tika.jpg','kit-chandan-agarbatti.jpg'],
+   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   desc:'A Saileela Exclusive and Best Seller devotional kit designed to bring a divine Shirdi-inspired worship experience into your home. It contains the same devotional items as the Shree Sai Sagunopasna Kit, excluding all five brass pooja pots.'},
+  {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
+   img:'divya-swaroop-box.jpg',
+   images:['divya-swaroop-box.jpg','divya-swaroop-open.jpg'],
+   contents:['Shree Saibaba Idol','Vastra','Tulsi Mala','Decorative Mukut (crown)'],
+   desc:'A Saileela Exclusive and Best Seller kit featuring a beautiful Shree Saibaba idol with Vastra, Mala and Mukut. A complete divine swaroop for your home temple, daily darshan and spiritual gifting.'},
+  {id:'sai-akash-jyoti',n:'Shree Sai Akash Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+   img:'sai-akash-jyoti-1.jpg',
+   images:['sai-akash-jyoti-1.jpg','sai-akash-jyoti-2.jpg','sai-akash-jyoti-3.jpg','sai-akash-jyoti-4.jpg','sai-akash-jyoti-5.jpg'],
+   desc:'A beautifully illuminated decorative lantern featuring divine images of Shree Saibaba on multiple sides. This Saileela Exclusive and Best Seller fills your home temple or prayer space with warm light and an uplifting devotional ambience.'},
+  {id:'divya-ganesh-jyoti',n:'Shree Divya Ganesh Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+   img:'ganesh-jyoti-1.jpg',
+   images:['ganesh-jyoti-1.jpg','ganesh-jyoti-2.jpg','ganesh-jyoti-3.jpg','ganesh-jyoti-4.jpg'],
+   desc:'An illuminated decorative Jyoti featuring divine images of Shree Ganesh on multiple sides. This Saileela Exclusive and Best Seller creates a warm, auspicious ambience for home temples, festive décor and spiritual gifting.'},
+  {id:'ram-jyoti',n:'Shree Ram Jyoti Akashdeep',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+   img:'ram-jyoti-1.jpg',
+   images:['ram-jyoti-1.jpg','ram-jyoti-2.jpg','ram-jyoti-3.jpg'],
+   desc:'A beautifully illuminated devotional Akashdeep featuring divine images of Prabhu Shree Ram and Shree Ram Darbar on multiple sides. This Saileela Exclusive and Best Seller brings a warm, auspicious glow to your home, temple and festive celebrations.'}
 ];
 const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
 const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
@@ -82,7 +109,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'#',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v1';
+const DATA_KEY='saileela_data_v3';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},

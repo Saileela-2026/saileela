@@ -22,7 +22,7 @@
   </div>
 </div></section>
 
-<section class="block" style="background:var(--cream)"><div class="wrap">
+<section class="block" style="background:var(--paper-2)"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">You may also like</div><h2>More from Shirdi</h2></div>
   <div class="prod-grid" id="related"></div>
 </div></section>
@@ -34,15 +34,25 @@
   const p=Saileela.findProduct(id)||Saileela.CATALOG[0];
   document.title=p.n+' — Saileela Store';
   document.getElementById('crumbName').textContent=p.n;
-  document.getElementById('mainTile').style.background=Saileela.tint(2);
-  document.getElementById('mainTile').innerHTML=`<div style="width:52%">${Saileela.ICON[p.icon]}</div>`;
-  document.getElementById('thumbs').innerHTML=[0,1,2].map(i=>`<div class="th ${i===0?'active':''}" style="background:${Saileela.tint(i)}"><div style="width:60%">${Saileela.ICON[p.icon]}</div></div>`).join('');
+  const imgs=(p.images&&p.images.length)?p.images:(p.img?[p.img]:[]);
+  const mainTile=document.getElementById('mainTile');
+  if(imgs.length){
+    mainTile.style.background='#fff';
+    mainTile.innerHTML=`<img id="mainImg" class="ph-img" src="${imgs[0]}" alt="${p.n}">`;
+    document.getElementById('thumbs').innerHTML=imgs.map((src,i)=>`<div class="th ${i===0?'active':''}" onclick="pdSetImg('${src}',this)"><img src="${src}" alt="${p.n} view ${i+1}" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>`).join('');
+  }else{
+    mainTile.style.background=Saileela.tint(2);
+    mainTile.innerHTML=`<div style="width:52%">${Saileela.ICON[p.icon]}</div>`;
+    document.getElementById('thumbs').innerHTML=[0,1,2].map(i=>`<div class="th ${i===0?'active':''}" style="background:${Saileela.tint(i)}"><div style="width:60%">${Saileela.ICON[p.icon]}</div></div>`).join('');
+  }
+  window.pdSetImg=(src,el)=>{const m=document.getElementById('mainImg');if(m)m.src=src;document.querySelectorAll('#thumbs .th').forEach(t=>t.classList.remove('active'));el.classList.add('active');};
   const off=p.o?Math.round((1-p.p/p.o)*100):0;
   document.getElementById('info').innerHTML=`
     <div class="cat-label">${p.cat}</div><h1>${p.n}</h1>
     <div class="stars">★★★★★ <span>${p.r} · ${p.c} devotee reviews</span></div>
     <div class="pd-price"><span class="now">${Saileela.money(p.p)}</span>${p.o?`<s>${Saileela.money(p.o)}</s><span class="off">${off}% off</span>`:''}</div>
     <p class="desc">${p.desc}</p>
+    ${p.contents&&p.contents.length?`<div class="kit-contents"><h3>What's inside the kit</h3><ul>${p.contents.map(c=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 12 4.5 4.5L19 7"/></svg>${c}</li>`).join('')}</ul></div>`:''}
     <div class="pd-actions">
       <div class="qty"><button onclick="chQty(-1)" aria-label="Decrease">−</button><span id="qty">1</span><button onclick="chQty(1)" aria-label="Increase">+</button></div>
       <button class="btn btn-primary" onclick="Saileela.addToCart('${p.id}',qty())">Add to cart</button>
