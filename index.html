@@ -6,6 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 <body data-page="index.html">
 <div id="site-header"></div>
@@ -108,7 +109,7 @@
 <section class="block exclusive"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">On air, all day</div><h2>Saileela TV</h2><p>Beyond the store, Saileela is a devotional television home — live aarti, bhajans, discourses and Sai stories, on DTH, cable and OTT.</p></div>
   <div class="reveal tv-teaser">
-    <div class="player"><span class="live-tag"><span class="dot"></span>LIVE</span><span class="play-big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div class="now-bar"><span>Now playing</span><b>Prabhat Bhajan Sandhya</b></div></div>
+    <div class="player" id="homeLive"><span class="live-tag"><span class="dot"></span>LIVE</span><span class="now-chip">Now playing · <b id="homeNow">Prabhat Bhajan Sandhya</b></span><video id="homeLiveVideo" controls playsinline muted autoplay preload="none"></video></div>
     <div><h3 style="color:#fff;font-size:1.6rem;margin:0 0 12px">Devotion. Every day.</h3><p style="color:rgba(251,247,238,.8);margin:0 0 22px">Tune in for live programming, follow the daily schedule, and find us across DTH, cable and OTT platforms.</p><a href="saileela-tv.html" class="btn btn-gold">Watch live</a></div>
   </div>
 </div></section>
@@ -143,6 +144,17 @@
   // Gifting
   const gifts=Saileela.CATALOG.filter(p=>p.cat==='Gifting').slice(0,4);
   const gEl=document.getElementById('giftGrid'); if(gEl)gEl.innerHTML=(gifts.length?gifts:Saileela.CATALOG.slice(0,4)).map((p,i)=>Saileela.productCard(p,i)).join('');
+  // homepage live TV player (HLS)
+  (function(){
+    const tv=Saileela.tv(), url=tv.liveUrl, v=document.getElementById('homeLiveVideo');
+    const nm=document.getElementById('homeNow'); if(nm&&tv.nowTitle)nm.textContent=tv.nowTitle;
+    if(v&&url){
+      if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=url;}
+      else if(window.Hls&&Hls.isSupported()){const h=new Hls({lowLatencyMode:true});h.loadSource(url);h.attachMedia(v);h.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal){try{h.startLoad();}catch(_){}}});}
+      else{v.src=url;}
+      v.play&&v.play().catch(()=>{});
+    }
+  })();
   const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown

@@ -531,7 +531,6 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
   .locpill{display:none}.summary{position:static}
 }
 @media(max-width:640px){
-  nav.links{display:none}.burger{display:grid}
   .ex-grid,.prod-grid,.spots,.prog-grid,.dist-grid,.soc-grid,.values-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr}.wrap{padding:0 20px}section.block{padding:72px 0}
   .sched-row{grid-template-columns:84px 1fr;row-gap:4px}.sched-row .onair,.sched-row .up{grid-column:2}
@@ -662,3 +661,6 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 img{max-width:100%;height:auto}
 .tv-teaser{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
 @media(max-width:760px){.tv-teaser{grid-template-columns:1fr;gap:26px}}
+
+/* nav collapses to burger on tablet + mobile */
+@media(max-width:900px){nav.links{display:none}.burger{display:grid}}
