@@ -50,7 +50,7 @@ const DEFAULT_SETTINGS={
   whatsapp:'', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
 };
 const DEFAULT_TV={
-  nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'',
+  nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
   programmes:[
     {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
     {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
@@ -176,7 +176,7 @@ function renderFooter(){
       </div>
     </div>
   </div>
-  <div class="foot-bottom"><span>© 2026 Saileela · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust. <a href="admin.html" style="color:inherit;opacity:.35;text-decoration:none">·</a></span>
+  <div class="foot-bottom"><span>© 2026 Saileela · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust.</span>
     <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span></div></div>
   </div></footer>`;
   document.getElementById('site-footer').innerHTML=html;
@@ -219,7 +219,7 @@ const Saileela={
     const badge=p.badge?`<span class="badge ${b==='new'?'new':(b==='exclusive'?'excl':'')}">${b==='new'?'New':p.badge}</span>`:'';
     const on=Wish.has(p.id)?'on':'';
     return `<article class="card reveal">
-      <div class="tile">${badge}<button class="wish ${on}" aria-label="Save ${p.n} to wishlist" onclick="Saileela.toggleWish('${p.id}',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg></button><a class="tilelink" href="product.html?id=${p.id}" aria-label="${p.n}">${ICON[p.icon]}</a></div>
+      <div class="tile">${badge}<button class="wish ${on}" aria-label="Save ${p.n} to wishlist" onclick="Saileela.toggleWish('${p.id}',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg></button><a class="tilelink" href="product.html?id=${p.id}" aria-label="${p.n}">${p.img?`<img class="ph-img" src="${p.img}" alt="${p.n}" loading="lazy">`:`<span class="ph-mark">${ICON[p.icon]}</span>`}<span class="ph-shadow"></span></a></div>
       <div class="body"><div class="cat-label">${p.cat}</div><h3><a href="product.html?id=${p.id}">${p.n}</a></h3>
         <div class="foot"><div class="price">${money(p.p)}${p.o?`<s>${money(p.o)}</s>`:''}</div>
           <button class="add" aria-label="Add ${p.n} to cart" onclick="Saileela.addToCart('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h13l-1.2 9.5a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></button></div></div></article>`;
