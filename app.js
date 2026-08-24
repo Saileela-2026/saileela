@@ -36,13 +36,13 @@ const DEFAULT_PRODUCTS=[
   {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'},
   {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
    img:'sagunopasna-kit-box-v3.jpg',
-   images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti.jpg','kit-mukut.jpg','kit-vastra-red.jpg','kit-vastra-pink.jpg','kit-kalash.jpg','kit-katori.jpg','kit-diya.jpg','kit-agarbatti-stand.jpg','kit-bell.jpg','kit-chandan-tika.jpg','kit-chandan-agarbatti.jpg'],
-   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-kalash-2.jpg','kit-katori-2.jpg','kit-diya-2.jpg','kit-agarbatti-stand-2.jpg','kit-bell-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
+   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
    desc:'A thoughtfully curated devotional kit for performing Shree Sai Sagunopasana with श्रद्धा and devotion. Ideal for daily worship, special occasions and gifting to Sai devotees. Every item is chosen by hand and carefully packed in Shirdi.'},
   {id:'divya-darshan-kit',n:'Shree Sai Divya Darshan Kit',p:1599,o:2100,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
    img:'sagunopasna-kit-box-v3.jpg',
-   images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti.jpg','kit-mukut.jpg','kit-vastra-red.jpg','kit-vastra-pink.jpg','kit-chandan-tika.jpg','kit-chandan-agarbatti.jpg'],
-   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
+   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
    desc:'A Saileela Exclusive and Best Seller devotional kit designed to bring a divine Shirdi-inspired worship experience into your home. It contains the same devotional items as the Shree Sai Sagunopasna Kit, excluding all five brass pooja pots.'},
   {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
    img:'divya-swaroop-box.jpg',
@@ -109,7 +109,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'#',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v5';
+const DATA_KEY='saileela_data_v6';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
