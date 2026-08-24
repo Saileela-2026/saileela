@@ -131,7 +131,7 @@
   const gl=['pin','hands','care','tv'];
   document.querySelectorAll('.spots .glyph').forEach((g,i)=>g.innerHTML=Saileela.ICON[gl[i]]);
   // exclusive + bestsellers
-  const exclList=Saileela.CATALOG.filter(p=>p.excl||p.badge==='Exclusive');
+  const exclList=Saileela.CATALOG.filter(p=>p.excl||p.badge==='Exclusive').sort((a,b)=>(b.img?1:0)-(a.img?1:0));
   const f=Saileela.CATALOG.find(p=>p.featured)||exclList[0];
   if(f){
     document.getElementById('exHero').innerHTML=`<div class="ex-img">${f.img?`<img class="ph-img" src="${f.img}" alt="${f.n}">`:`<span class="ph-mark">${Saileela.ICON[f.icon]}</span>`}<span class="ph-shadow"></span></div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Signature Edition • Curated in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}${f.o?` <s style="opacity:.6;font-size:.7em">${Saileela.money(f.o)}</s>`:''}</div><a class="btn btn-foil" href="product.html?id=${f.id}">Discover</a></div>`;
