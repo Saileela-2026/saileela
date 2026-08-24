@@ -148,7 +148,7 @@ const Wish={
 };
 
 /* ---------- header + footer ---------- */
-const NAV=[['shop.html','Shop'],['index.html#exclusive','Saileela Exclusive'],['shop.html#collections','Collections'],['saileela-tv.html','Saileela TV'],['about.html','Our Story']];
+const NAV=[['shop.html','Shop'],['index.html#exclusive','Saileela Exclusive'],['saileela-tv.html','Saileela TV'],['about.html','Our Story']];
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
 
 function renderHeader(){
@@ -191,7 +191,7 @@ function renderFooter(){
       <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shirdi, Ahilyanagar, Maharashtra 423109</div>
       <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
     </div>
-    <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html#collections">Collections</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
+    <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
     <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="saileela-tv.html">Saileela TV</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Help</h4><ul><li><a href="contact.html">Shipping</a></li><li><a href="contact.html">Returns</a></li><li><a href="contact.html">FAQ</a></li><li><a href="contact.html">Order support</a></li></ul></div>
     <div><h4>Follow</h4>

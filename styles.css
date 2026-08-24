@@ -686,3 +686,7 @@ img{max-width:100%;height:auto}
 .kit-contents li{display:flex;gap:9px;align-items:center;font-size:.92rem;color:var(--ink)}
 .kit-contents li svg{width:17px;height:17px;color:var(--marigold-deep);flex:none}
 @media(max-width:520px){.kit-contents ul{grid-template-columns:1fr}}
+
+/* uniform product-card height: reserve two lines for the title so price/button rows align */
+.card h3{min-height:2.55em}
+.card .cat-label{min-height:1.1em}

@@ -136,7 +136,7 @@ nav.links a:hover::after,nav.links a.active::after{left:0;right:0}
 .page-hero p{color:var(--glow-soft);margin:0;max-width:60ch;font-size:1.02rem}
 
 /* ---------- HERO (home) — copy left, exclusive Baba photograph right ---------- */
-.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero.jpg") center/cover no-repeat}
+.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero-v2.jpg") 50% 26%/cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(50,5,3,.74) 0%,rgba(50,5,3,.4) 32%,rgba(50,5,3,.06) 52%,transparent 66%);pointer-events:none}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;background:radial-gradient(42% 45% at 20% 42%,rgba(239,127,26,.2),transparent 62%)}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;padding:64px 28px}
@@ -385,11 +385,13 @@ section.block{padding:100px 0}
 .tv-hero p{color:var(--glow-soft);font-size:1.08rem;max-width:44ch;margin:0 0 26px}
 .tv-live-chips{display:flex;gap:14px;flex-wrap:wrap}
 /* the TV screen as a lit arch niche */
-.player{position:relative;border:1px solid var(--line-d);border-radius:44% 44% 8px 8px/28% 28% 8px 8px;overflow:hidden;aspect-ratio:1/.82;
-  background:radial-gradient(60% 70% at 50% 40%,rgba(239,127,26,.32),transparent 60%),linear-gradient(160deg,var(--kumkum-deep),var(--night-3));
+.player{position:relative;border:1px solid var(--line-d);border-radius:14px;overflow:hidden;aspect-ratio:16/9;
+  background:radial-gradient(60% 70% at 50% 40%,rgba(239,127,26,.28),transparent 60%),linear-gradient(160deg,var(--kumkum-deep),var(--night-3));
   box-shadow:var(--shadow-night);display:grid;place-items:center}
-.player::after{content:"";position:absolute;inset:7px;border:1px solid var(--line-d);border-radius:43% 43% 6px 6px/27% 27% 6px 6px;pointer-events:none}
+.player video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:1;display:block}
 .player .emblem{width:40%}
+.player .now-chip{position:absolute;top:16px;right:16px;z-index:3;background:rgba(20,4,2,.72);color:var(--glow);font-family:"Manrope";font-size:.72rem;padding:6px 12px;border-radius:20px;pointer-events:none;max-width:64%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .now-chip b{font-weight:600}
 .player .live-tag{position:absolute;top:18px;left:18px;z-index:3;display:flex;align-items:center;gap:7px;background:var(--kumkum);color:var(--glow);font-family:"Manrope";font-size:.68rem;font-weight:600;letter-spacing:.12em;padding:6px 12px;border-radius:2px}
 .player .live-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--glow);animation:pulse 1.4s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -537,7 +539,6 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
   .locpill{display:none}.summary{position:static}
 }
 @media(max-width:640px){
-  nav.links{display:none}.burger{display:grid}
   .ex-grid,.prod-grid,.spots,.prog-grid,.dist-grid,.soc-grid,.values-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr}.wrap{padding:0 20px}section.block{padding:72px 0}
   .sched-row{grid-template-columns:84px 1fr;row-gap:4px}.sched-row .onair,.sched-row .up{grid-column:2}
@@ -669,6 +670,35 @@ img{max-width:100%;height:auto}
 .tv-teaser{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
 @media(max-width:760px){.tv-teaser{grid-template-columns:1fr;gap:26px}}
 
+/* nav collapses to burger on tablet + mobile */
+@media(max-width:900px){nav.links{display:none}.burger{display:grid}}
+
+/* keep header (brand + icons + burger) fitting on small phones */
+@media(max-width:640px){
+  .nav{padding:12px 16px;gap:8px}
+  .nav-actions{gap:1px}
+  .icon-btn{width:38px;height:38px}
+  .icon-btn svg{width:19px;height:19px}
+  .brand-logo{width:38px;height:38px}
+  .brand-name{font-size:1.2rem}
+}
+@media(max-width:360px){
+  .brand-name{font-size:1.05rem}
+  .icon-btn{width:34px;height:34px}
+}
+
+/* kit "what's inside" contents list (product page) */
+.kit-contents{margin:22px 0 26px;border-top:1px solid var(--line-l);padding-top:20px}
+.kit-contents h3{font-size:1.05rem;font-weight:600;margin:0 0 12px}
+.kit-contents ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
+.kit-contents li{display:flex;gap:9px;align-items:center;font-size:.92rem;color:var(--ink)}
+.kit-contents li svg{width:17px;height:17px;color:var(--marigold-deep);flex:none}
+@media(max-width:520px){.kit-contents ul{grid-template-columns:1fr}}
+
+/* uniform product-card height: reserve two lines for the title so price/button rows align */
+.card h3{min-height:2.55em}
+.card .cat-label{min-height:1.1em}
+
 </style>
 </head>
 <body data-page="index">
@@ -775,7 +805,7 @@ img{max-width:100%;height:auto}
 <section class="block exclusive"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">On air, all day</div><h2>Saileela TV</h2><p>Beyond the store, Saileela is a devotional television home — live aarti, bhajans, discourses and Sai stories, on DTH, cable and OTT.</p></div>
   <div class="reveal tv-teaser">
-    <div class="player"><span class="live-tag"><span class="dot"></span>LIVE</span><span class="play-big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div class="now-bar"><span>Now playing</span><b>Prabhat Bhajan Sandhya</b></div></div>
+    <div class="player" id="homeLive"><span class="live-tag"><span class="dot"></span>LIVE</span><span class="now-chip">Now playing · <b id="homeNow">Prabhat Bhajan Sandhya</b></span><video id="homeLiveVideo" controls playsinline muted autoplay preload="none"></video></div>
     <div><h3 style="color:#fff;font-size:1.6rem;margin:0 0 12px">Devotion. Every day.</h3><p style="color:rgba(251,247,238,.8);margin:0 0 22px">Tune in for live programming, follow the daily schedule, and find us across DTH, cable and OTT platforms.</p><a href="#saileela-tv" class="btn btn-gold">Watch live</a></div>
   </div>
 </div></section>
@@ -844,12 +874,11 @@ img{max-width:100%;height:auto}
     </div>
   </div>
   <div class="reveal">
-    <div class="player">
+    <div class="player" id="livePlayer">
       <span class="live-tag"><span class="dot"></span>LIVE</span>
-      <a href="#" data-live class="play-big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
-      <div class="now-bar"><span>Now playing</span><b id="nowTitle">Prabhat Bhajan Sandhya</b></div>
+      <span class="now-chip">Now playing · <b id="nowTitle">Prabhat Bhajan Sandhya</b></span>
+      <video id="liveVideo" controls playsinline muted autoplay preload="auto"></video>
     </div>
-    <p style="text-align:center;color:rgba(251,247,238,.55);font-size:.8rem;margin:12px 0 0">Live player is a prototype placeholder — connect your real stream (YouTube Live / HLS) here.</p>
   </div>
 </div></section>
 
@@ -993,7 +1022,34 @@ const DEFAULT_PRODUCTS=[
   {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',stock:30,active:true,desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
   {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',stock:22,active:true,desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
   {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
-  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'}
+  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'},
+  {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
+   img:'sagunopasna-kit-box.jpg',
+   images:['sagunopasna-kit-box.jpg','sagunopasna-kit-box-2.jpg','kit-murti.jpg','kit-mukut.jpg','kit-vastra-red.jpg','kit-vastra-pink.jpg','kit-kalash.jpg','kit-katori.jpg','kit-diya.jpg','kit-agarbatti-stand.jpg','kit-bell.jpg','kit-chandan-tika.jpg','kit-chandan-agarbatti.jpg'],
+   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   desc:'A thoughtfully curated devotional kit for performing Shree Sai Sagunopasana with श्रद्धा and devotion. Ideal for daily worship, special occasions and gifting to Sai devotees. Every item is chosen by hand and carefully packed in Shirdi.'},
+  {id:'divya-darshan-kit',n:'Shree Sai Divya Darshan Kit',p:1599,o:2100,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
+   img:'sagunopasna-kit-box.jpg',
+   images:['sagunopasna-kit-box.jpg','sagunopasna-kit-box-2.jpg','kit-murti.jpg','kit-mukut.jpg','kit-vastra-red.jpg','kit-vastra-pink.jpg','kit-chandan-tika.jpg','kit-chandan-agarbatti.jpg'],
+   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   desc:'A Saileela Exclusive and Best Seller devotional kit designed to bring a divine Shirdi-inspired worship experience into your home. It contains the same devotional items as the Shree Sai Sagunopasna Kit, excluding all five brass pooja pots.'},
+  {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
+   img:'divya-swaroop-box.jpg',
+   images:['divya-swaroop-box.jpg','divya-swaroop-open.jpg'],
+   contents:['Shree Saibaba Idol','Vastra','Tulsi Mala','Decorative Mukut (crown)'],
+   desc:'A Saileela Exclusive and Best Seller kit featuring a beautiful Shree Saibaba idol with Vastra, Mala and Mukut. A complete divine swaroop for your home temple, daily darshan and spiritual gifting.'},
+  {id:'sai-akash-jyoti',n:'Shree Sai Akash Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+   img:'sai-akash-jyoti-1.jpg',
+   images:['sai-akash-jyoti-1.jpg','sai-akash-jyoti-2.jpg','sai-akash-jyoti-3.jpg','sai-akash-jyoti-4.jpg','sai-akash-jyoti-5.jpg'],
+   desc:'A beautifully illuminated decorative lantern featuring divine images of Shree Saibaba on multiple sides. This Saileela Exclusive and Best Seller fills your home temple or prayer space with warm light and an uplifting devotional ambience.'},
+  {id:'divya-ganesh-jyoti',n:'Shree Divya Ganesh Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+   img:'ganesh-jyoti-1.jpg',
+   images:['ganesh-jyoti-1.jpg','ganesh-jyoti-2.jpg','ganesh-jyoti-3.jpg','ganesh-jyoti-4.jpg'],
+   desc:'An illuminated decorative Jyoti featuring divine images of Shree Ganesh on multiple sides. This Saileela Exclusive and Best Seller creates a warm, auspicious ambience for home temples, festive décor and spiritual gifting.'},
+  {id:'ram-jyoti',n:'Shree Ram Jyoti Akashdeep',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+   img:'ram-jyoti-1.jpg',
+   images:['ram-jyoti-1.jpg','ram-jyoti-2.jpg','ram-jyoti-3.jpg'],
+   desc:'A beautifully illuminated devotional Akashdeep featuring divine images of Prabhu Shree Ram and Shree Ram Darbar on multiple sides. This Saileela Exclusive and Best Seller brings a warm, auspicious glow to your home, temple and festive celebrations.'}
 ];
 const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
 const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
@@ -1010,7 +1066,7 @@ const DEFAULT_SETTINGS={
   whatsapp:'', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
 };
 const DEFAULT_TV={
-  nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'',
+  nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
   programmes:[
     {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
     {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
@@ -1042,7 +1098,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'#',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v1';
+const DATA_KEY='saileela_data_v3';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -1081,7 +1137,7 @@ const Wish={
 };
 
 /* ---------- header + footer ---------- */
-const NAV=[['#shop','Shop'],['#index','Saileela Exclusive'],['#shop','Collections'],['#saileela-tv','Saileela TV'],['#about','Our Story']];
+const NAV=[['#shop','Shop'],['#index','Saileela Exclusive'],['#saileela-tv','Saileela TV'],['#about','Our Story']];
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
 
 function renderHeader(){
@@ -1124,7 +1180,7 @@ function renderFooter(){
       <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shirdi, Ahilyanagar, Maharashtra 423109</div>
       <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
     </div>
-    <div><h4>Shop</h4><ul><li><a href="#shop">All products</a></li><li><a href="#index">Saileela Exclusive</a></li><li><a href="#shop">Collections</a></li><li><a href="#shop?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
+    <div><h4>Shop</h4><ul><li><a href="#shop">All products</a></li><li><a href="#index">Saileela Exclusive</a></li><li><a href="#shop?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
     <div><h4>Saileela</h4><ul><li><a href="#about">Our Story</a></li><li><a href="#saileela-tv">Saileela TV</a></li><li><a href="#contact">Contact</a></li></ul></div>
     <div><h4>Help</h4><ul><li><a href="#contact">Shipping</a></li><li><a href="#contact">Returns</a></li><li><a href="#contact">FAQ</a></li><li><a href="#contact">Order support</a></li></ul></div>
     <div><h4>Follow</h4>
@@ -1213,9 +1269,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const sov=document.getElementById('searchOv'); if(sov)sov.onclick=e=>{if(e.target.id==='searchOv')Saileela.closeSearch();};
   const header=document.getElementById('header');
   addEventListener('scroll',()=>header&&header.classList.toggle('shrunk',scrollY>20));
-  document.getElementById('drawerClose').onclick=()=>Saileela.closeAll();
-  document.getElementById('scrim').onclick=()=>Saileela.closeAll();
-  const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{document.getElementById('mnav').classList.add('open');document.getElementById('scrim').classList.add('open');};
+  const dc=document.getElementById('drawerClose'); if(dc)dc.onclick=()=>Saileela.closeAll();
+  const scr=document.getElementById('scrim'); if(scr)scr.onclick=()=>Saileela.closeAll();
+  const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
   const mc=document.getElementById('mnavClose'); if(mc)mc.onclick=()=>Saileela.closeAll();
   document.querySelectorAll('.mnav a').forEach(a=>a.onclick=()=>Saileela.closeAll());
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){Saileela.closeAll();Saileela.closeSearch();}});
@@ -1231,10 +1287,11 @@ window.__init['index']=function(){
   const gl=['pin','hands','care','tv'];
   document.querySelectorAll('.spots .glyph').forEach((g,i)=>g.innerHTML=Saileela.ICON[gl[i]]);
   // exclusive + bestsellers
-  const excl=Saileela.CATALOG.filter(p=>p.badge==='Exclusive');
-  if(excl.length){const f=excl[0];
-    document.getElementById('exHero').innerHTML=`<div class="ex-img">${f.img?`<img class="ph-img" src="${f.img}" alt="${f.n}">`:`<span class="ph-mark">${Saileela.ICON[f.icon]}</span>`}<span class="ph-shadow"></span></div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Signature Edition • Curated in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}</div><a class="btn btn-foil" href="#product?id=${f.id}">Discover</a></div>`;
-    document.getElementById('exGrid').innerHTML=excl.slice(1).map((x,i)=>Saileela.productCard(x,i)).join('');
+  const exclList=Saileela.CATALOG.filter(p=>p.excl||p.badge==='Exclusive');
+  const f=Saileela.CATALOG.find(p=>p.featured)||exclList[0];
+  if(f){
+    document.getElementById('exHero').innerHTML=`<div class="ex-img">${f.img?`<img class="ph-img" src="${f.img}" alt="${f.n}">`:`<span class="ph-mark">${Saileela.ICON[f.icon]}</span>`}<span class="ph-shadow"></span></div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Signature Edition • Curated in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}${f.o?` <s style="opacity:.6;font-size:.7em">${Saileela.money(f.o)}</s>`:''}</div><a class="btn btn-foil" href="#product?id=${f.id}">Discover</a></div>`;
+    document.getElementById('exGrid').innerHTML=exclList.filter(x=>x.id!==f.id).slice(0,4).map((x,i)=>Saileela.productCard(x,i)).join('');
   }
   const cats=[['Sai Idols & Murtis','Brass · Marble · Silver','kalash','Idols'],['Pooja Essentials','Diyas · Incense · Samagri','incense','Pooja Samagri'],['Books & Parayan','Satcharitra & aartis','book','Books'],['Frames & Décor','Photos · Palki · Wall art','frame','Frames'],['Mala & Accessories','Rudraksha · Shawls','mala','Malas'],['Gifting & Hampers','Festive · Return gifts','hamper','Gifting']];
   document.getElementById('catGrid').innerHTML=cats.map((c)=>`<a href="#shop?cat=${encodeURIComponent(c[3])}" class="cat"><div class="cat-photo"><span class="ph-mark">${Saileela.ICON[c[2]]}</span><span class="ph-shadow"></span></div><div class="cat-body"><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
@@ -1244,7 +1301,18 @@ window.__init['index']=function(){
   // Gifting
   const gifts=Saileela.CATALOG.filter(p=>p.cat==='Gifting').slice(0,4);
   const gEl=document.getElementById('giftGrid'); if(gEl)gEl.innerHTML=(gifts.length?gifts:Saileela.CATALOG.slice(0,4)).map((p,i)=>Saileela.productCard(p,i)).join('');
-  const best=['p4','p1','p10','p3','p6','p7','p9','p8'].map(Saileela.findProduct).filter(Boolean);
+  // homepage live TV player (HLS)
+  (function(){
+    const tv=Saileela.tv(), url=tv.liveUrl, v=document.getElementById('homeLiveVideo');
+    const nm=document.getElementById('homeNow'); if(nm&&tv.nowTitle)nm.textContent=tv.nowTitle;
+    if(v&&url){
+      if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=url;}
+      else if(window.Hls&&Hls.isSupported()){const h=new Hls({lowLatencyMode:true});h.loadSource(url);h.attachMedia(v);h.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal){try{h.startLoad();}catch(_){}}});}
+      else{v.src=url;}
+      v.play&&v.play().catch(()=>{});
+    }
+  })();
+  const best=['sagunopasna-kit','divya-darshan-kit','divya-swaroop-kit','sai-akash-jyoti','divya-ganesh-jyoti','ram-jyoti','p4','p1'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown
   const _fd=Saileela.settings().festivalDate; let t=_fd?new Date(_fd+'T09:00:00'):new Date(Date.now()+5*864e5);
@@ -1289,15 +1357,25 @@ const id=(window.__params&&window.__params.id)||'p4';
   const p=Saileela.findProduct(id)||Saileela.CATALOG[0];
   document.title=p.n+' — Saileela Store';
   document.getElementById('crumbName').textContent=p.n;
-  document.getElementById('mainTile').style.background=Saileela.tint(2);
-  document.getElementById('mainTile').innerHTML=`<div style="width:52%">${Saileela.ICON[p.icon]}</div>`;
-  document.getElementById('thumbs').innerHTML=[0,1,2].map(i=>`<div class="th ${i===0?'active':''}" style="background:${Saileela.tint(i)}"><div style="width:60%">${Saileela.ICON[p.icon]}</div></div>`).join('');
+  const imgs=(p.images&&p.images.length)?p.images:(p.img?[p.img]:[]);
+  const mainTile=document.getElementById('mainTile');
+  if(imgs.length){
+    mainTile.style.background='#fff';
+    mainTile.innerHTML=`<img id="mainImg" class="ph-img" src="${imgs[0]}" alt="${p.n}">`;
+    document.getElementById('thumbs').innerHTML=imgs.map((src,i)=>`<div class="th ${i===0?'active':''}" onclick="pdSetImg('${src}',this)"><img src="${src}" alt="${p.n} view ${i+1}" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>`).join('');
+  }else{
+    mainTile.style.background=Saileela.tint(2);
+    mainTile.innerHTML=`<div style="width:52%">${Saileela.ICON[p.icon]}</div>`;
+    document.getElementById('thumbs').innerHTML=[0,1,2].map(i=>`<div class="th ${i===0?'active':''}" style="background:${Saileela.tint(i)}"><div style="width:60%">${Saileela.ICON[p.icon]}</div></div>`).join('');
+  }
+  window.pdSetImg=(src,el)=>{const m=document.getElementById('mainImg');if(m)m.src=src;document.querySelectorAll('#thumbs .th').forEach(t=>t.classList.remove('active'));el.classList.add('active');};
   const off=p.o?Math.round((1-p.p/p.o)*100):0;
   document.getElementById('info').innerHTML=`
     <div class="cat-label">${p.cat}</div><h1>${p.n}</h1>
     <div class="stars">★★★★★ <span>${p.r} · ${p.c} devotee reviews</span></div>
     <div class="pd-price"><span class="now">${Saileela.money(p.p)}</span>${p.o?`<s>${Saileela.money(p.o)}</s><span class="off">${off}% off</span>`:''}</div>
     <p class="desc">${p.desc}</p>
+    ${p.contents&&p.contents.length?`<div class="kit-contents"><h3>What's inside the kit</h3><ul>${p.contents.map(c=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 12 4.5 4.5L19 7"/></svg>${c}</li>`).join('')}</ul></div>`:''}
     <div class="pd-actions">
       <div class="qty"><button onclick="chQty(-1)" aria-label="Decrease">−</button><span id="qty">1</span><button onclick="chQty(1)" aria-label="Increase">+</button></div>
       <button class="btn btn-primary" onclick="Saileela.addToCart('${p.id}',qty())">Add to cart</button>
@@ -1379,7 +1457,22 @@ const tv=Saileela.tv();
     Instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg>',
     WhatsApp:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>'};
   document.getElementById('socGrid').innerHTML=tv.socials.map(x=>`<div class="soc reveal"><div class="si" style="background:${x.color}">${socSvg[x.plat]||socSvg.YouTube}</div><div class="plat">${x.plat}</div><b>${x.count}</b><div class="lbl">${x.label}</div><a href="${x.url||'#'}">${x.cta} →</a></div>`).join('');
-  if(tv.liveUrl){document.querySelectorAll('[data-live]').forEach(a=>{a.href=tv.liveUrl;a.target='_blank';a.rel='noopener';});}
+  (function(){
+    const url=tv.liveUrl, video=document.getElementById('liveVideo');
+    if(video&&url){
+      if(video.canPlayType('application/vnd.apple.mpegurl')){ video.src=url; }
+      else if(window.Hls&&Hls.isSupported()){
+        const hls=new Hls({lowLatencyMode:true});
+        hls.loadSource(url); hls.attachMedia(video);
+        hls.on(Hls.Events.ERROR,(e,d)=>{ if(d.fatal){ try{hls.startLoad();}catch(_){}} });
+      } else { video.src=url; }
+      video.play&&video.play().catch(()=>{});
+    }
+    document.querySelectorAll('[data-live]').forEach(a=>a.addEventListener('click',ev=>{
+      ev.preventDefault();
+      if(video){ video.scrollIntoView({behavior:'smooth',block:'center'}); video.muted=false; video.play&&video.play().catch(()=>{}); }
+    }));
+  })();
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 };
 window.__init['about']=function(){
