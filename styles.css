@@ -690,3 +690,12 @@ img{max-width:100%;height:auto}
 /* uniform product-card height: reserve two lines for the title so price/button rows align */
 .card h3{min-height:2.55em}
 .card .cat-label{min-height:1.1em}
+
+/* schedule: day tabs, live badges, scroll to on-air */
+.sched-tabs{display:flex;justify-content:center;gap:10px;margin:-28px 0 30px;flex-wrap:wrap}
+.sched-tab{padding:.6em 1.3em;border:1px solid var(--line-l);border-radius:40px;font-family:"Manrope";font-size:.78rem;font-weight:600;letter-spacing:.05em;color:var(--ink-soft);background:var(--paper-3);transition:.2s}
+.sched-tab:hover{border-color:var(--kumkum);color:var(--kumkum)}
+.sched-tab.active{background:var(--night);color:var(--glow);border-color:var(--night)}
+.sched-wrap{position:relative;max-height:600px;overflow-y:auto}
+.sched-row.done{opacity:.5}
+.sched-row .live-badge{font-family:"Manrope";font-size:.62rem;font-weight:700;letter-spacing:.12em;color:var(--kumkum);border:1px solid var(--kumkum);border-radius:2px;padding:3px 8px;white-space:nowrap}
