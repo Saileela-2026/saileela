@@ -55,7 +55,7 @@ const DEFAULT_PRODUCTS=[
    desc:'A beautifully illuminated decorative lantern featuring divine images of Shree Saibaba on multiple sides. This Saileela Exclusive and Best Seller fills your home temple or prayer space with warm light and an uplifting devotional ambience.'},
   {id:'divya-ganesh-jyoti',n:'Shree Divya Ganesh Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
    img:'ganesh-jyoti-lit-1.jpg',
-   images:['ganesh-jyoti-lit-1.jpg','ganesh-jyoti-lit-2.jpg','ganesh-jyoti-lit-3.jpg','ganesh-jyoti-panel-1.jpg','ganesh-jyoti-panel-2.jpg','ganesh-jyoti-panel-3.jpg','ganesh-jyoti-panel-4.jpg','ganesh-jyoti-panel-5.jpg'],
+   images:['ganesh-jyoti-lit-1.jpg','ganesh-jyoti-lit-2.jpg','ganesh-jyoti-lit-3.jpg'],
    desc:'An illuminated decorative Jyoti featuring divine images of Shree Ganesh on multiple sides. This Saileela Exclusive and Best Seller creates a warm, auspicious ambience for home temples, festive décor and spiritual gifting.'},
   {id:'ram-jyoti',n:'Shree Ram Jyoti Akashdeep',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
    img:'ram-jyoti-lit-1.jpg',
@@ -183,7 +183,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v12';
+const DATA_KEY='saileela_data_v13';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
