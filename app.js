@@ -22,18 +22,6 @@ const tint=i=>'';   /* niches styled in CSS */
 
 /* ================= DATA LAYER (localStorage + JSON export/import) ================= */
 const DEFAULT_PRODUCTS=[
-  {id:'p1',n:'Sandal Agarbatti — Gift Box',p:299,o:399,icon:'incense',cat:'Pooja Samagri',r:4.9,c:820,badge:'new',stock:120,active:true,desc:'A premium box of long-burning sandalwood agarbatti, ideal for daily aarti and a calm, fragrant home mandir.'},
-  {id:'p2',n:'Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',stock:60,active:true,desc:'The beloved life and teachings of Sai Baba, in a clean, readable Marathi edition on quality paper.'},
-  {id:'p3',n:'Rudraksha 108 Mala',p:699,o:899,icon:'mala',cat:'Malas',r:4.8,c:560,badge:'',stock:75,active:true,desc:'A traditional 108-bead rudraksha mala, hand-knotted and finished for daily japa and everyday wear.'},
-  {id:'p4',n:'Marble Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',stock:24,active:true,desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
-  {id:'p5',n:'Saffron Prayer Shawl',p:849,o:1099,icon:'shawl',cat:'Apparel',r:4.7,c:295,badge:'',stock:40,active:true,desc:'A soft saffron shawl with a gold border, comfortable for prayer, parayan and festival wear.'},
-  {id:'p6',n:'Sai Leela Photo Frame',p:599,o:799,icon:'frame',cat:'Frames',r:4.8,c:670,badge:'',stock:90,active:true,desc:'An elegant framed photo with a warm gold finish, ready to hang or stand in your pooja space.'},
-  {id:'p7',n:'Lotus Brass Diya Set',p:499,o:null,icon:'lotus',cat:'Pooja Samagri',r:4.9,c:930,badge:'new',stock:110,active:true,desc:'A set of lotus-shaped brass diyas that bring a soft, steady glow to your daily worship.'},
-  {id:'p8',n:'Brass Palki Showpiece',p:1999,o:2499,icon:'palki',cat:'Frames',r:4.9,c:180,badge:'',stock:18,active:true,desc:'A detailed brass palki showpiece, a graceful decorative tribute for mandir or living room.'},
-  {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',stock:30,active:true,desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
-  {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',stock:22,active:true,desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
-  {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
-  {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'},
   {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
    img:'sagunopasna-kit-box-v3.jpg',
    images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-kalash-2.jpg','kit-katori-2.jpg','kit-diya-2.jpg','kit-agarbatti-stand-2.jpg','kit-bell-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
@@ -87,7 +75,7 @@ const DEFAULT_PRODUCTS=[
   {id:'sba-020-shivika-sandalwood-tika',n:'Shivika Sandal Wood Chandan Tilak',p:98,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:70,active:true,weight:70,img:'sba-020-sandalwood.jpg',images:['sba-020-sandalwood.jpg'],desc:'Shivika sandal wood chandan tilak in a 70 gm jar — a fragrant natural-toned tilak for pooja and worship.'},
   {id:'sba-026-krushnamurari-kesari-tika',n:'Krushnamurari Kesari Chandan Tika',p:125,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:70,active:true,weight:70,img:'sba-026-kesari.jpg',images:['sba-026-kesari.jpg'],desc:'Krushnamurari “Pandit Ji” kesari chandan tika in a 70 gm jar — a premium saffron-toned tilak for daily pooja, aarti and festive worship.'}
 ];
-const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
+const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Malas','Gifting'];
 const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
 const DEFAULT_SETTINGS={
   storeName:'Saileela Store', currency:'₹',
@@ -208,7 +196,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v16';
+const DATA_KEY='saileela_data_v17';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -247,14 +235,14 @@ const Wish={
 };
 
 /* ---------- header + footer ---------- */
-const NAV=[['shop.html','Shop','nav_shop'],['index.html#exclusive','Saileela Exclusive','nav_exclusive'],['saileela-tv.html','Saileela TV','nav_tv'],['about.html','Our Story','nav_story']];
+const NAV=[['shop.html','Shop','nav_shop'],['index.html#exclusive','Saileela Exclusive','nav_exclusive'],['shirdi-travel.html','Shirdi Travel','nav_travel'],['saileela-tv.html','Saileela TV','nav_tv'],['about.html','Our Story','nav_story']];
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
 
 
 /* ---------- i18n (English / Hindi / Telugu) ---------- */
 const LANGS=[['en','EN'],['hi','हिं'],['te','తె']];
 const I18N={
-  en:{nav_shop:'Shop',nav_exclusive:'Saileela Exclusive',nav_tv:'Saileela TV',nav_story:'Our Story',
+  en:{nav_shop:'Shop',nav_exclusive:'Saileela Exclusive',nav_travel:'Shirdi Travel',nav_tv:'Saileela TV',nav_story:'Our Story',
       a_ship:'Ships from Shirdi',a_free:'Free shipping above',a_pack:'Carefully packed',
       search:'Search',wishlist:'Wishlist',cart:'Cart',
       hero_h1:'Everything a Sai<br>Devotee Needs',hero_sub:'Thoughtfully selected in Shirdi. Delivered to your home.',
@@ -262,7 +250,7 @@ const I18N={
       sec_exclusive:'Saileela Exclusive',sec_category:'Shop by category',sec_new:'New arrivals',
       sec_best:'Bestsellers',sec_gift:'Devotional gifting',sec_reviews:'Loved by devotees',
       foot_tag:'A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.'},
-  hi:{nav_shop:'दुकान',nav_exclusive:'साईलीला एक्सक्लूसिव',nav_tv:'साईलीला टीवी',nav_story:'हमारी कहानी',
+  hi:{nav_shop:'दुकान',nav_exclusive:'साईलीला एक्सक्लूसिव',nav_travel:'शिरडी यात्रा',nav_tv:'साईलीला टीवी',nav_story:'हमारी कहानी',
       a_ship:'शिरडी से भेजा जाता है',a_free:'मुफ़्त शिपिंग इससे ऊपर',a_pack:'सावधानी से पैक किया गया',
       search:'खोजें',wishlist:'पसंदीदा',cart:'कार्ट',
       hero_h1:'हर साई भक्त की<br>ज़रूरत की हर चीज़',hero_sub:'शिरडी में सावधानी से चुना गया। आपके घर तक पहुँचाया गया।',
@@ -270,7 +258,7 @@ const I18N={
       sec_exclusive:'साईलीला एक्सक्लूसिव',sec_category:'श्रेणी से खरीदें',sec_new:'नए उत्पाद',
       sec_best:'बेस्टसेलर',sec_gift:'भक्ति उपहार',sec_reviews:'भक्तों का प्रिय',
       foot_tag:'शिरडी में बसा एक प्रीमियम भक्ति स्टोर। हाथ से चुना, सावधानी से पैक किया, पूरे भारत में पहुँचाया गया।'},
-  te:{nav_shop:'షాప్',nav_exclusive:'సాయిలీల ఎక్స్‌క్లూజివ్',nav_tv:'సాయిలీల టీవీ',nav_story:'మా కథ',
+  te:{nav_shop:'షాప్',nav_exclusive:'సాయిలీల ఎక్స్‌క్లూజివ్',nav_travel:'షిర్డీ యాత్ర',nav_tv:'సాయిలీల టీవీ',nav_story:'మా కథ',
       a_ship:'షిర్డీ నుండి పంపబడుతుంది',a_free:'ఈ మొత్తానికి పైన ఉచిత షిప్పింగ్',a_pack:'జాగ్రత్తగా ప్యాక్ చేయబడింది',
       search:'వెతకండి',wishlist:'ఇష్టాలు',cart:'కార్ట్',
       hero_h1:'ప్రతి సాయి భక్తునికి<br>కావలసినవన్నీ',hero_sub:'షిర్డీలో జాగ్రత్తగా ఎంపిక చేయబడింది. మీ ఇంటికి చేరవేయబడుతుంది.',
@@ -396,6 +384,7 @@ const Saileela={
   openSearch(){const o=document.getElementById('searchOv');if(!o)return;o.classList.add('open');const i=o.querySelector('input');if(i)setTimeout(()=>i.focus(),60);},
   closeSearch(){const o=document.getElementById('searchOv');if(o)o.classList.remove('open');},
   addToCart(id,qty=1){ Cart.add(id,qty); const p=findProduct(id); this.toast(`${p?p.n:'Item'} added to cart`); this.bump(); },
+  enquire(msg){ const wa=(Store.load().settings.whatsapp||'').replace(/\D/g,''); const url=wa?('https://wa.me/'+wa+'?text='+encodeURIComponent(msg||'Namaste Saileela, I would like to enquire about your Shirdi travel services.')):'contact.html'; window.open(url,'_blank','noopener'); },
   toast(msg){ const t=document.getElementById('toast'); if(!t)return; document.getElementById('toastMsg').textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200); },
   bump(){ const el=document.getElementById('cartCount'); if(!el)return; const q=Cart.count(); el.textContent=q; el.classList.toggle('show',q>0); el.style.transform='scale(1.4)'; setTimeout(()=>el.style.transform='',180); this.renderDrawer(); },
   openDrawer(){ this.renderDrawer(); document.getElementById('drawer').classList.add('open'); document.getElementById('scrim').classList.add('open'); },

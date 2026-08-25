@@ -57,9 +57,14 @@
     if(sortby==='pl')list=list.slice().sort((a,b)=>a.p-b.p);
     else if(sortby==='ph')list=list.slice().sort((a,b)=>b.p-a.p);
     else if(sortby==='new')list=list.slice().sort((a,b)=>((b.badge||'').toLowerCase()==='new'?1:0)-((a.badge||'').toLowerCase()==='new'?1:0));
+    const emptyMsg = wishOnly
+      ? 'Your wishlist is empty. Tap the ♡ on any product to save it here.'
+      : query
+        ? ('No products match “'+query+'”. Try another search, or browse a category.')
+        : 'This collection is being added soon — new pieces are on their way from Shirdi. Meanwhile, explore our other categories.';
     grid.innerHTML=list.length
       ? list.map((p,i)=>Saileela.productCard(p,i)).join('')
-      : `<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:48px 20px">${wishOnly?'Your wishlist is empty. Tap the ♡ on any product to save it here.':'No products match “'+'${query}'+'”. Try another search, or browse a category.'}</p>`;
+      : `<p style="grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:48px 20px">${emptyMsg}</p>`;
     document.getElementById('rc').textContent=list.length+' product'+(list.length!==1?'s':'')+(query?(' for “'+query+'”'):'');
     grid.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
   }

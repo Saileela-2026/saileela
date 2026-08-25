@@ -15,9 +15,9 @@
   <div class="hero-inner">
     <div class="hero-copy reveal">
       <div class="hero-brandline"><span class="deva-body" data-bind="heroTagline">॥ हर हर साई • घर घर साई ॥</span></div>
-      <h1 data-bind="heroTitle">Everything a Sai<br>Devotee <em>Needs</em></h1>
-      <p class="hero-sub" data-bind="heroSub">Thoughtfully selected in Shirdi. Delivered to your home.</p>
-      <div class="hero-cta"><a href="shop.html" class="btn btn-primary">Shop now</a><a href="index.html#exclusive" class="btn btn-line on-dark">Explore Saileela Exclusive</a></div>
+      <h1 data-bind="heroTitle" data-i18n="hero_h1">Everything a Sai<br>Devotee <em>Needs</em></h1>
+      <p class="hero-sub" data-bind="heroSub" data-i18n="hero_sub">Thoughtfully selected in Shirdi. Delivered to your home.</p>
+      <div class="hero-cta"><a href="shop.html" class="btn btn-primary" data-i18n="cta_shop">Shop now</a><a href="index.html#exclusive" class="btn btn-line on-dark" data-i18n="cta_explore">Explore Saileela Exclusive</a></div>
       <form class="hero-search" onsubmit="return Saileela.search(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" name="q" placeholder="Search idols, books, malas, frames…" aria-label="Search products">
@@ -52,13 +52,13 @@
 
 <!-- 5. NEW ARRIVALS -->
 <section class="block" style="background:var(--paper-2)"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow">Fresh from Shirdi</div><h2>New Arrivals</h2><p>New devotional pieces and curated finds, added regularly.</p></div>
+  <div class="head reveal"><div class="eyebrow">Fresh from Shirdi</div><h2 data-i18n="sec_new">New Arrivals</h2><p>New devotional pieces and curated finds, added regularly.</p></div>
   <div class="prod-grid" id="naGrid"></div>
 </div></section>
 
 <!-- 6. BESTSELLERS -->
 <section class="block"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow">Loved by devotees</div><h2>Bestsellers this month</h2><p>The pieces devotees keep coming back for, chosen for quality and devotion.</p></div>
+  <div class="head reveal"><div class="eyebrow">Loved by devotees</div><h2 data-i18n="sec_best">Bestsellers this month</h2><p>The pieces devotees keep coming back for, chosen for quality and devotion.</p></div>
   <div class="prod-grid" id="prodGrid"></div>
   <div class="shop-all reveal"><a href="shop.html" class="btn btn-line">View all products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></section>
@@ -156,7 +156,7 @@
       v.play&&v.play().catch(()=>{});
     }
   })();
-  const best=['sagunopasna-kit','divya-darshan-kit','divya-swaroop-kit','sai-akash-jyoti','divya-ganesh-jyoti','ram-jyoti','p4','p1'].map(Saileela.findProduct).filter(Boolean);
+  const best=['sagunopasna-kit','divya-darshan-kit','divya-swaroop-kit','sai-akash-jyoti','divya-ganesh-jyoti','ram-jyoti'].map(Saileela.findProduct).filter(Boolean);
   document.getElementById('prodGrid').innerHTML=best.map((p,i)=>Saileela.productCard(p,i)).join('');
   // countdown
   const _fd=Saileela.settings().festivalDate; let t=_fd?new Date(_fd+'T09:00:00'):new Date(Date.now()+5*864e5);
