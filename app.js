@@ -74,7 +74,7 @@ const DEFAULT_SETTINGS={
   heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
-  whatsapp:'6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
+  whatsapp:'+91 6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
 };
 const DEFAULT_TV={
   nowTitle:'Sai Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
@@ -183,7 +183,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v8';
+const DATA_KEY='saileela_data_v9';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
