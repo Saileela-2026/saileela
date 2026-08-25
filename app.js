@@ -272,6 +272,7 @@ const I18N={
       sec_best:'బెస్ట్‌సెల్లర్లు',sec_gift:'భక్తి బహుమతులు',sec_reviews:'భక్తులకు ప్రియమైనవి',
       foot_tag:'షిర్డీలో పాతుకుపోయిన ప్రీమియం భక్తి స్టోర్. చేతితో ఎంపిక చేసి, జాగ్రత్తగా ప్యాక్ చేసి, భారతదేశమంతటా చేరవేయబడుతుంది.'}
 };
+function brandName(){var m=document.cookie.match(/googtrans=\/en\/(\w+)/);var l=m?m[1]:'en';return l==='hi'?'साईलीला':(l==='te'?'సాయిలీల':'Saileela');}
 function T(k){const l=localStorage.getItem('saileela_lang')||'en';return (I18N[l]&&I18N[l][k])||I18N.en[k]||k;}
 function applyI18n(){const l=localStorage.getItem('saileela_lang')||'en';document.documentElement.lang=l;if(l==='en')return;
   document.querySelectorAll('[data-i18n]').forEach(el=>{const v=(I18N[l]&&I18N[l][el.getAttribute('data-i18n')]);if(v!=null)el.innerHTML=v;});}
@@ -290,7 +291,7 @@ function renderHeader(){
   <header id="header"><div class="nav">
     <a class="brand" href="index.html" aria-label="Saileela home">
       <img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="46" height="46">
-      <div class="brand-name">Saileela</div></a>
+      <div class="brand-name notranslate" translate="no">${brandName()}</div></a>
     <nav class="links" aria-label="Primary">${links}</nav>
     <div class="nav-actions">
       ${langSel}
@@ -317,7 +318,7 @@ function renderFooter(){
     <span class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Z"/></svg> Prefer WhatsApp? Get updates on WhatsApp</span>
   </div></section>
   <footer><div class="wrap"><div class="foot-grid">
-    <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name" style="font-family:Fraunces;font-size:1.4rem">Saileela</span></div>
+    <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name notranslate" translate="no" style="font-family:Fraunces;font-size:1.4rem">${brandName()}</span></div>
       <div class="malik-f">॥ श्रद्धा • सबुरी • समर्पण ॥</div>
       <p data-i18n="foot_tag">A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.</p>
       <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shirdi, Ahilyanagar, Maharashtra 423109</div>
