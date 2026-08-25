@@ -50,16 +50,16 @@ const DEFAULT_PRODUCTS=[
    contents:['Shree Saibaba Idol','Vastra','Tulsi Mala','Decorative Mukut (crown)'],
    desc:'A Saileela Exclusive and Best Seller kit featuring a beautiful Shree Saibaba idol with Vastra, Mala and Mukut. A complete divine swaroop for your home temple, daily darshan and spiritual gifting.'},
   {id:'sai-akash-jyoti',n:'Shree Sai Akash Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
-   img:'sai-akash-jyoti-1.jpg',
-   images:['sai-akash-jyoti-1.jpg','sai-akash-jyoti-2.jpg','sai-akash-jyoti-3.jpg','sai-akash-jyoti-4.jpg','sai-akash-jyoti-5.jpg'],
+   img:'sai-jyoti-lit-1.jpg',
+   images:['sai-jyoti-lit-1.jpg','sai-jyoti-lit-2.jpg'],
    desc:'A beautifully illuminated decorative lantern featuring divine images of Shree Saibaba on multiple sides. This Saileela Exclusive and Best Seller fills your home temple or prayer space with warm light and an uplifting devotional ambience.'},
   {id:'divya-ganesh-jyoti',n:'Shree Divya Ganesh Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
-   img:'ganesh-jyoti-1.jpg',
-   images:['ganesh-jyoti-1.jpg','ganesh-jyoti-2.jpg','ganesh-jyoti-3.jpg','ganesh-jyoti-4.jpg'],
+   img:'ganesh-jyoti-lit-1.jpg',
+   images:['ganesh-jyoti-lit-1.jpg','ganesh-jyoti-lit-2.jpg','ganesh-jyoti-lit-3.jpg','ganesh-jyoti-panel-1.jpg','ganesh-jyoti-panel-2.jpg','ganesh-jyoti-panel-3.jpg','ganesh-jyoti-panel-4.jpg','ganesh-jyoti-panel-5.jpg'],
    desc:'An illuminated decorative Jyoti featuring divine images of Shree Ganesh on multiple sides. This Saileela Exclusive and Best Seller creates a warm, auspicious ambience for home temples, festive décor and spiritual gifting.'},
   {id:'ram-jyoti',n:'Shree Ram Jyoti Akashdeep',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
-   img:'ram-jyoti-1.jpg',
-   images:['ram-jyoti-1.jpg','ram-jyoti-2.jpg','ram-jyoti-3.jpg'],
+   img:'ram-jyoti-lit-1.jpg',
+   images:['ram-jyoti-lit-1.jpg','ram-jyoti-lit-2.jpg'],
    desc:'A beautifully illuminated devotional Akashdeep featuring divine images of Prabhu Shree Ram and Shree Ram Darbar on multiple sides. This Saileela Exclusive and Best Seller brings a warm, auspicious glow to your home, temple and festive celebrations.'}
 ];
 const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
@@ -183,7 +183,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v11';
+const DATA_KEY='saileela_data_v12';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -310,10 +310,10 @@ function renderFooter(){
     <div><h4>Help</h4><ul><li><a href="contact.html">Shipping</a></li><li><a href="contact.html">Returns</a></li><li><a href="contact.html">FAQ</a></li><li><a href="contact.html">Order support</a></li></ul></div>
     <div><h4>Follow</h4>
       <div class="socials">
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
-        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></a>
+        <a href="https://www.youtube.com/@SaileelaTV" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>
+        <a href="https://www.facebook.com/saileelatv1" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+        <a href="https://www.instagram.com/saileela.tv.official/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
+        <a href="https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></a>
       </div>
     </div>
   </div>
