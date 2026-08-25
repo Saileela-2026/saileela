@@ -183,7 +183,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v9';
+const DATA_KEY='saileela_data_v11';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -222,31 +222,71 @@ const Wish={
 };
 
 /* ---------- header + footer ---------- */
-const NAV=[['shop.html','Shop'],['index.html#exclusive','Saileela Exclusive'],['saileela-tv.html','Saileela TV'],['about.html','Our Story']];
+const NAV=[['shop.html','Shop','nav_shop'],['index.html#exclusive','Saileela Exclusive','nav_exclusive'],['saileela-tv.html','Saileela TV','nav_tv'],['about.html','Our Story','nav_story']];
 const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hidden="true"><defs><linearGradient id="bf" x1="0" y1="0" x2="46" y2="54"><stop stop-color="#F3E2A8"/><stop offset=".5" stop-color="#C9A554"/><stop offset="1" stop-color="#8A6A2C"/></linearGradient></defs><path d="M5 51V22C5 11 13 4 23 4s18 7 18 18v29" stroke="url(#bf)" stroke-width="1.5"/><path d="M9 51V23c0-9 6-15 14-15s14 6 14 15v28" stroke="url(#bf)" stroke-width="1" opacity=".45"/><circle cx="23" cy="4" r="2" fill="url(#bf)"/><path d="M23 12v7" stroke="url(#bf)" stroke-width="1"/><path d="M16 20q7 11 14 0-3 7-7 7t-7-7Z" fill="url(#bf)"/><path d="M23 20c-4-6 2-9-.5-15 5.5 6 3.5 12 .5 15Z" fill="#E0A32E"/><path d="M5 51h36" stroke="url(#bf)" stroke-width="1.5"/></svg>`;
+
+
+/* ---------- i18n (English / Hindi / Telugu) ---------- */
+const LANGS=[['en','EN'],['hi','हिं'],['te','తె']];
+const I18N={
+  en:{nav_shop:'Shop',nav_exclusive:'Saileela Exclusive',nav_tv:'Saileela TV',nav_story:'Our Story',
+      a_ship:'Ships from Shirdi',a_free:'Free shipping above',a_pack:'Carefully packed',
+      search:'Search',wishlist:'Wishlist',cart:'Cart',
+      hero_h1:'Everything a Sai<br>Devotee Needs',hero_sub:'Thoughtfully selected in Shirdi. Delivered to your home.',
+      cta_shop:'Shop now',cta_explore:'Explore Saileela Exclusive',
+      sec_exclusive:'Saileela Exclusive',sec_category:'Shop by category',sec_new:'New arrivals',
+      sec_best:'Bestsellers',sec_gift:'Devotional gifting',sec_reviews:'Loved by devotees',
+      foot_tag:'A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.'},
+  hi:{nav_shop:'दुकान',nav_exclusive:'साईलीला एक्सक्लूसिव',nav_tv:'साईलीला टीवी',nav_story:'हमारी कहानी',
+      a_ship:'शिरडी से भेजा जाता है',a_free:'मुफ़्त शिपिंग इससे ऊपर',a_pack:'सावधानी से पैक किया गया',
+      search:'खोजें',wishlist:'पसंदीदा',cart:'कार्ट',
+      hero_h1:'हर साई भक्त की<br>ज़रूरत की हर चीज़',hero_sub:'शिरडी में सावधानी से चुना गया। आपके घर तक पहुँचाया गया।',
+      cta_shop:'अभी खरीदें',cta_explore:'साईलीला एक्सक्लूसिव देखें',
+      sec_exclusive:'साईलीला एक्सक्लूसिव',sec_category:'श्रेणी से खरीदें',sec_new:'नए उत्पाद',
+      sec_best:'बेस्टसेलर',sec_gift:'भक्ति उपहार',sec_reviews:'भक्तों का प्रिय',
+      foot_tag:'शिरडी में बसा एक प्रीमियम भक्ति स्टोर। हाथ से चुना, सावधानी से पैक किया, पूरे भारत में पहुँचाया गया।'},
+  te:{nav_shop:'షాప్',nav_exclusive:'సాయిలీల ఎక్స్‌క్లూజివ్',nav_tv:'సాయిలీల టీవీ',nav_story:'మా కథ',
+      a_ship:'షిర్డీ నుండి పంపబడుతుంది',a_free:'ఈ మొత్తానికి పైన ఉచిత షిప్పింగ్',a_pack:'జాగ్రత్తగా ప్యాక్ చేయబడింది',
+      search:'వెతకండి',wishlist:'ఇష్టాలు',cart:'కార్ట్',
+      hero_h1:'ప్రతి సాయి భక్తునికి<br>కావలసినవన్నీ',hero_sub:'షిర్డీలో జాగ్రత్తగా ఎంపిక చేయబడింది. మీ ఇంటికి చేరవేయబడుతుంది.',
+      cta_shop:'ఇప్పుడు షాప్ చేయండి',cta_explore:'సాయిలీల ఎక్స్‌క్లూజివ్ చూడండి',
+      sec_exclusive:'సాయిలీల ఎక్స్‌క్లూజివ్',sec_category:'వర్గం వారీగా షాప్',sec_new:'కొత్త ఉత్పత్తులు',
+      sec_best:'బెస్ట్‌సెల్లర్లు',sec_gift:'భక్తి బహుమతులు',sec_reviews:'భక్తులకు ప్రియమైనవి',
+      foot_tag:'షిర్డీలో పాతుకుపోయిన ప్రీమియం భక్తి స్టోర్. చేతితో ఎంపిక చేసి, జాగ్రత్తగా ప్యాక్ చేసి, భారతదేశమంతటా చేరవేయబడుతుంది.'}
+};
+function T(k){const l=localStorage.getItem('saileela_lang')||'en';return (I18N[l]&&I18N[l][k])||I18N.en[k]||k;}
+function applyI18n(){const l=localStorage.getItem('saileela_lang')||'en';document.documentElement.lang=l;if(l==='en')return;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=(I18N[l]&&I18N[l][el.getAttribute('data-i18n')]);if(v!=null)el.innerHTML=v;});}
 
 function renderHeader(){
   const _s=Store.load().settings;
   const page=document.body.dataset.page||'index.html';
-  const links=NAV.map(([h,l])=>`<a href="${h}" class="${h.split('#')[0]===page?'active':''}">${l}</a>`).join('');
-  const mlinks=NAV.map(([h,l])=>`<a href="${h}">${l}</a>`).join('');
+  const links=NAV.map(([h,l,k])=>`<a href="${h}" class="${h.split('#')[0]===page?'active':''}">${k?T(k):l}</a>`).join('');
+  const mlinks=NAV.map(([h,l,k])=>`<a href="${h}" onclick="Saileela.closeAll()">${k?T(k):l}</a>`).join('');
+  const _cm=document.cookie.match(/googtrans=\/en\/(\w+)/); const curLang=_cm?_cm[1]:'en';
+  const langOpts=LANGS.map(([v,lbl])=>`<option value="${v}" ${v===curLang?'selected':''}>${lbl}</option>`).join('');
+  const langSel=`<select class="lang-sel" aria-label="Language" onchange="Saileela.setLang(this.value)">${langOpts}</select>`;
+  const langSelM=`<select class="lang-sel lang-sel-m" aria-label="Language" onchange="Saileela.setLang(this.value)">${langOpts}</select>`;
   const html=`
-  <div class="announce"><span>Ships from Shirdi</span><span class="sep">•</span><span>Free shipping above ${money(_s.freeShipThreshold)}</span><span class="sep">•</span><span>Carefully packed</span></div>
+  <div class="announce"><span>${T('a_ship')}</span><span class="sep">•</span><span>${T('a_free')} ${money(_s.freeShipThreshold)}</span><span class="sep">•</span><span>${T('a_pack')}</span></div>
   <header id="header"><div class="nav">
     <a class="brand" href="index.html" aria-label="Saileela home">
       <img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="46" height="46">
       <div class="brand-name">Saileela</div></a>
     <nav class="links" aria-label="Primary">${links}</nav>
     <div class="nav-actions">
+      ${langSel}
       <button class="icon-btn" aria-label="Search" onclick="Saileela.openSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
       <a class="icon-btn" href="shop.html?wish=1" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg><span class="wish-count" id="wishCount">0</span></a>
       <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h13l-1.2 9.5a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount">0</span></a>
-      <button class="icon-btn burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu" onclick="var m=document.getElementById('mnav');if(m)m.classList.add('open');var s=document.getElementById('scrim');if(s)s.classList.add('open');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div></div></header>
   <div class="mnav" id="mnav" aria-hidden="true">
-    <button class="icon-btn close" id="mnavClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="icon-btn close" id="mnavClose" aria-label="Close menu" onclick="Saileela.closeAll()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    ${langSelM}
     ${mlinks}</div>`;
   document.getElementById('site-header').innerHTML=html;
+  var _mn=document.getElementById('mnav'); if(_mn&&_mn.parentElement!==document.body) document.body.appendChild(_mn);
 }
 
 function renderFooter(){
@@ -261,7 +301,7 @@ function renderFooter(){
   <footer><div class="wrap"><div class="foot-grid">
     <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name" style="font-family:Fraunces;font-size:1.4rem">Saileela</span></div>
       <div class="malik-f">॥ श्रद्धा • सबुरी • समर्पण ॥</div>
-      <p>A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.</p>
+      <p data-i18n="foot_tag">A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.</p>
       <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shirdi, Ahilyanagar, Maharashtra 423109</div>
       <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
     </div>
@@ -333,6 +373,14 @@ const Saileela={
   toast(msg){ const t=document.getElementById('toast'); if(!t)return; document.getElementById('toastMsg').textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200); },
   bump(){ const el=document.getElementById('cartCount'); if(!el)return; const q=Cart.count(); el.textContent=q; el.classList.toggle('show',q>0); el.style.transform='scale(1.4)'; setTimeout(()=>el.style.transform='',180); this.renderDrawer(); },
   openDrawer(){ this.renderDrawer(); document.getElementById('drawer').classList.add('open'); document.getElementById('scrim').classList.add('open'); },
+  setLang(l){
+    var host=location.hostname;
+    document.cookie='googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    document.cookie='googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain='+host;
+    document.cookie='googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.'+host;
+    if(l&&l!=='en'){var val='/en/'+l;document.cookie='googtrans='+val+';path=/';document.cookie='googtrans='+val+';path=/;domain='+host;document.cookie='googtrans='+val+';path=/;domain=.'+host;}
+    location.reload();
+  },
   closeAll(){ document.querySelectorAll('.drawer,.scrim,.mnav').forEach(e=>e.classList.remove('open')); },
   renderDrawer(){
     const box=document.getElementById('drawerItems'),foot=document.getElementById('drawerFoot'); if(!box)return;
@@ -349,8 +397,21 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); Saileela.applyContent();
-  Saileela.bump(); Saileela.wishBump();
+  renderHeader(); renderFooter(); injectOverlays();
+  // wire the mobile menu immediately (before anything that could throw)
+  try{
+    const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
+    const mc=document.getElementById('mnavClose'); if(mc)mc.onclick=()=>Saileela.closeAll();
+    document.querySelectorAll('.mnav a').forEach(a=>a.onclick=()=>Saileela.closeAll());
+  }catch(e){}
+  try{Saileela.applyContent();Saileela.bump();Saileela.wishBump();}catch(e){}
+  try{
+    if(!document.getElementById('google_translate_element')){
+      window.googleTranslateElementInit=function(){try{new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,hi,te',autoDisplay:false},'google_translate_element');}catch(e){}};
+      var _gd=document.createElement('div');_gd.id='google_translate_element';_gd.style.cssText='display:none';document.body.appendChild(_gd);
+      var _gs=document.createElement('script');_gs.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';document.body.appendChild(_gs);
+    }
+  }catch(e){}
   const sov=document.getElementById('searchOv'); if(sov)sov.onclick=e=>{if(e.target.id==='searchOv')Saileela.closeSearch();};
   const header=document.getElementById('header');
   addEventListener('scroll',()=>header&&header.classList.toggle('shrunk',scrollY>20));

@@ -497,7 +497,7 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 .pay{display:flex;gap:8px}.pay .chip{border:1px solid var(--line-d);border-radius:2px;padding:4px 10px;font-family:"Manrope";font-size:.7rem;letter-spacing:.08em;color:var(--glow-faint)}
 
 /* ---------- drawer + toast + mobile nav ---------- */
-.scrim{position:fixed;inset:0;background:rgba(24,4,4,.6);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:.3s;z-index:90}
+.scrim{position:fixed;inset:0;background:rgba(24,4,4,.62);opacity:0;visibility:hidden;transition:.3s;z-index:90}
 .scrim.open{opacity:1;visibility:visible}
 .drawer{position:fixed;top:0;right:0;height:100%;width:min(410px,92vw);background:var(--paper);z-index:100;transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;box-shadow:-24px 0 70px rgba(24,4,4,.4);border-left:1px solid var(--line-l)}
 .drawer.open{transform:translateX(0)}
@@ -518,7 +518,7 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(120px);z-index:120;background:var(--night-3);color:var(--glow);padding:15px 24px;border-radius:3px;border:1px solid var(--line-d);box-shadow:var(--shadow-night);display:flex;align-items:center;gap:11px;font-size:.92rem;transition:transform .45s var(--ease)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .toast svg{width:20px;height:20px;color:var(--marigold)}
-.mnav{position:fixed;inset:0 0 0 auto;width:min(320px,86vw);background:var(--paper);z-index:100;transform:translateX(100%);transition:transform .4s var(--ease);padding:26px;box-shadow:-24px 0 70px rgba(24,4,4,.4);display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line-l)}
+.mnav{position:fixed;inset:0 0 0 auto;width:min(320px,86vw);background:var(--paper);z-index:200;transform:translateX(100%);transition:transform .4s var(--ease);padding:26px;box-shadow:-24px 0 70px rgba(24,4,4,.4);display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line-l)}
 .mnav.open{transform:translateX(0)}
 .mnav a{padding:15px 6px;border-bottom:1px solid var(--line-l);font-family:"Manrope";font-size:.85rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
 .mnav .close{align-self:flex-end;margin-bottom:8px}
@@ -713,3 +713,18 @@ img{max-width:100%;height:auto}
 .fest-card span{font-family:"Manrope";font-size:.74rem;color:var(--kumkum);letter-spacing:.03em}
 @media(max-width:900px){.fest-grid2{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.fest-grid2{grid-template-columns:1fr}}
+
+/* language switcher */
+.lang-sel{appearance:none;-webkit-appearance:none;background:transparent;border:1px solid var(--line-l);border-radius:20px;padding:5px 22px 5px 10px;font-family:"Manrope";font-size:.72rem;font-weight:600;color:var(--ink-soft);cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 11px) 50%,calc(100% - 7px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+.lang-sel:hover{border-color:var(--kumkum)}
+@media(max-width:360px){.lang-sel{padding:4px 18px 4px 7px;font-size:.66rem}}
+
+/* mobile: move language control into the drawer so the burger never gets pushed off-screen */
+@media(max-width:640px){.nav-actions .lang-sel{display:none}}
+.mnav .lang-sel-m{display:block;width:100%;margin:0 0 14px;padding:11px 14px;font-size:.82rem;letter-spacing:.02em}
+
+/* Google Translate: hide banner + tooltip, keep layout stable */
+.goog-te-banner-frame.skiptranslate,.goog-te-balloon-frame,#goog-gt-tt,.goog-tooltip,.goog-tooltip:hover{display:none!important}
+body{top:0!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important}
+#google_translate_element{display:none!important}
