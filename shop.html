@@ -20,6 +20,7 @@
   <form class="shop-search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="shopq" type="search" placeholder="Search idols, books, malas, frames…" aria-label="Search products"></form>
   <div class="shop-toolbar"><div class="filters" id="filters"></div>
     <select id="sortby" aria-label="Sort products"><option value="featured">Featured</option><option value="new">New arrivals</option><option value="ph">Price: high to low</option><option value="pl">Price: low to high</option></select></div>
+  <div class="subfilters" id="subfilters"></div>
   <div class="prod-grid" id="grid"></div>
 </div></section>
 
@@ -28,6 +29,7 @@
 <script>
   const params=new URLSearchParams(location.search);
   let active=params.get('cat')||'All'; if(!Saileela.CATS.includes(active))active='All';
+  let activeSub=params.get('subcat')||'';
   let query=(params.get('q')||'').trim();
   const wishOnly=params.get('wish')==='1';
   let sortby='featured';
@@ -37,10 +39,17 @@
   if(sq){ sq.value=query; sq.addEventListener('input',()=>{query=sq.value.trim();renderGrid();}); }
   function renderFilters(){
     fbox.innerHTML=Saileela.CATS.map(c=>`<button class="chip-filter ${c===active?'active':''}" onclick="setCat('${c}')">${c}</button>`).join('')+`<span class="result-count" id="rc"></span>`;
+    const sb=document.getElementById('subfilters');
+    const subs=[...new Set(Saileela.CATALOG.filter(p=>p.cat===active&&p.subcat).map(p=>p.subcat))];
+    if(active!=='All'&&subs.length){sb.style.display='flex';sb.innerHTML=`<button class="chip-filter sub ${activeSub===''?'active':''}" onclick="setSub('')">All ${active}</button>`+subs.map(x=>`<button class="chip-filter sub ${activeSub===x?'active':''}" onclick="setSub('${x}')">${x}</button>`).join('');}
+    else{sb.style.display='none';sb.innerHTML='';}
   }
+  window.setSub=x=>{activeSub=x;renderFilters();renderGrid();};
   function match(p){
     if(wishOnly&&!wishList.includes(p.id))return false;
-    if(query){ const q=query.toLowerCase(); return ((p.n||'')+' '+(p.cat||'')+' '+(p.desc||'')).toLowerCase().includes(q); }
+    if(active!=='All'&&p.cat!==active)return false;
+    if(activeSub&&(p.subcat||'')!==activeSub)return false;
+    if(query){ const q=query.toLowerCase(); if(!((p.n||'')+' '+(p.cat||'')+' '+(p.subcat||'')+' '+(p.desc||'')).toLowerCase().includes(q))return false; }
     return true;
   }
   function renderGrid(){
@@ -54,7 +63,7 @@
     document.getElementById('rc').textContent=list.length+' product'+(list.length!==1?'s':'')+(query?(' for “'+query+'”'):'');
     grid.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
   }
-  window.setCat=c=>{active=c;if(wishOnly){const h=document.querySelector('.page-hero h1');if(h)h.textContent='Your Wishlist';const c=document.querySelector('.crumb');if(c)c.innerHTML='<a href="index.html">Home</a><span>\u203a</span>Wishlist';}
+  window.setCat=c=>{active=c;activeSub='';if(wishOnly){const h=document.querySelector('.page-hero h1');if(h)h.textContent='Your Wishlist';const c=document.querySelector('.crumb');if(c)c.innerHTML='<a href="index.html">Home</a><span>\u203a</span>Wishlist';}
   renderFilters();renderGrid();};
   if(wishOnly){const h=document.querySelector('.page-hero h1');if(h)h.textContent='Your Wishlist';const c=document.querySelector('.crumb');if(c)c.innerHTML='<a href="index.html">Home</a><span>\u203a</span>Wishlist';}
   renderFilters();renderGrid();

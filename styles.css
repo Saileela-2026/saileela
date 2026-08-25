@@ -728,3 +728,7 @@ img{max-width:100%;height:auto}
 body{top:0!important}
 .goog-text-highlight{background:none!important;box-shadow:none!important}
 #google_translate_element{display:none!important}
+
+/* shop subcategory chips */
+.subfilters{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 20px}
+.chip-filter.sub{font-size:.72rem;padding:.42em .95em;border-radius:30px}

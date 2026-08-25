@@ -49,18 +49,36 @@ const DEFAULT_PRODUCTS=[
    images:['divya-swaroop-box.jpg','divya-swaroop-open.jpg'],
    contents:['Shree Saibaba Idol','Vastra','Tulsi Mala','Decorative Mukut (crown)'],
    desc:'A Saileela Exclusive and Best Seller kit featuring a beautiful Shree Saibaba idol with Vastra, Mala and Mukut. A complete divine swaroop for your home temple, daily darshan and spiritual gifting.'},
-  {id:'sai-akash-jyoti',n:'Shree Sai Akash Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+  {id:'sai-akash-jyoti',n:'Shree Sai Akash Jyoti',p:1199,o:1500,icon:'frame',cat:'Gifting',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
    img:'sai-jyoti-lit-1.jpg',
    images:['sai-jyoti-lit-1.jpg','sai-jyoti-lit-2.jpg'],
    desc:'A beautifully illuminated decorative lantern featuring divine images of Shree Saibaba on multiple sides. This Saileela Exclusive and Best Seller fills your home temple or prayer space with warm light and an uplifting devotional ambience.'},
-  {id:'divya-ganesh-jyoti',n:'Shree Divya Ganesh Jyoti',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+  {id:'divya-ganesh-jyoti',n:'Shree Divya Ganesh Jyoti',p:1199,o:1500,icon:'frame',cat:'Gifting',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
    img:'ganesh-jyoti-lit-1.jpg',
    images:['ganesh-jyoti-lit-1.jpg','ganesh-jyoti-lit-2.jpg','ganesh-jyoti-lit-3.jpg'],
    desc:'An illuminated decorative Jyoti featuring divine images of Shree Ganesh on multiple sides. This Saileela Exclusive and Best Seller creates a warm, auspicious ambience for home temples, festive décor and spiritual gifting.'},
-  {id:'ram-jyoti',n:'Shree Ram Jyoti Akashdeep',p:1199,o:1500,icon:'frame',cat:'Frames',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
+  {id:'ram-jyoti',n:'Shree Ram Jyoti Akashdeep',p:1199,o:1500,icon:'frame',cat:'Gifting',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
    img:'ram-jyoti-lit-1.jpg',
    images:['ram-jyoti-lit-1.jpg','ram-jyoti-lit-2.jpg'],
-   desc:'A beautifully illuminated devotional Akashdeep featuring divine images of Prabhu Shree Ram and Shree Ram Darbar on multiple sides. This Saileela Exclusive and Best Seller brings a warm, auspicious glow to your home, temple and festive celebrations.'}
+   desc:'A beautifully illuminated devotional Akashdeep featuring divine images of Prabhu Shree Ram and Shree Ram Darbar on multiple sides. This Saileela Exclusive and Best Seller brings a warm, auspicious glow to your home, temple and festive celebrations.'},
+  {id:'agar-stavan',n:'Sai Tattva Agarbatti — Stavan',p:220,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-stavan.jpg',images:['agar-stavan.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Stavan incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-amrut',n:'Sai Tattva Agarbatti — Amrut',p:220,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-amrut.jpg',images:['agar-amrut.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Amrut incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-chandan',n:'Sai Tattva Agarbatti — Chandan',p:220,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-chandan.jpg',images:['agar-chandan.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Chandan incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-vibhuti',n:'Sai Tattva Agarbatti — Vibhuti',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-vibhuti.jpg',images:['agar-vibhuti.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Vibhuti incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-tirth',n:'Sai Tattva Agarbatti — Tirth',p:95,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-tirth.jpg',images:['agar-tirth.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Tirth incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-tilak',n:'Sai Tattva Agarbatti — Tilak',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-tilak.jpg',images:['agar-tilak.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Tilak incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-kalash',n:'Sai Tattva Agarbatti — Kalash',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-kalash.jpg',images:['agar-kalash.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Kalash incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-kasturi',n:'Sai Tattva Agarbatti — Kasturi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-kasturi.jpg',images:['agar-kasturi.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Kasturi incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-lavender',n:'Sai Tattva Agarbatti — Lavender',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-lavender.jpg',images:['agar-lavender.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Lavender incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-loban',n:'Sai Tattva Agarbatti — Loban',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-loban.jpg',images:['agar-loban.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Loban incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-mogra',n:'Sai Tattva Agarbatti — Mogra',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-mogra.jpg',images:['agar-mogra.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Mogra incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-parikrama',n:'Sai Tattva Agarbatti — Parikrama 4-in-1',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-parikrama.jpg',images:['agar-parikrama.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Parikrama 4-in-1 incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-pineapple',n:'Sai Tattva Agarbatti — Pineapple',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-pineapple.jpg',images:['agar-pineapple.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Pineapple incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-sairose',n:'Sai Tattva Agarbatti — Sai Rose',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-sairose.jpg',images:['agar-sairose.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Sai Rose incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'masala-samadhi',n:'Sai Tattva Natural Masala — Samadhi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-samadhi.jpg',images:['masala-samadhi.jpg','masala-samadhi-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Samadhi natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
+  {id:'masala-chavadi',n:'Sai Tattva Natural Masala — Chavadi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-chavadi.jpg',images:['masala-chavadi.jpg','masala-chavadi-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Chavadi natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
+  {id:'masala-dwarkamai',n:'Sai Tattva Natural Masala — Dwarkamai',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-dwarkamai.jpg',images:['masala-dwarkamai.jpg','masala-dwarkamai-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Dwarkamai natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
+  {id:'masala-gurusthan',n:'Sai Tattva Natural Masala — Gurusthan',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-gurusthan.jpg',images:['masala-gurusthan.jpg','masala-gurusthan-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Gurusthan natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'}
 ];
 const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
 const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
@@ -183,7 +201,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v13';
+const DATA_KEY='saileela_data_v15';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -361,7 +379,7 @@ const Saileela={
     const on=Wish.has(p.id)?'on':'';
     return `<article class="card reveal">
       <div class="tile">${badge}<button class="wish ${on}" aria-label="Save ${p.n} to wishlist" onclick="Saileela.toggleWish('${p.id}',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg></button><a class="tilelink" href="product.html?id=${p.id}" aria-label="${p.n}">${p.img?`<img class="ph-img" src="${p.img}" alt="${p.n}" loading="lazy">`:`<span class="ph-mark">${ICON[p.icon]}</span>`}<span class="ph-shadow"></span></a></div>
-      <div class="body"><div class="cat-label">${p.cat}</div><h3><a href="product.html?id=${p.id}">${p.n}</a></h3>
+      <div class="body"><div class="cat-label">${p.subcat||p.cat}</div><h3><a href="product.html?id=${p.id}">${p.n}</a></h3>
         <div class="foot"><div class="price">${money(p.p)}${p.o?`<s>${money(p.o)}</s>`:''}</div>
           <button class="add" aria-label="Add ${p.n} to cart" onclick="Saileela.addToCart('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h13l-1.2 9.5a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></button></div></div></article>`;
   },
