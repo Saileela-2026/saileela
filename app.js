@@ -78,7 +78,14 @@ const DEFAULT_PRODUCTS=[
   {id:'masala-samadhi',n:'Sai Tattva Natural Masala — Samadhi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-samadhi.jpg',images:['masala-samadhi.jpg','masala-samadhi-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Samadhi natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
   {id:'masala-chavadi',n:'Sai Tattva Natural Masala — Chavadi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-chavadi.jpg',images:['masala-chavadi.jpg','masala-chavadi-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Chavadi natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
   {id:'masala-dwarkamai',n:'Sai Tattva Natural Masala — Dwarkamai',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-dwarkamai.jpg',images:['masala-dwarkamai.jpg','masala-dwarkamai-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Dwarkamai natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
-  {id:'masala-gurusthan',n:'Sai Tattva Natural Masala — Gurusthan',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-gurusthan.jpg',images:['masala-gurusthan.jpg','masala-gurusthan-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Gurusthan natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'}
+  {id:'masala-gurusthan',n:'Sai Tattva Natural Masala — Gurusthan',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-gurusthan.jpg',images:['masala-gurusthan.jpg','masala-gurusthan-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Gurusthan natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
+
+  /* ===== Ashtagandh (Tika) — subcategory under Pooja Samagri ===== */
+  {id:'sba-010-hd-white-tika',n:'Hari Darshan White Chandan Tika',p:40,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:100,active:true,weight:40,img:'sba-010-white-1.jpg',images:['sba-010-white-1.jpg','sba-010-white-2.jpg'],desc:'Hari Darshan safed (white) chandan tika in a handy 40 gm jar — a smooth, ready-to-apply tilak for daily pooja, aarti and festive occasions.'},
+  {id:'sba-011-hd-yellow-tika',n:'Hari Darshan Yellow Chandan Tika',p:40,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:100,active:true,weight:40,img:'sba-011-yellow-1.jpg',images:['sba-011-yellow-1.jpg','sba-011-yellow-2.jpg'],desc:'Hari Darshan peela (yellow) shuddh kumkum chandan tika in a 40 gm jar — a smooth, ready-to-apply tilak for daily pooja, aarti and festive occasions.'},
+  {id:'sba-017-shivika-red-tika',n:'Shivika Kasturi Chandan Tilak — Red',p:98,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:70,active:true,weight:70,img:'sba-017-red.jpg',images:['sba-017-red.jpg'],desc:'Shivika kasturi chandan tilak with kesar and ashtagandh, in a 70 gm jar. A rich red tilak intended for pooja and worship.'},
+  {id:'sba-020-shivika-sandalwood-tika',n:'Shivika Sandal Wood Chandan Tilak',p:98,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:70,active:true,weight:70,img:'sba-020-sandalwood.jpg',images:['sba-020-sandalwood.jpg'],desc:'Shivika sandal wood chandan tilak in a 70 gm jar — a fragrant natural-toned tilak for pooja and worship.'},
+  {id:'sba-026-krushnamurari-kesari-tika',n:'Krushnamurari Kesari Chandan Tika',p:125,o:null,icon:'care',cat:'Pooja Samagri',subcat:'Ashtagandh (Tika)',r:5.0,c:0,badge:'',stock:70,active:true,weight:70,img:'sba-026-kesari.jpg',images:['sba-026-kesari.jpg'],desc:'Krushnamurari “Pandit Ji” kesari chandan tika in a 70 gm jar — a premium saffron-toned tilak for daily pooja, aarti and festive worship.'}
 ];
 const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
 const ICON_KEYS=['diya','mala','book','frame','incense','kalash','shawl','hamper','palki','lotus','pin','hands','care','tv'];
@@ -201,7 +208,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v15';
+const DATA_KEY='saileela_data_v16';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
