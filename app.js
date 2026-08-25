@@ -74,17 +74,27 @@ const DEFAULT_SETTINGS={
   heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
-  whatsapp:'', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
+  whatsapp:'6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
 };
 const DEFAULT_TV={
   nowTitle:'Sai Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
   programmes:[
-    {n:'Kakad Aarti',w:'Daily · 5:15 AM',d:'The live morning aarti — begin your day with Baba’s darshan.',icon:'diya'},
-    {n:'Madhyan Aarti',w:'Daily · 12:00 PM',d:'The midday live aarti, streamed straight from Shirdi.',icon:'lotus'},
-    {n:'Dhoop Aarti',w:'Daily · 6:15 PM',d:'The evening dhoop aarti with live darshan-style visuals.',icon:'lotus'},
-    {n:'Shej Aarti',w:'Daily · 10:00 PM',d:'The night shej aarti to close the day in devotion.',icon:'diya'},
-    {n:'Shri Sai Satcharitra',w:'Daily · 7:00 AM',d:'A chapter-a-day parayan of Baba’s life and leelas.',icon:'book'},
-    {n:'Mere Sai Mera Vishwas',w:'Daily',d:'Real devotees share the grace and miracles they’ve experienced.',icon:'hands'}
+    {n:'Kakad Aarti',img:'aarti-kakad.jpg',href:'saileela-tv.html',w:'Daily · 5:15 AM',live:1},
+    {n:'Madhyan Aarti',img:'aarti-madhyan.jpg',href:'saileela-tv.html',w:'Daily · 12:00 PM',live:1},
+    {n:'Dhoop Aarti',img:'aarti-dhoop.jpg',href:'saileela-tv.html',w:'Daily · 6:15 PM',live:1},
+    {n:'Shej Aarti',img:'aarti-shej.jpg',href:'saileela-tv.html',w:'Daily · 10:00 PM',live:1},
+    {n:'Mere Sai Mera Vishwas',yt:'fYG_bvdwPdY',href:'https://youtu.be/fYG_bvdwPdY',w:'Experiences'},
+    {n:'Sai Bhakti Dhara',yt:'02tDl8VI9Uk',href:'https://youtu.be/02tDl8VI9Uk',w:'Devotional songs'},
+    {n:'Shree Sai Satcharit (Leela)',yt:'PKI2BO9BegQ',href:'https://youtu.be/PKI2BO9BegQ',w:'Parayan'},
+    {n:'Yatra Sai Dham Ki',yt:'3KOxZTy4cOA',href:'https://youtu.be/3KOxZTy4cOA',w:'Pilgrimage'},
+    {n:'Baba ke Darbar Mein',yt:'SW4d7xGJ4Gk',href:'https://www.youtube.com/live/SW4d7xGJ4Gk',w:'Live darshan'}
+  ],
+  festivals:[
+    {n:'Shree Ramnavami Utsav',w:'Chaitra · Mar–Apr'},
+    {n:'Shree Gurupurnima Utsav',w:'Ashadha · July'},
+    {n:'Shree Saibaba Punyatithi Utsav',w:'Vijayadashami · Sep–Oct'},
+    {n:'Shirdi Parikrama Mahotsav',w:'13 February'},
+    {n:'Shree Sai Satcharit Parayan',w:'7 days · Shravan Month'}
   ],
   schedule:[
     {"t": "12:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
@@ -162,18 +172,18 @@ const DEFAULT_TV={
     {"t": "11:30 PM", "n": "Saibaba Ki Adbhut Lilayein", "d": "Story telling"}
   ],
     distribution:{
-    dth:[{name:'Tata Play',num:'Ch •••'},{name:'Airtel Digital TV',num:'Ch •••'},{name:'Dish TV',num:'Ch •••'},{name:'d2h',num:'Ch •••'},{name:'Sun Direct',num:'Ch •••'}],
-    cable:[{name:'GTPL',num:'Ch •••'},{name:'Hathway',num:'Ch •••'},{name:'DEN Networks',num:'Ch •••'},{name:'Siti Cable',num:'Ch •••'},{name:'Local MSOs (Maharashtra)',num:'Ch •••'}],
-    ott:[{name:'YouTube Live',num:'Subscribe'},{name:'Saileela TV App',num:'iOS · Android'},{name:'JioTV',num:'Live'},{name:'Facebook Live',num:'Follow'},{name:'Website live player',num:'Watch'}]
+    dth:[{name:'DishTV',num:'Ch 1094'},{name:'d2h',num:'Ch 1216'},{name:'DishTV ZiNG',num:'Ch 1094'}],
+    cable:[{name:'GTPL',num:'Ch 570'},{name:'Hathway',num:'Ch 820'},{name:'DEN',num:'Ch 286'},{name:'Fastway (Punjab)',num:'Ch 607'},{name:'IN Cable',num:'Ch 119'},{name:'SITI (East)',num:'Ch 401'},{name:'SITI (South)',num:'Ch 603'},{name:'SSDM (Gujarat)',num:'Ch 509'},{name:'DIGIANA (MP)',num:'Ch 029'},{name:'BRDS (Kolhapur)',num:'Ch 453'},{name:'Sangali Media',num:'Ch 534'},{name:'Metrocast',num:'Ch 555'},{name:'Metrocast',num:'Ch 503'}],
+    ott:[{name:'Tata Play'},{name:'Jio TV'},{name:'Jio TV+'},{name:'Watcho'},{name:'Vi'},{name:'ShemarooMe'}]
   },
   socials:[
-    {plat:'YouTube',count:'1.2M',label:'subscribers',cta:'Subscribe',url:'#',color:'#c4302b'},
-    {plat:'Facebook',count:'860K',label:'followers',cta:'Follow',url:'#',color:'#1877f2'},
-    {plat:'Instagram',count:'540K',label:'followers',cta:'Follow',url:'#',color:'linear-gradient(45deg,#f09433,#bc1888)'},
-    {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'#',color:'#25d366'}
+    {plat:'YouTube',count:'218K',label:'subscribers',cta:'Subscribe',url:'https://www.youtube.com/@SaileelaTV',color:'#c4302b'},
+    {plat:'Facebook',count:'640K',label:'followers',cta:'Follow',url:'https://www.facebook.com/saileelatv1',color:'#1877f2'},
+    {plat:'Instagram',count:'89K',label:'followers',cta:'Follow',url:'https://www.instagram.com/saileela.tv.official/',color:'linear-gradient(45deg,#f09433,#bc1888)'},
+    {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v7';
+const DATA_KEY='saileela_data_v8';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -244,8 +254,8 @@ function renderFooter(){
   <section class="news"><div class="wrap inner reveal">
     <div class="eyebrow">Join the Saileela family</div>
     <h2>New arrivals & stories from Shirdi</h2>
-    <p>Guruvar selections, new arrivals and stories from Shirdi — with ₹100 off your first order.</p>
-    <form onsubmit="return Saileela.subscribe(event)"><input type="email" placeholder="Your email address" aria-label="Email address" required><button class="btn btn-primary" type="submit">Subscribe</button></form>
+    <p>Guruvar selections, new arrivals and stories from Shirdi — join our WhatsApp channel for daily darshan and blessings.</p>
+    <a class="btn btn-primary nl-wa" href="https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3" target="_blank" rel="noopener">Join our WhatsApp channel</a>
     <span class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Z"/></svg> Prefer WhatsApp? Get updates on WhatsApp</span>
   </div></section>
   <footer><div class="wrap"><div class="foot-grid">

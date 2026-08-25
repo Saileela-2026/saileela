@@ -51,6 +51,12 @@
   <div class="sched-wrap reveal" id="schedWrap"></div>
 </div></section>
 
+<!-- 3b. FESTIVALS IN SHIRDI -->
+<section class="block fest-shirdi" id="festivals"><div class="wrap">
+  <div class="head reveal"><div class="eyebrow">Special live broadcasts</div><h2>Festivals in Shirdi</h2><p>Saileela TV brings the biggest Shirdi utsavs home to you — live, every year.</p></div>
+  <div class="fest-grid2" id="festGrid"></div>
+</div></section>
+
 <!-- 4. DISTRIBUTION -->
 <section class="block" id="distribution"><div class="wrap">
   <div class="head reveal"><div class="eyebrow">Find us everywhere</div><h2>Distribution — DTH, Cable & OTT</h2><p>Saileela TV reaches devotees across direct-to-home, cable networks and streaming platforms.</p></div>
@@ -71,7 +77,14 @@
 <script>
   const tv=Saileela.tv();
   const clk='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
-  document.getElementById('progGrid').innerHTML=tv.programmes.map((p,i)=>`<article class="prog reveal"><div class="thumb"><span class="tag">▶ Programme</span><div style="width:34%">${Saileela.ICON[p.icon]||Saileela.ICON.tv}</div></div><div class="pbody"><h3>${p.n}</h3><div class="when">${clk}${p.w}</div><p>${p.d}</p></div></article>`).join('');
+  document.getElementById('progGrid').innerHTML=tv.programmes.map(p=>{
+    const thumb=p.img?`<img src="${p.img}" alt="${p.n}" loading="lazy">`:(p.yt?`<img src="https://i.ytimg.com/vi/${p.yt}/hqdefault.jpg" alt="${p.n}" loading="lazy">`:`<div style="width:34%">${Saileela.ICON.tv}</div>`);
+    const tag=p.live?'<span class="tag live">● LIVE</span>':'<span class="tag">▶ Watch</span>';
+    const ext=p.yt?' target="_blank" rel="noopener"':'';
+    return `<a class="prog reveal" href="${p.href||'saileela-tv.html'}"${ext}><div class="thumb">${tag}${thumb}</div><div class="pbody"><h3>${p.n}</h3><div class="when">${clk}${p.w||''}</div></div></a>`;
+  }).join('');
+  const fg=document.getElementById('festGrid'); const cal='<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 9h18M8 3v4M16 3v4\"/></svg>';
+  if(fg&&tv.festivals) fg.innerHTML=tv.festivals.map(f=>`<div class="fest-card reveal"><div class="fic">${cal}</div><h3>${f.n}</h3><span>${f.w}</span></div>`).join('');
   const istNow=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
   const mins=istNow.getHours()*60+istNow.getMinutes();
   const toMin=t=>{const m=String(t).match(/(\d+):(\d+)\s*(AM|PM)/i);if(!m)return 0;let h=(+m[1]%12)+(/PM/i.test(m[3])?12:0);return h*60+ +m[2];};
