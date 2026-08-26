@@ -410,6 +410,67 @@ function startBrandTranslitWatch(){
   }catch(e){}
 }
 
+/* ---- Ganesh Chaturthi festival pop-up for Shree Divya Ganesh Jyoti ---- */
+/* Easy-to-edit settings: */
+var GPOP = {
+  productId : 'divya-ganesh-jyoti',
+  endDate   : '2026-09-26T00:00:00+05:30',   // stops showing after Visarjan (25 Sep 2026)
+  eyebrow   : '॥ गणपती बाप्पा मोरया ॥',
+  title     : 'Welcome Bappa with divine light',
+  sub       : 'Shree Divya Ganesh Jyoti — a radiant akhand glow for your Ganpati mandap.',
+  offer     : '<b>✦ Free shipping</b> above ₹999 · Cash on Delivery · Ships from Shirdi',
+  cta       : 'Light up my Ganpati →',
+  showDelayMs : 2500,
+  repeatAfterMs : 24*60*60*1000   // show at most once per 24h per visitor
+};
+function initGaneshPopup(){
+  try{
+    if(Date.now() > new Date(GPOP.endDate).getTime()) return;              // festival over
+    if(/admin\.html$/i.test(location.pathname)) return;                     // not on admin
+    var params=new URLSearchParams(location.search);
+    if(/product\.html$/i.test(location.pathname) && params.get('id')===GPOP.productId) return; // not on the product's own page
+    var KEY='gpop_ganesh_2026';
+    try{ if(Date.now() - (+(localStorage.getItem(KEY)||0)) < GPOP.repeatAfterMs) return; }catch(e){}
+
+    var p = (typeof findProduct==='function') ? findProduct(GPOP.productId) : null;
+    var img = p&&p.img ? p.img : 'ganesh-jyoti-lit-1.jpg';
+    var priceHtml='';
+    if(p){
+      var off = p.o ? Math.round((1-p.p/p.o)*100) : 0;
+      priceHtml='<div class="gpop-price"><b>'+Saileela.money(p.p)+'</b>'+(p.o?'<s>'+Saileela.money(p.o)+'</s>':'')+(off>0?'<span class="off">'+off+'% off</span>':'')+'</div>';
+    }
+    var wrap=document.createElement('div');
+    wrap.className='gpop-backdrop'; wrap.setAttribute('role','presentation');
+    wrap.innerHTML=
+      '<div class="gpop-card" role="dialog" aria-modal="true" aria-label="Ganesh Chaturthi special offer">'+
+        '<button class="gpop-x" aria-label="Close">&times;</button>'+
+        '<div class="gpop-media"><span class="gpop-toran"></span><img src="'+img+'" alt="Shree Divya Ganesh Jyoti"></div>'+
+        '<div class="gpop-body">'+
+          '<div class="gpop-eyebrow" translate="no">'+GPOP.eyebrow+'</div>'+
+          '<h3 class="gpop-title">'+GPOP.title+'</h3>'+
+          '<p class="gpop-sub">'+GPOP.sub+'</p>'+
+          priceHtml+
+          '<div class="gpop-offer">'+GPOP.offer+'</div>'+
+          '<a class="gpop-cta" href="product.html?id='+GPOP.productId+'">'+GPOP.cta+'</a>'+
+          '<button class="gpop-later">Maybe later</button>'+
+        '</div>'+
+      '</div>';
+    var mark=function(){ try{ localStorage.setItem(KEY, Date.now()); }catch(e){} };
+    var close=function(){ wrap.classList.remove('open'); mark(); document.removeEventListener('keydown',onKey); setTimeout(function(){ wrap.remove(); },320); };
+    var onKey=function(e){ if(e.key==='Escape') close(); };
+    wrap.addEventListener('click',function(e){ if(e.target===wrap) close(); });
+    wrap.querySelector('.gpop-x').addEventListener('click',close);
+    wrap.querySelector('.gpop-later').addEventListener('click',close);
+    wrap.querySelector('.gpop-cta').addEventListener('click',mark);
+    document.body.appendChild(wrap);
+    setTimeout(function(){
+      wrap.classList.add('open'); mark();
+      document.addEventListener('keydown',onKey);
+      var x=wrap.querySelector('.gpop-x'); if(x) x.focus();
+    }, GPOP.showDelayMs);
+  }catch(e){}
+}
+
 /* ---------- public API + wiring ---------- */
 const Saileela={
   money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
@@ -462,7 +523,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};

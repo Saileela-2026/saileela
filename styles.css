@@ -737,3 +737,35 @@ body{top:0!important}
 /* shop subcategory chips */
 .subfilters{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 20px}
 .chip-filter.sub{font-size:.72rem;padding:.42em .95em;border-radius:30px}
+
+/* ---------- Ganesh Chaturthi festival pop-up ---------- */
+.gpop-backdrop{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(24,4,4,.62);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.gpop-backdrop.open{opacity:1;visibility:visible}
+.gpop-card{position:relative;display:grid;grid-template-columns:42% 58%;width:min(900px,96vw);max-height:86vh;background:linear-gradient(158deg,#6E0603,#320503);border:1.5px solid var(--brass-2,#C79A3A);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.gpop-backdrop.open .gpop-card{transform:translateY(0) scale(1)}
+.gpop-media{position:relative;min-height:280px;background:#2b0402;overflow:hidden}
+.gpop-media::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 42%,rgba(239,127,26,.34),transparent 70%);pointer-events:none}
+.gpop-media img{width:100%;height:100%;object-fit:cover;display:block}
+.gpop-body{padding:30px 30px 26px;display:flex;flex-direction:column;color:var(--glow,#FBEFC9)}
+.gpop-eyebrow{font-family:"Tiro Devanagari Hindi",serif;color:var(--marigold,#EF7F1A);font-size:1.02rem;letter-spacing:.02em;margin-bottom:10px}
+.gpop-title{font-family:"Fraunces",serif;font-weight:600;font-size:1.7rem;line-height:1.12;color:#fff;margin:0 0 10px}
+.gpop-sub{font-size:.96rem;line-height:1.5;color:var(--glow-soft,#EAD9AE);margin:0 0 16px}
+.gpop-price{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.gpop-price b{font-family:"Fraunces",serif;font-size:1.5rem;color:#fff}
+.gpop-price s{color:var(--glow-faint,#c8ae7e);font-size:.95rem;opacity:.7}
+.gpop-price .off{font-family:"Manrope";font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--marigold,#EF7F1A);color:#320503;padding:3px 8px;border-radius:5px}
+.gpop-offer{font-family:"Manrope";font-size:.8rem;color:var(--glow-faint,#c8ae7e);margin-bottom:18px}
+.gpop-offer b{color:var(--marigold,#EF7F1A)}
+.gpop-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--kumkum,#C4281A);color:#fff;font-family:"Manrope";font-weight:700;font-size:1rem;border:none;border-radius:10px;padding:.92em 1.2em;text-align:center;transition:transform .2s,box-shadow .25s;box-shadow:0 12px 28px rgba(196,40,26,.4)}
+.gpop-cta:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(196,40,26,.5)}
+.gpop-later{margin:12px auto 0;background:none;border:none;color:var(--glow-faint,#c8ae7e);font-family:"Manrope";font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.gpop-later:hover{color:var(--glow,#FBEFC9)}
+.gpop-x{position:absolute;top:12px;right:14px;z-index:3;width:34px;height:34px;border-radius:50%;border:none;background:rgba(0,0,0,.35);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.gpop-x:hover{background:rgba(0,0,0,.6)}
+.gpop-toran{position:absolute;top:0;left:0;right:0;height:14px;z-index:2;background:repeating-linear-gradient(90deg,var(--marigold,#EF7F1A) 0 10px,#f6c445 10px 20px);opacity:.9}
+@media(max-width:720px){
+  .gpop-card{grid-template-columns:1fr;width:94vw;max-height:88vh;overflow-y:auto}
+  .gpop-media{min-height:190px;max-height:38vh}
+  .gpop-body{padding:22px 22px 24px}
+  .gpop-title{font-size:1.42rem}
+}
