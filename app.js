@@ -378,6 +378,38 @@ function injectVoiceAgent(){
   }catch(e){}
 }
 
+/* Correct Google-Translate mistransliteration of the brand name site-wide.
+   Google renders "Saileela" as सैलीला / साइलीला (Hindi) or సైలీల (Telugu);
+   the correct forms are साईलीला and సాయిలీల. Runs after Google rewrites the DOM. */
+var BRAND_TRANSLIT=[[/सैलीला/g,'साईलीला'],[/सैलिला/g,'साईलीला'],[/साइलीला/g,'साईलीला'],[/सायलीला/g,'साईलीला'],[/సైలీల/g,'సాయిలీల'],[/సైలీల/g,'సాయిలీల']];
+function fixBrandTranslit(root){
+  try{
+    var start=root||document.body; if(!start) return;
+    var walk=function(n){
+      if(n.nodeType===3){
+        var t=n.nodeValue,o=t;
+        for(var i=0;i<BRAND_TRANSLIT.length;i++) t=t.replace(BRAND_TRANSLIT[i][0],BRAND_TRANSLIT[i][1]);
+        if(t!==o) n.nodeValue=t;
+        return;
+      }
+      if(n.nodeType===1){
+        var nm=n.nodeName;
+        if(nm==='SCRIPT'||nm==='STYLE'||nm==='TEXTAREA') return;
+        if(n.getAttribute&&n.getAttribute('translate')==='no') return;
+        for(var c=n.firstChild;c;c=c.nextSibling) walk(c);
+      }
+    };
+    walk(start);
+  }catch(e){}
+}
+function startBrandTranslitWatch(){
+  fixBrandTranslit();
+  try{
+    var mo=new MutationObserver(function(){ clearTimeout(window.__btf); window.__btf=setTimeout(function(){fixBrandTranslit();},250); });
+    mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+  }catch(e){}
+}
+
 /* ---------- public API + wiring ---------- */
 const Saileela={
   money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
@@ -430,7 +462,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
