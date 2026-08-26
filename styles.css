@@ -128,7 +128,7 @@ nav.links a:hover::after,nav.links a.active::after{left:0;right:0}
 .page-hero p{color:var(--glow-soft);margin:0;max-width:60ch;font-size:1.02rem}
 
 /* ---------- HERO (home) — copy left, exclusive Baba photograph right ---------- */
-.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero-v7.jpg") 50% 22%/cover no-repeat}
+.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero-v8.jpg") 50% 22%/cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(50,5,3,.74) 0%,rgba(50,5,3,.4) 32%,rgba(50,5,3,.06) 52%,transparent 66%);pointer-events:none}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;background:radial-gradient(42% 45% at 20% 42%,rgba(239,127,26,.2),transparent 62%)}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;padding:64px 28px}
@@ -151,7 +151,7 @@ nav.links a:hover::after,nav.links a.active::after{left:0;right:0}
 .hero-credit{position:absolute;right:20px;bottom:14px;z-index:2;font-family:"Manrope",system-ui,sans-serif;font-size:.64rem;letter-spacing:.06em;color:var(--glow-faint)}
 @media(max-width:900px){ .hero-copy{max-width:520px} }
 @media(max-width:820px){
-  .hero{min-height:86vh;align-items:flex-end;background-position:80% 10%}
+  .hero{min-height:86vh;align-items:flex-end;background-position:78% 10%}
   .hero::before{background:linear-gradient(180deg,transparent 24%,rgba(50,5,3,.72) 60%,var(--night) 100%)}
   .hero-inner{padding:22px 24px 44px}
   .hero-copy{max-width:none}
