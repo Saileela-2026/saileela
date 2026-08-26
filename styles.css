@@ -128,7 +128,7 @@ nav.links a:hover::after,nav.links a.active::after{left:0;right:0}
 .page-hero p{color:var(--glow-soft);margin:0;max-width:60ch;font-size:1.02rem}
 
 /* ---------- HERO (home) — copy left, exclusive Baba photograph right ---------- */
-.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero-v2.jpg") 50% 26%/cover no-repeat}
+.hero{position:relative;min-height:clamp(560px,72vh,720px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#320503 url("saileela-hero-v4.jpg") 50% 26%/cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(50,5,3,.74) 0%,rgba(50,5,3,.4) 32%,rgba(50,5,3,.06) 52%,transparent 66%);pointer-events:none}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;background:radial-gradient(42% 45% at 20% 42%,rgba(239,127,26,.2),transparent 62%)}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;padding:64px 28px}
