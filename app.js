@@ -33,8 +33,8 @@ const DEFAULT_PRODUCTS=[
    contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
    desc:'A Saileela Exclusive and Best Seller devotional kit designed to bring a divine Shirdi-inspired worship experience into your home. It contains the same devotional items as the Shree Sai Sagunopasna Kit, excluding all five brass pooja pots.'},
   {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
-   img:'divya-swaroop-box.jpg',
-   images:['divya-swaroop-box.jpg','divya-swaroop-open.jpg'],
+   img:'divya-swaroop-box-v2.jpg',
+   images:['divya-swaroop-box-v2.jpg'],
    contents:['Shree Saibaba Idol','Vastra','Tulsi Mala','Decorative Mukut (crown)'],
    desc:'A Saileela Exclusive and Best Seller kit featuring a beautiful Shree Saibaba idol with Vastra, Mala and Mukut. A complete divine swaroop for your home temple, daily darshan and spiritual gifting.'},
   {id:'sai-akash-jyoti',n:'Shree Sai Akash Jyoti',p:1199,o:1500,icon:'frame',cat:'Gifting',r:5.0,c:0,badge:'Bestseller',stock:40,active:true,excl:true,
@@ -196,7 +196,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v17';
+const DATA_KEY='saileela_data_v18';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
