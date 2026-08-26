@@ -360,6 +360,24 @@ function injectOverlays(){
   document.body.appendChild(el);
 }
 
+/* Shree Sainath Maharaj — ElevenLabs Conversational AI widget (site-wide, skips admin) */
+function injectVoiceAgent(){
+  try{
+    if(/admin\.html$/i.test(location.pathname)) return;
+    if(!document.querySelector('elevenlabs-convai')){
+      const w=document.createElement('elevenlabs-convai');
+      w.setAttribute('agent-id','iIFqwTNAKd8d4zxGyvV0');
+      document.body.appendChild(w);
+    }
+    if(!document.querySelector('script[data-convai-embed]')){
+      const s=document.createElement('script');
+      s.src='https://unpkg.com/@elevenlabs/convai-widget-embed';
+      s.async=true; s.type='text/javascript'; s.setAttribute('data-convai-embed','1');
+      document.body.appendChild(s);
+    }
+  }catch(e){}
+}
+
 /* ---------- public API + wiring ---------- */
 const Saileela={
   money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
@@ -412,7 +430,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};

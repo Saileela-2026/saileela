@@ -562,7 +562,7 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}footer ul a:h
 .search-ov .ssug a:hover{border-color:var(--kumkum);color:var(--kumkum)}
 
 /* WhatsApp floating action */
-.wa-fab{position:fixed;right:20px;bottom:22px;z-index:60;display:flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:11px 16px 11px 12px;border-radius:40px;box-shadow:0 12px 30px rgba(37,211,102,.4);font-family:"Manrope";font-weight:600;font-size:.9rem;transition:transform .25s,box-shadow .25s}
+.wa-fab{position:fixed;left:20px;bottom:22px;z-index:60;display:flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:11px 16px 11px 12px;border-radius:40px;box-shadow:0 12px 30px rgba(37,211,102,.4);font-family:"Manrope";font-weight:600;font-size:.9rem;transition:transform .25s,box-shadow .25s}
 .wa-fab:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(37,211,102,.5)}
 .wa-fab svg{width:24px;height:24px;flex:none}
 .wa-fab .wa-txt{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .35s var(--ease)}
