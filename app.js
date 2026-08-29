@@ -523,6 +523,50 @@ function startLiveActivity(){
   }catch(e){}
 }
 
+/* ---- Daily Sai Vichar: a reflection that changes each day (homepage) ---- */
+var VICHARS=[
+  {en:'Why fear when I am here?', hi:'जब मैं यहाँ हूँ, तो डर किस बात का?'},
+  {en:'Have faith and patience — Shraddha and Saburi.', hi:'श्रद्धा और सबुरी रखो — यही सब कुछ है।'},
+  {en:'Allah Malik — God is the master of all.', hi:'अल्लाह मालिक — सब कुछ ईश्वर के हाथ में है।'},
+  {en:'If you look to me, I look to you.', hi:'तुम मुझे देखो, मैं तुम्हें देखता हूँ।'},
+  {en:'No one returns empty-handed from Baba\u2019s door.', hi:'बाबा के द्वार से कोई खाली हाथ नहीं लौटता।'},
+  {en:'Spread love, and love will return to you.', hi:'प्रेम बाँटो, प्रेम ही लौटकर आएगा।'},
+  {en:'Give before you take; serve before you seek.', hi:'पहले दो, फिर पाओ; पहले सेवा करो।'},
+  {en:'Patience carries you across every storm.', hi:'सबुरी हर तूफ़ान से पार लगा देती है।'},
+  {en:'A grateful heart is always full.', hi:'कृतज्ञ हृदय सदा भरा रहता है।'},
+  {en:'Where there is faith, there is no fear.', hi:'जहाँ श्रद्धा है, वहाँ भय नहीं।'},
+  {en:'Do your duty; leave the rest to Sai.', hi:'अपना कर्म करो, बाकी साईं पर छोड़ दो।'},
+  {en:'To feed the hungry is to serve the divine.', hi:'भूखे को भोजन देना ही ईश्वर की सेवा है।'},
+  {en:'Contentment is the greatest wealth.', hi:'संतोष ही सबसे बड़ा धन है।'},
+  {en:'Remember Sai, and the mind grows still.', hi:'साईं का स्मरण करो, मन शांत हो जाता है।'},
+  {en:'Kindness to any being is worship.', hi:'किसी भी जीव पर दया करना ही पूजा है।'},
+  {en:'Trust the timing of your life.', hi:'अपने जीवन के समय पर भरोसा रखो।'}
+];
+function renderVichar(){
+  try{
+    var host=document.getElementById('vichar'); if(!host) return;
+    var lang=(document.cookie.match(/googtrans=\/en\/(\w+)/)||[])[1]||'en';
+    var v=VICHARS[Math.floor(Date.now()/86400000)%VICHARS.length];
+    var isHi=(lang==='hi' && v.hi);
+    var quote=isHi?v.hi:v.en;
+    var eyebrow=isHi?'साई विचार · आज का चिंतन':'Sai Vichar \u00b7 Today\u2019s reflection';
+    var sign=isHi?'श्रद्धा \u2022 सबुरी':'Shraddha \u2022 Saburi';
+    var noT=(lang!=='te');   /* for Telugu, let Google Translate render the English line */
+    var diya='<svg viewBox="0 0 48 30" width="46" height="29" fill="none" aria-hidden="true">'+
+      '<path d="M6 20c4 5 13 6 18 6s14-1 18-6c-3 2-11 3-18 3S9 22 6 20Z" fill="#C79A3A"/>'+
+      '<path d="M24 3c1.6 2.8 4 4.6 4 7.4A4 4 0 0 1 20 10.4C20 7.6 22.4 5.8 24 3Z" fill="#EF7F1A"/>'+
+      '<path d="M24 6.5c.9 1.6 2.2 2.6 2.2 4.2a2.2 2.2 0 0 1-4.4 0c0-1.6 1.3-2.6 2.2-4.2Z" fill="#F6D77E"/></svg>';
+    host.innerHTML=
+      '<div class="vichar-inner"'+(noT?' translate="no"':'')+'>'+
+        '<span class="vichar-orn">'+diya+'</span>'+
+        '<span class="vichar-eyebrow">'+eyebrow+'</span>'+
+        '<p class="vichar-quote">\u201C'+quote+'\u201D</p>'+
+        '<span class="vichar-sign">'+sign+'</span>'+
+      '</div>';
+    host.classList.add('in');
+  }catch(e){}
+}
+
 /* ---------- public API + wiring ---------- */
 const Saileela={
   money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
@@ -575,7 +619,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity(); renderVichar();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
