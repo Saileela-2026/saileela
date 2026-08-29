@@ -523,48 +523,142 @@ function startLiveActivity(){
   }catch(e){}
 }
 
-/* ---- Daily Sai Vichar: a reflection that changes each day (homepage) ---- */
-var VICHARS=[
-  {en:'Why fear when I am here?', hi:'जब मैं यहाँ हूँ, तो डर किस बात का?'},
-  {en:'Have faith and patience — Shraddha and Saburi.', hi:'श्रद्धा और सबुरी रखो — यही सब कुछ है।'},
-  {en:'Allah Malik — God is the master of all.', hi:'अल्लाह मालिक — सब कुछ ईश्वर के हाथ में है।'},
-  {en:'If you look to me, I look to you.', hi:'तुम मुझे देखो, मैं तुम्हें देखता हूँ।'},
-  {en:'No one returns empty-handed from Baba\u2019s door.', hi:'बाबा के द्वार से कोई खाली हाथ नहीं लौटता।'},
-  {en:'Spread love, and love will return to you.', hi:'प्रेम बाँटो, प्रेम ही लौटकर आएगा।'},
-  {en:'Give before you take; serve before you seek.', hi:'पहले दो, फिर पाओ; पहले सेवा करो।'},
-  {en:'Patience carries you across every storm.', hi:'सबुरी हर तूफ़ान से पार लगा देती है।'},
-  {en:'A grateful heart is always full.', hi:'कृतज्ञ हृदय सदा भरा रहता है।'},
-  {en:'Where there is faith, there is no fear.', hi:'जहाँ श्रद्धा है, वहाँ भय नहीं।'},
-  {en:'Do your duty; leave the rest to Sai.', hi:'अपना कर्म करो, बाकी साईं पर छोड़ दो।'},
-  {en:'To feed the hungry is to serve the divine.', hi:'भूखे को भोजन देना ही ईश्वर की सेवा है।'},
-  {en:'Contentment is the greatest wealth.', hi:'संतोष ही सबसे बड़ा धन है।'},
-  {en:'Remember Sai, and the mind grows still.', hi:'साईं का स्मरण करो, मन शांत हो जाता है।'},
-  {en:'Kindness to any being is worship.', hi:'किसी भी जीव पर दया करना ही पूजा है।'},
-  {en:'Trust the timing of your life.', hi:'अपने जीवन के समय पर भरोसा रखो।'}
-];
-function renderVichar(){
+/* ================= DEVOTION CORNER (homepage) =================
+   A) Live Shirdi aarti sync   B) Light a diya   C) Naam-jaap mala
+   All state is the visitor's own (session/local) — nothing fabricated. */
+var AARTIS=[['Kakad Aarti',270],['Madhyan Aarti',720],['Dhoop Aarti',1110],['Shej Aarti',1350]]; // start minute (IST)
+function istNow(){ var d=new Date(); return new Date(d.getTime()+d.getTimezoneOffset()*60000+5.5*3600000); }
+function ymd(d){ return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(); }
+function pad2(n){ return (n<10?'0':'')+n; }
+
+function initDevotionCorner(){
   try{
-    var host=document.getElementById('vichar'); if(!host) return;
-    var lang=(document.cookie.match(/googtrans=\/en\/(\w+)/)||[])[1]||'en';
-    var v=VICHARS[Math.floor(Date.now()/86400000)%VICHARS.length];
-    var isHi=(lang==='hi' && v.hi);
-    var quote=isHi?v.hi:v.en;
-    var eyebrow=isHi?'साई विचार · आज का चिंतन':'Sai Vichar \u00b7 Today\u2019s reflection';
-    var sign=isHi?'श्रद्धा \u2022 सबुरी':'Shraddha \u2022 Saburi';
-    var noT=(lang!=='te');   /* for Telugu, let Google Translate render the English line */
-    var diya='<svg viewBox="0 0 48 30" width="46" height="29" fill="none" aria-hidden="true">'+
-      '<path d="M6 20c4 5 13 6 18 6s14-1 18-6c-3 2-11 3-18 3S9 22 6 20Z" fill="#C79A3A"/>'+
-      '<path d="M24 3c1.6 2.8 4 4.6 4 7.4A4 4 0 0 1 20 10.4C20 7.6 22.4 5.8 24 3Z" fill="#EF7F1A"/>'+
-      '<path d="M24 6.5c.9 1.6 2.2 2.6 2.2 4.2a2.2 2.2 0 0 1-4.4 0c0-1.6 1.3-2.6 2.2-4.2Z" fill="#F6D77E"/></svg>';
+    var host=document.getElementById('devotion-corner'); if(!host) return;
     host.innerHTML=
-      '<div class="vichar-inner"'+(noT?' translate="no"':'')+'>'+
-        '<span class="vichar-orn">'+diya+'</span>'+
-        '<span class="vichar-eyebrow">'+eyebrow+'</span>'+
-        '<p class="vichar-quote">\u201C'+quote+'\u201D</p>'+
-        '<span class="vichar-sign">'+sign+'</span>'+
+      '<div class="dev-head">'+
+        '<div class="eyebrow">Your Shirdi darshan corner</div>'+
+        '<h2>A moment of devotion</h2>'+
+      '</div>'+
+      '<a class="dev-aarti" id="devAarti" href="saileela-tv.html">'+
+        '<span class="dev-aarti-dot"></span>'+
+        '<span class="dev-aarti-tx" id="devAartiTx">Checking the aarti schedule…</span>'+
+        '<span class="dev-aarti-cta" id="devAartiCta">Watch live \u2192</span>'+
+      '</a>'+
+      '<div class="dev-cards">'+
+        '<div class="dev-card dev-diya" id="devDiya">'+
+          '<div class="diya-stage" id="diyaStage"><span class="diya-glow"></span><span class="diya-flame"></span><span class="diya-lamp"></span></div>'+
+          '<h3>Light a diya</h3>'+
+          '<p class="dev-card-sub" id="diyaSub">Offer a diya at Saileela for someone you love.</p>'+
+          '<div class="diya-form" id="diyaForm">'+
+            '<input id="diyaName" maxlength="60" placeholder="For whom or what? (optional)" aria-label="Diya intention">'+
+            '<button class="dev-btn" id="diyaBtn">Light the diya</button>'+
+          '</div>'+
+          '<div class="diya-done" id="diyaDone" hidden>'+
+            '<button class="dev-link" id="diyaShare">\uD83D\uDCF2 Share on WhatsApp</button>'+
+            '<button class="dev-link" id="diyaReset">Light another</button>'+
+          '</div>'+
+        '</div>'+
+        '<div class="dev-card dev-jaap">'+
+          '<h3>Naam Jaap</h3>'+
+          '<p class="dev-card-sub" translate="no">Tap the mala with each \u0913\u092E\u094D \u0938\u093E\u0908\u0902 \u0930\u093E\u092E</p>'+
+          '<button class="jaap-ring" id="jaapRing" aria-label="Count one chant">'+
+            '<svg viewBox="0 0 120 120" width="132" height="132" aria-hidden="true">'+
+              '<circle cx="60" cy="60" r="54" fill="none" stroke="rgba(199,154,58,.25)" stroke-width="7"/>'+
+              '<circle id="jaapArc" cx="60" cy="60" r="54" fill="none" stroke="url(#jaapGrad)" stroke-width="7" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="339.29" stroke-dashoffset="339.29"/>'+
+              '<defs><linearGradient id="jaapGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EF7F1A"/><stop offset="1" stop-color="#F6D77E"/></linearGradient></defs>'+
+            '</svg>'+
+            '<span class="jaap-num"><b id="jaapCount">0</b><small>/ 108</small></span>'+
+          '</button>'+
+          '<div class="jaap-stats"><span id="jaapMalas">0 malas today</span><span class="dot-sep">\u00b7</span><span id="jaapStreak">\uD83E\uDE94 1-day streak</span></div>'+
+          '<button class="dev-link" id="jaapReset">Reset today</button>'+
+        '</div>'+
       '</div>';
     host.classList.add('in');
+    wireAarti(); wireDiya(); wireJaap();
   }catch(e){}
+}
+
+function wireAarti(){
+  var tx=document.getElementById('devAartiTx'), cta=document.getElementById('devAartiCta'), box=document.getElementById('devAarti');
+  if(!tx) return;
+  function fmt(s){ var h=Math.floor(s/3600), m=Math.floor((s%3600)/60), ss=s%60; return (h>0?h+':':'')+pad2(m)+':'+pad2(ss); }
+  function tick(){
+    var n=istNow(); var nowSec=n.getHours()*3600+n.getMinutes()*60+n.getSeconds();
+    var LIVE=30*60, live=null, next=null, best=1e9;
+    AARTIS.forEach(function(a){ var st=a[1]*60; if(nowSec>=st && nowSec<st+LIVE) live=a; var d=st-nowSec; if(d<0)d+=86400; if(d<best){best=d;next=a;} });
+    if(live){
+      box.classList.add('is-live');
+      tx.innerHTML='<b>'+live[0]+'</b> is being offered in Shirdi \u2014 join the darshan';
+      cta.textContent='Watch live \u2192';
+    }else{
+      box.classList.remove('is-live');
+      tx.innerHTML='Next: <b>'+next[0]+'</b> in '+fmt(best);
+      cta.textContent='Open Saileela TV \u2192';
+    }
+  }
+  tick(); if(window.__aartiTimer) clearInterval(window.__aartiTimer); window.__aartiTimer=setInterval(tick,1000);
+}
+
+function wireDiya(){
+  var stage=document.getElementById('diyaStage'), form=document.getElementById('diyaForm'), done=document.getElementById('diyaDone'),
+      sub=document.getElementById('diyaSub'), inp=document.getElementById('diyaName'),
+      btn=document.getElementById('diyaBtn'), share=document.getElementById('diyaShare'), reset=document.getElementById('diyaReset');
+  if(!stage) return;
+  function showLit(forWhom){
+    stage.classList.add('lit');
+    sub.innerHTML='Your diya is glowing \uD83D\uDD4A\uFE0F'+(forWhom?' \u00b7 <b>for '+forWhom.replace(/</g,'&lt;')+'</b>':'');
+    form.hidden=true; done.hidden=false;
+  }
+  try{ if(sessionStorage.getItem('diya_lit')==='1') showLit(sessionStorage.getItem('diya_for')||''); }catch(e){}
+  btn && btn.addEventListener('click',function(){
+    var forWhom=(inp.value||'').trim();
+    try{ sessionStorage.setItem('diya_lit','1'); sessionStorage.setItem('diya_for',forWhom); }catch(e){}
+    stage.classList.add('kindle'); setTimeout(function(){ stage.classList.remove('kindle'); },700);
+    if(navigator.vibrate) navigator.vibrate(30);
+    showLit(forWhom);
+  });
+  share && share.addEventListener('click',function(){
+    var forWhom=''; try{ forWhom=sessionStorage.getItem('diya_for')||''; }catch(e){}
+    var msg='\uD83E\uDE94 I lit a diya at Saileela'+(forWhom?' for '+forWhom:'')+'. Om Sai Ram \uD83D\uDE4F  '+location.origin+location.pathname;
+    window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank','noopener');
+  });
+  reset && reset.addEventListener('click',function(){
+    try{ sessionStorage.removeItem('diya_lit'); sessionStorage.removeItem('diya_for'); }catch(e){}
+    stage.classList.remove('lit'); if(inp)inp.value=''; sub.textContent='Offer a diya at Saileela for someone you love.'; done.hidden=true; form.hidden=false;
+  });
+}
+
+function wireJaap(){
+  var ring=document.getElementById('jaapRing'), arc=document.getElementById('jaapArc'), numEl=document.getElementById('jaapCount'),
+      malasEl=document.getElementById('jaapMalas'), streakEl=document.getElementById('jaapStreak'), reset=document.getElementById('jaapReset');
+  if(!ring) return;
+  var C=339.29, TARGET=108, KEY='saileela_jaap';
+  var today=ymd(istNow());
+  var d; try{ d=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ d={}; }
+  if(d.date!==today){ d.date=today; d.count=0; d.malas=0; }          // fresh day: reset today's tally
+  if(typeof d.streak!=='number') d.streak=0;
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(d)); }catch(e){} }
+  function paint(){
+    numEl.textContent=d.count;
+    arc.setAttribute('stroke-dashoffset', C*(1 - d.count/TARGET));
+    malasEl.textContent=d.malas+(d.malas===1?' mala today':' malas today');
+    streakEl.innerHTML='\uD83E\uDE94 '+(d.streak||1)+'-day streak';
+  }
+  function bumpStreak(){
+    if(d.lastActive===today) return;
+    var y=new Date(istNow().getTime()-86400000);
+    d.streak = (d.lastActive===ymd(y)) ? (d.streak||0)+1 : 1;
+    d.lastActive=today;
+  }
+  ring.addEventListener('click',function(){
+    bumpStreak();
+    d.count++;
+    if(d.count>=TARGET){ d.count=0; d.malas++; ring.classList.add('done'); if(navigator.vibrate)navigator.vibrate([40,60,40]); setTimeout(function(){ ring.classList.remove('done'); },900); }
+    else { ring.classList.add('pulse'); setTimeout(function(){ ring.classList.remove('pulse'); },160); if(navigator.vibrate)navigator.vibrate(12); }
+    paint(); save();
+  });
+  reset && reset.addEventListener('click',function(){ d.count=0; d.malas=0; paint(); save(); });
+  paint();
 }
 
 /* ---------- public API + wiring ---------- */
@@ -619,7 +713,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity(); renderVichar();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity(); initDevotionCorner();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
