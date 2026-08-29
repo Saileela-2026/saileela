@@ -471,6 +471,58 @@ function initGaneshPopup(){
   }catch(e){}
 }
 
+/* ---- Live activity toast: honest "the store is alive" nudges (no fake purchases) ---- */
+/* Messages are true perks, timely festival picks, and editorial product spotlights
+   pulled from the real catalog. No fabricated purchases / false popularity. */
+function startLiveActivity(){
+  try{
+    if(/admin\.html$/i.test(location.pathname)) return;
+    if(window.matchMedia && window.matchMedia('(max-width:520px)').matches===false){} // (placeholder, keep on all)
+    var base=[
+      {ic:'🛕', s:'From Shirdi', t:'Handpicked in Shirdi, delivered to your door'},
+      {ic:'✦', s:'Free shipping', t:'On all orders above ₹999 across India'},
+      {ic:'🪔', s:'Fresh dispatch', t:'Ships with care, straight from Shirdi'},
+      {ic:'🙏', s:'Easy payment', t:'Cash on Delivery available nationwide'},
+      {ic:'🎁', s:'Ganpati special', t:'Shree Divya Ganesh Jyoti — light up your mandap', href:'product.html?id=divya-ganesh-jyoti'},
+      {ic:'🌼', s:'Ganeshotsav', t:'Explore our festive gifting picks', href:'shop.html?cat=Gifting'},
+      {ic:'🕉️', s:'Saileela', t:'Har Har Sai • Ghar Ghar Sai', href:'index.html'}
+    ];
+    // Editorial spotlights from the real catalog (exclusives / bestsellers)
+    try{
+      var prods=(Store.load().products||[]).filter(function(p){return p.active!==false && (p.excl || /bestseller/i.test(p.badge||''));});
+      for(var i=prods.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=prods[i];prods[i]=prods[j];prods[j]=tmp;}
+      prods.slice(0,5).forEach(function(p){ base.push({ic:'✨', s:'Featured', t:p.n, href:'product.html?id='+p.id}); });
+    }catch(e){}
+
+    var order=base.slice(); for(var k=order.length-1;k>0;k--){var m=Math.floor(Math.random()*(k+1));var t=order[k];order[k]=order[m];order[m]=t;}
+    var idx=0, shown=0, MAX=6, current=null;
+    function build(msg){
+      var el=document.createElement(msg.href?'a':'div');
+      el.className='slt';
+      if(msg.href) el.setAttribute('href',msg.href);
+      el.setAttribute('role','status'); el.setAttribute('aria-live','polite');
+      el.innerHTML='<span class="slt-ic" aria-hidden="true">'+msg.ic+'</span>'+
+        '<div class="slt-tx">'+(msg.s?'<small>'+msg.s+'</small>':'')+msg.t+'</div>'+
+        '<button class="slt-x" aria-label="Dismiss">&times;</button>';
+      el.querySelector('.slt-x').addEventListener('click',function(ev){ ev.preventDefault(); ev.stopPropagation(); hide(el); shown=MAX; /* dismiss = stop for this session */ });
+      return el;
+    }
+    function hide(el){ if(!el)return; el.classList.remove('in'); setTimeout(function(){ if(el&&el.parentNode) el.remove(); },500); if(current===el)current=null; }
+    function showNext(){
+      if(shown>=MAX) return;
+      // don't stack over the festival modal
+      if(document.querySelector('.gpop-backdrop.open')){ setTimeout(showNext, 8000); return; }
+      var msg=order[idx % order.length]; idx++;
+      var el=build(msg); document.body.appendChild(el);
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ el.classList.add('in'); }); });
+      current=el; shown++;
+      setTimeout(function(){ hide(el); }, 6500);              // visible ~6.5s
+      setTimeout(showNext, 6500 + 18000 + Math.random()*14000); // then a varied gap (~24–38s)
+    }
+    setTimeout(showNext, 7000); // first appears after 7s
+  }catch(e){}
+}
+
 /* ---------- public API + wiring ---------- */
 const Saileela={
   money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
@@ -523,7 +575,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
