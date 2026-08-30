@@ -712,6 +712,9 @@ img{max-width:100%;height:auto}
 .prog:hover{box-shadow:0 14px 40px rgba(50,5,3,.14);transform:translateY(-3px)}
 /* festivals in Shirdi */
 .fest-grid2{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.fest-shirdi{position:relative;overflow:hidden}
+.fest-shirdi::before{content:"";position:absolute;inset:0;background:url("fest-shirdi-bg.jpg") center/cover no-repeat;opacity:.15;pointer-events:none;z-index:0}
+.fest-shirdi>.wrap{position:relative;z-index:1}
 .fest-card{border:1px solid var(--line-l);border-radius:12px;padding:24px 16px;text-align:center;background:var(--paper-3)}
 .fest-card .fic{width:32px;height:32px;margin:0 auto 12px;color:var(--marigold-deep)}
 .fest-card h3{font-size:.98rem;margin:0 0 6px;font-weight:600;line-height:1.25}
