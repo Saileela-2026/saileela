@@ -661,6 +661,97 @@ function wireJaap(){
   paint();
 }
 
+/* ---- Darshan surprise: an immersive "take Baba's blessing" moment, mid-visit ---- */
+var DPOP_actx=null, DPOP_sound=true;
+function dpopBell(){
+  if(!DPOP_sound) return;
+  try{
+    DPOP_actx=DPOP_actx||new (window.AudioContext||window.webkitAudioContext)();
+    var t=DPOP_actx.currentTime;
+    [[523.25,0.22],[783.99,0.13],[1046.5,0.08],[1567,0.05]].forEach(function(p){
+      var o=DPOP_actx.createOscillator(), g=DPOP_actx.createGain();
+      o.type='sine'; o.frequency.value=p[0];
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(p[1],t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+1.9);
+      o.connect(g).connect(DPOP_actx.destination); o.start(t); o.stop(t+2);
+    });
+  }catch(e){}
+}
+function dpopAartiLine(){
+  try{
+    var n=istNow(), nowSec=n.getHours()*3600+n.getMinutes()*60+n.getSeconds(), LIVE=30*60, live=null;
+    AARTIS.forEach(function(a){ var st=a[1]*60; if(nowSec>=st && nowSec<st+LIVE) live=a; });
+    return live ? ('\uD83D\uDD14 '+live[0]+' is being offered now in Shirdi') : '';
+  }catch(e){ return ''; }
+}
+function initDarshanPopup(){
+  try{
+    if(/admin\.html$/i.test(location.pathname)) return;
+    var KEY='darshan_seen';
+    try{ if(Date.now()-(+(localStorage.getItem(KEY)||0)) < 48*3600*1000) return; }catch(e){}
+    var fired=false;
+    function show(){
+      if(fired) return;
+      if(document.querySelector('.gpop-backdrop.open')){ setTimeout(show,10000); return; } // don't stack on the festival popup
+      fired=true; try{ localStorage.setItem(KEY, Date.now()); }catch(e){}
+      build();
+    }
+    setTimeout(show, 25000); // a "middle of the visit" surprise
+  }catch(e){}
+}
+function build(){
+  var wrap=document.createElement('div'); wrap.className='dpop'; wrap.setAttribute('role','dialog'); wrap.setAttribute('aria-modal','true'); wrap.setAttribute('aria-label','A moment of darshan');
+  var aarti=dpopAartiLine();
+  wrap.innerHTML=
+    '<div class="dpop-scene" id="dScene" style="background-image:url(\'darshan-backdrop.jpg\')">'+
+      '<div class="dpop-bg" style="background-image:url(\'darshan-backdrop.jpg\')"></div>'+
+      '<div class="dpop-rays"></div>'+
+      '<img class="dpop-baba" src="darshan-baba.png" alt="Shree Sai Baba darshan">'+
+      '<div class="dpop-lamp">'+
+        '<span class="dpop-diyaGlow"></span>'+
+        '<img class="dpop-diya unlit" src="darshan-diya-unlit.png" alt="" aria-hidden="true">'+
+        '<img class="dpop-diya lit" src="darshan-diya-lit.png" alt="" aria-hidden="true">'+
+      '</div>'+
+      '<div class="dpop-text">'+
+        '<div class="dpop-aarti">'+aarti+'</div>'+
+        '<h3 class="dpop-title" id="dTitle">A moment of darshan</h3>'+
+        '<p class="dpop-sub" id="dSub">Light a diya and take Baba\u2019s blessing.</p>'+
+        '<button class="dpop-light" id="dLight">\uD83E\uDE94 Light the diya</button>'+
+        '<div class="dpop-after" id="dAfter" hidden>'+
+          '<a class="dpop-cta" href="shop.html">Continue with blessings \u2192</a>'+
+          '<button class="dpop-share" id="dShare">\uD83D\uDCF2 Share this darshan</button>'+
+        '</div>'+
+      '</div>'+
+      '<button class="dpop-sound" id="dSound" aria-label="Toggle sound" title="Sound">\uD83D\uDD14</button>'+
+      '<button class="dpop-x" id="dX" aria-label="Close">\u00d7</button>'+
+    '</div>';
+  document.body.appendChild(wrap);
+  var scene=wrap.querySelector('#dScene');
+  function close(){ wrap.classList.remove('open'); setTimeout(function(){ wrap.remove(); },600); document.removeEventListener('keydown',onKey); }
+  function onKey(e){ if(e.key==='Escape') close(); }
+  function petals(){
+    try{ for(var i=0;i<9;i++){ (function(){ var p=document.createElement('span'); p.className='dpop-petal';
+      p.style.left=(6+Math.random()*88)+'%'; p.style.animationDuration=(3.4+Math.random()*2.4)+'s'; p.style.animationDelay=(Math.random()*0.8)+'s';
+      p.style.width=p.style.height=(9+Math.random()*9)+'px'; scene.appendChild(p); setTimeout(function(){p.remove();},7000); })(); } }catch(e){}
+  }
+  wrap.querySelector('#dLight').addEventListener('click',function(){
+    scene.classList.add('lit-on');
+    dpopBell(); if(navigator.vibrate) navigator.vibrate([25,40,20]); petals();
+    var sub=wrap.querySelector('#dSub'), after=wrap.querySelector('#dAfter'), title=wrap.querySelector('#dTitle');
+    title.textContent='Baba\u2019s blessings be with you';
+    sub.innerHTML='<span class="bless" translate="no">\u0965 \u0936\u094D\u0930\u0940 \u0938\u093E\u0908\u0928\u093E\u0925\u093E\u092F \u0928\u092E\u0903 \u0965</span>May Baba bless you and your family with Shraddha &amp; Saburi.';
+    this.hidden=true; after.hidden=false;
+  });
+  wrap.querySelector('#dShare').addEventListener('click',function(){
+    var msg='\uD83E\uDE94 I took Baba\u2019s darshan at Saileela and lit a diya. Om Sai Ram \uD83D\uDE4F  '+location.origin+'/';
+    window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank','noopener');
+  });
+  var sBtn=wrap.querySelector('#dSound');
+  sBtn.addEventListener('click',function(){ DPOP_sound=!DPOP_sound; sBtn.classList.toggle('off',!DPOP_sound); sBtn.textContent=DPOP_sound?'\uD83D\uDD14':'\uD83D\uDD07'; });
+  wrap.querySelector('#dX').addEventListener('click',close);
+  wrap.addEventListener('click',function(e){ if(e.target===wrap) close(); });
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ wrap.classList.add('open'); document.addEventListener('keydown',onKey); }); });
+}
+
 /* ---------- public API + wiring ---------- */
 const Saileela={
   money,ICON,tint,findProduct,Cart,Store,ICON_KEYS,
@@ -713,7 +804,7 @@ window.Saileela=Saileela;
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity(); initDevotionCorner();
+  renderHeader(); renderFooter(); injectOverlays(); injectVoiceAgent(); startBrandTranslitWatch(); initGaneshPopup(); startLiveActivity(); initDevotionCorner(); initDarshanPopup();
   // wire the mobile menu immediately (before anything that could throw)
   try{
     const burger=document.getElementById('burger'); if(burger)burger.onclick=()=>{const m=document.getElementById('mnav');if(m)m.classList.add('open');const s2=document.getElementById('scrim');if(s2)s2.classList.add('open');};
