@@ -324,7 +324,7 @@ function renderFooter(){
     </div>
     <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
     <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="about-saileela-tv.html">About Saileela TV</a></li><li><a href="saileela-tv.html">Saileela TV Live</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Help</h4><ul><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li><li><a href="https://wa.me/916262072020" target="_blank" rel="noopener">WhatsApp +91 62620 72020</a></li></ul></div>
     <div><h4>Follow</h4>
       <div class="socials">
         <a href="https://www.youtube.com/@SaileelaTV" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>
