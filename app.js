@@ -81,7 +81,7 @@ const DEFAULT_SETTINGS={
   storeName:'Saileela Store', currency:'₹',
   announceDeva:'॥ हर हर साई • घर घर साई ॥',
   announceMsg:'<b>Guruvar drop</b> every Thursday from Shirdi',
-  freeShipThreshold:999, shipFee:60,
+  freeShipThreshold:999, shipFee:49, shipFeeSmall:79,
   heroTagline:'॥ हर हर साई • घर घर साई ॥',
   heroTitle:'Everything a Sai<br>Devotee <em>Needs</em>',
   heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
@@ -198,7 +198,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v20';
+const DATA_KEY='saileela_data_v21';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -472,6 +472,9 @@ const Saileela={
   get CATALOG(){return Store.load().products.filter(p=>p.active!==false);},
   get CATS(){return ['All',...Store.load().cats];},
   settings(){return Store.load().settings;},
+  /* Standard India-ecommerce shipping: free above threshold, small flat fee below,
+     with a slightly higher fee on very small carts (covers real courier cost). */
+  shippingFor(sub){ const s=Store.load().settings; const free=+s.freeShipThreshold||999; if(sub>=free) return 0; return sub>=500 ? (+s.shipFee||49) : (+s.shipFeeSmall||79); },
   tv(){return Store.load().tv;},
   placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
   /* Razorpay Checkout (browser half). Uses the PUBLIC Key ID only.
@@ -540,7 +543,7 @@ const Saileela={
     const box=document.getElementById('drawerItems'),foot=document.getElementById('drawerFoot'); if(!box)return;
     const items=Cart.detailed();
     if(!items.length){ box.innerHTML=`<div class="drawer-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><p>Your cart is empty.</p></div>`; foot.style.display='none'; return; }
-    box.innerHTML=items.map((c,i)=>`<div class="ditem"><div class="dt" style="background:${tint(i)}">${ICON[c.icon]}</div><div><h4>${c.n}</h4><div class="dp">${money(c.p)} × ${c.qty}</div><div class="rm" role="button" tabindex="0" onclick="Saileela.removeFromCart('${c.id}')" onkeydown="if(event.key==='Enter')Saileela.removeFromCart('${c.id}')">Remove</div></div></div>`).join('');
+    box.innerHTML=items.map((c,i)=>`<div class="ditem"><div class="dt" style="background:${tint(i)}">${c.img?`<img src="${c.img}" alt="${c.n}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`:ICON[c.icon]}</div><div><h4>${c.n}</h4><div class="dp">${money(c.p)} × ${c.qty}</div><div class="rm" role="button" tabindex="0" onclick="Saileela.removeFromCart('${c.id}')" onkeydown="if(event.key==='Enter')Saileela.removeFromCart('${c.id}')">Remove</div></div></div>`).join('');
     document.getElementById('dSub').textContent=money(Cart.subtotal()); foot.style.display='block';
   },
   removeFromCart(id){ Cart.remove(id); this.bump(); document.dispatchEvent(new Event('cart:render')); },

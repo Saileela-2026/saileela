@@ -23,10 +23,10 @@
     const items=Saileela.Cart.detailed();
     if(!items.length){ root.innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><h2 style="color:var(--kumkum-deep);margin:0 0 8px">Your cart is empty</h2><p style="margin:0 0 22px">May Baba guide you to something meaningful.</p><a href="shop.html" class="btn btn-primary">Browse the collection</a></div>`; return; }
     const st=Saileela.settings(); const thr=+st.freeShipThreshold||999; const fee=+st.shipFee||60;
-    const sub=Saileela.Cart.subtotal(); const ship=sub>=thr?0:fee; const total=sub+ship;
+    const sub=Saileela.Cart.subtotal(); const ship=Saileela.shippingFor(sub); const total=sub+ship;
     root.innerHTML=`<div class="cart-grid">
       <div>
-        <div class="cart-list">${items.map((c,i)=>`<div class="cart-row"><div class="ct" style="background:${Saileela.tint(i)}"><div style="width:70%">${Saileela.ICON[c.icon]}</div></div>
+        <div class="cart-list">${items.map((c,i)=>`<div class="cart-row"><div class="ct" style="background:${Saileela.tint(i)}">${c.img?`<img src="${c.img}" alt="${c.n}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`:`<div style="width:70%">${Saileela.ICON[c.icon]}</div>`}</div>
           <div class="ci"><div class="cl">${c.cat}</div><h4>${c.n}</h4><div class="cp">${Saileela.money(c.p)}</div><div class="rm" role="button" tabindex="0" onclick="rm('${c.id}')" onkeydown="if(event.key==='Enter')rm('${c.id}')">Remove</div></div>
           <div class="qty"><button onclick="setq('${c.id}',${c.qty-1})" aria-label="Decrease">−</button><span>${c.qty}</span><button onclick="setq('${c.id}',${c.qty+1})" aria-label="Increase">+</button></div></div>`).join('')}</div>
       </div>
@@ -58,7 +58,7 @@
   window.placeOrder=()=>{
     const items=Saileela.Cart.detailed(); if(!items.length)return;
     const st=Saileela.settings(); const thr=+st.freeShipThreshold||999; const fee=+st.shipFee||60;
-    const sub=Saileela.Cart.subtotal(); const ship=sub>=thr?0:fee;
+    const sub=Saileela.Cart.subtotal(); const ship=Saileela.shippingFor(sub);
     const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
     const phone=g('bPhone').replace(/\D/g,''), pin=g('bPin').replace(/\D/g,'');
     const name=g('bName'), addr=g('bAddr'), landmark=g('bLandmark'), city=g('bCity'), state=g('bState');
