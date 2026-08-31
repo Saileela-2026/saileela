@@ -321,7 +321,7 @@ function renderFooter(){
       <p>Rooted in Shraddha, Saburi and Samarpan, Saileela brings devotion to life through darshan, Aarti, stories of Sai Baba, devotional music and the experiences of devotees — carrying Baba's universal message, "Sabka Malik Ek", across boundaries of religion, language and geography.</p>
       <p>What began as a devotional television initiative now reaches devotees across DTH, Cable TV, OTT and social media, while Saileela's own digital home carries live darshan, Sai Aarti and other devotional experiences.</p>
       <div class="fa-sign">Saileela TV — Shraddha. Saburi. Samarpan.</div>
-      <a class="fa-more" href="about.html">Read our full story →</a>
+      <a class="fa-more" href="about-saileela-tv.html">Read more about Saileela TV →</a>
     </div>
     <div class="foot-grid">
     <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name notranslate" translate="no" style="font-family:Fraunces;font-size:1.4rem">${brandName()}</span></div>
@@ -331,7 +331,7 @@ function renderFooter(){
       <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
     </div>
     <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
-    <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="saileela-tv.html">Saileela TV</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="about-saileela-tv.html">About Saileela TV</a></li><li><a href="saileela-tv.html">Saileela TV</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Help</h4><ul><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li></ul></div>
     <div><h4>Follow</h4>
       <div class="socials">
