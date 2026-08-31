@@ -22,17 +22,17 @@ const tint=i=>'';   /* niches styled in CSS */
 
 /* ================= DATA LAYER (localStorage + JSON export/import) ================= */
 const DEFAULT_PRODUCTS=[
-  {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
+  {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',xcats:['Gifting','Idols'],r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
    img:'sagunopasna-kit-box-v3.jpg',
    images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-kalash-2.jpg','kit-katori-2.jpg','kit-diya-2.jpg','kit-agarbatti-stand-2.jpg','kit-bell-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
    contents:['Marble Shree Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Shree Sai Chandan Tika','Shree Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
    desc:'A thoughtfully curated devotional kit for performing Shree Sai Sagunopasana with श्रद्धा and devotion. Ideal for daily worship, special occasions and gifting to Shree Sai devotees. Every item is chosen by hand and carefully packed in Shirdi.'},
-  {id:'divya-darshan-kit',n:'Shree Sai Divya Darshan Kit',p:1599,o:2100,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
+  {id:'divya-darshan-kit',n:'Shree Sai Divya Darshan Kit',p:1599,o:2100,icon:'hamper',cat:'Pooja Samagri',xcats:['Gifting','Idols'],r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
    img:'divya-darshan-box.jpg',
    images:['divya-darshan-box.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
    contents:['Marble Shree Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Shree Sai Chandan Tika','Shree Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
    desc:'A Saileela Exclusive and Best Seller devotional kit designed to bring a divine Shirdi-inspired worship experience into your home. It contains the same devotional items as the Shree Sai Sagunopasna Kit, excluding all five brass pooja pots.'},
-  {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
+  {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',xcats:['Gifting'],r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
    img:'divya-swaroop-box-v2.jpg',
    images:['divya-swaroop-box-v2.jpg','swaroop-idol.jpg','swaroop-vastra-1.jpg','swaroop-vastra-2.jpg','swaroop-mala.jpg','swaroop-mukut.jpg'],
    contents:['Shree Saibaba Idol','Vastra','Tulsi Mala','Decorative Mukut (crown)'],
@@ -127,7 +127,7 @@ const DEFAULT_TV={
     {"t": "9:00 AM", "n": "Special Programme", "d": "Talk show"},
     {"t": "10:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
     {"t": "11:00 AM", "n": "108 Namawali & 11 Vachan", "d": "Devotional"},
-    {"t": "11:30 AM", "n": "Mantrapushpanjali", "d": "Devotional"},
+    {"t": "11:30 AM", "n": "Mantrapushpanjali", "d": "Devotional", "live": true},
     {"t": "12:00 PM", "n": "Madhyan Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "12:30 PM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "1:00 PM", "n": "Serial STHH", "d": "Talk show"},
@@ -136,13 +136,13 @@ const DEFAULT_TV={
     {"t": "3:00 PM", "n": "Special Programme", "d": "Talk show"},
     {"t": "4:00 PM", "n": "Gurupathache Abhang", "d": "Devotional"},
     {"t": "5:05 PM", "n": "Bhavpushpanjali", "d": "Songs"},
-    {"t": "5:45 PM", "n": "Mantrapushpanjali", "d": "Devotional"},
+    {"t": "5:45 PM", "n": "Mantrapushpanjali", "d": "Devotional", "live": true},
     {"t": "6:15 PM", "n": "Dhoop Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "6:45 PM", "n": "Shri Sai Satcharitra", "d": "Devotional"},
     {"t": "7:30 PM", "n": "Serial STHH", "d": "Devotional"},
     {"t": "8:00 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
     {"t": "8:30 PM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
-    {"t": "9:30 PM", "n": "Mantrapushpanjali", "d": "Devotional"},
+    {"t": "9:30 PM", "n": "Mantrapushpanjali", "d": "Devotional", "live": true},
     {"t": "10:00 PM", "n": "Shej Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "10:30 PM", "n": "Serial STHH", "d": "Talk show"},
     {"t": "11:00 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
@@ -164,7 +164,7 @@ const DEFAULT_TV={
     {"t": "9:00 AM", "n": "Special Programme", "d": "Talk show"},
     {"t": "10:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
     {"t": "11:00 AM", "n": "108 Namawali & 11 Vachan", "d": "Devotional"},
-    {"t": "11:30 AM", "n": "Mantrapushpanjali", "d": "Devotional"},
+    {"t": "11:30 AM", "n": "Mantrapushpanjali", "d": "Devotional", "live": true},
     {"t": "12:00 PM", "n": "Madhyan Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "12:30 PM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "1:00 PM", "n": "Serial STHH", "d": "Talk show"},
@@ -173,7 +173,7 @@ const DEFAULT_TV={
     {"t": "3:00 PM", "n": "Special Programme", "d": "Talk show"},
     {"t": "4:00 PM", "n": "Gurupathache Abhang", "d": "Devotional"},
     {"t": "5:05 PM", "n": "Bhavpushpanjali", "d": "Songs"},
-    {"t": "5:45 PM", "n": "Mantrapushpanjali", "d": "Devotional"},
+    {"t": "5:45 PM", "n": "Mantrapushpanjali", "d": "Devotional", "live": true},
     {"t": "6:15 PM", "n": "Dhoop Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "6:45 PM", "n": "Shri Sai Satcharitra", "d": "Devotional"},
     {"t": "7:30 PM", "n": "Serial STHH", "d": "Devotional"},
@@ -198,7 +198,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v21';
+const DATA_KEY='saileela_data_v22';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -242,7 +242,7 @@ const brandSVG=`<svg class="brand-mark" viewBox="0 0 46 54" fill="none" aria-hid
 
 
 /* ---------- i18n (English / Hindi / Telugu) ---------- */
-const LANGS=[['en','EN'],['hi','हिं'],['te','తె']];
+const LANGS=[['en','English'],['hi','हिंदी'],['te','తెలుగు']];
 const I18N={
   en:{nav_shop:'Shop',nav_exclusive:'Saileela Exclusive',nav_travel:'Shirdi Travel',nav_tv:'Saileela TV',nav_story:'Our Story',
       a_ship:'Ships from Shirdi',a_free:'Free shipping above',a_pack:'Carefully packed',
@@ -252,7 +252,7 @@ const I18N={
       sec_exclusive:'Saileela Exclusive',sec_category:'Shop by category',sec_new:'New arrivals',
       sec_best:'Bestsellers',sec_gift:'Devotional gifting',sec_reviews:'Loved by devotees',
       foot_tag:'A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.'},
-  hi:{nav_shop:'दुकान',nav_exclusive:'साईलीला एक्सक्लूसिव',nav_travel:'शिरडी यात्रा',nav_tv:'साईलीला टीवी',nav_story:'हमारी कहानी',
+  hi:{nav_shop:'शॉप',nav_exclusive:'साईलीला एक्सक्लूसिव',nav_travel:'शिरडी यात्रा',nav_tv:'साईलीला टीवी',nav_story:'हमारी कहानी',
       a_ship:'शिरडी से भेजा जाता है',a_free:'मुफ़्त शिपिंग इससे ऊपर',a_pack:'सावधानी से पैक किया गया',
       search:'खोजें',wishlist:'पसंदीदा',cart:'कार्ट',
       hero_h1:'हर साई भक्त की<br>ज़रूरत की हर चीज़',hero_sub:'शिरडी में सावधानी से चुना गया। आपके घर तक पहुँचाया गया।',

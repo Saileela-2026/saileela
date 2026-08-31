@@ -148,7 +148,16 @@
   // homepage live TV player (HLS)
   (function(){
     const tv=Saileela.tv(), url=tv.liveUrl, v=document.getElementById('homeLiveVideo');
-    const nm=document.getElementById('homeNow'); if(nm&&tv.nowTitle)nm.textContent=tv.nowTitle;
+    const nm=document.getElementById('homeNow');
+    if(nm){ try{
+      const inow=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
+      const mn=inow.getHours()*60+inow.getMinutes();
+      const toMin=t=>{const m=String(t).match(/(\d+):(\d+)\s*(AM|PM)/i);if(!m)return 0;let h=(+m[1]%12)+(/PM/i.test(m[3])?12:0);return h*60+ +m[2];};
+      const sl=(inow.getDay()===4?tv.scheduleThursday:tv.schedule)||[];
+      let cur=null; sl.forEach(r=>{ if(mn>=toMin(r.t)) cur=r; });
+      if(!cur && sl.length) cur=sl[sl.length-1];
+      nm.textContent=(cur&&cur.n)||tv.nowTitle||nm.textContent;
+    }catch(e){ if(tv.nowTitle)nm.textContent=tv.nowTitle; } }
     if(v&&url){
       if(v.canPlayType('application/vnd.apple.mpegurl')){v.src=url;}
       else if(window.Hls&&Hls.isSupported()){const h=new Hls({lowLatencyMode:true});h.loadSource(url);h.attachMedia(v);h.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal){try{h.startLoad();}catch(_){}}});}

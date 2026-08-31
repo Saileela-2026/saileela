@@ -47,7 +47,7 @@
   window.setSub=x=>{activeSub=x;renderFilters();renderGrid();};
   function match(p){
     if(wishOnly&&!wishList.includes(p.id))return false;
-    if(active!=='All'&&p.cat!==active)return false;
+    if(active!=='All'&&p.cat!==active&&!(p.xcats&&p.xcats.includes(active)))return false;
     if(activeSub&&(p.subcat||'')!==activeSub)return false;
     if(query){ const q=query.toLowerCase(); if(!((p.n||'')+' '+(p.cat||'')+' '+(p.subcat||'')+' '+(p.desc||'')).toLowerCase().includes(q))return false; }
     return true;
@@ -57,6 +57,7 @@
     if(sortby==='pl')list=list.slice().sort((a,b)=>a.p-b.p);
     else if(sortby==='ph')list=list.slice().sort((a,b)=>b.p-a.p);
     else if(sortby==='new')list=list.slice().sort((a,b)=>((b.badge||'').toLowerCase()==='new'?1:0)-((a.badge||'').toLowerCase()==='new'?1:0));
+    list=list.slice().sort((a,b)=>(b.excl?1:0)-(a.excl?1:0)); // Saileela Exclusive always on top (stable within each group)
     const emptyMsg = wishOnly
       ? 'Your wishlist is empty. Tap the ♡ on any product to save it here.'
       : query
