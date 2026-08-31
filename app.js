@@ -87,7 +87,7 @@ const DEFAULT_SETTINGS={
   heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
-  whatsapp:'+91 6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109',
+  whatsapp:'+91 6262072020', email:'saililatv@gmail.com', phone:'', address:'A/P Nimgaon, Shirdi, Next to Vishwashani Apartment, Tal. Rahata – 423107, Maharashtra, India',
   razorpayKeyId:'rzp_test_SVLMlFzDiKlOIl', /* PUBLIC key id only — never put the Key Secret here (client code is public) */
   pickup:{ name:'Radio Asha', company:'AK 1 Lifespaces LLP', address:'In front of ITI College, Burudgaon Road', city:'Ahmednagar', state:'Maharashtra', pincode:'414003' } /* Shiprocket pickup location */
 };
@@ -314,16 +314,25 @@ function renderFooter(){
     <a class="btn btn-primary nl-wa" href="https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3" target="_blank" rel="noopener">Join our WhatsApp channel</a>
     <span class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Z"/></svg> Prefer WhatsApp? Get updates on WhatsApp</span>
   </div></section>
-  <footer><div class="wrap"><div class="foot-grid">
+  <footer><div class="wrap">
+    <div class="foot-about">
+      <div class="fa-tag">From Shirdi. For Sai bhakts. Inspired by Sai.</div>
+      <p>Saileela TV's journey began in Shirdi in 2018, during the historic centenary year of Shri Sai Baba's Mahasamadhi. Conceived as an offering from Sai bhakts to Sai bhakts, Saileela was created with one enduring purpose — to bring Shirdi closer to devotees, wherever they may be.</p>
+      <p>Rooted in Shraddha, Saburi and Samarpan, Saileela brings devotion to life through darshan, Aarti, stories of Sai Baba, devotional music and the experiences of devotees — carrying Baba's universal message, "Sabka Malik Ek", across boundaries of religion, language and geography.</p>
+      <p>What began as a devotional television initiative now reaches devotees across DTH, Cable TV, OTT and social media, while Saileela's own digital home carries live darshan, Sai Aarti and other devotional experiences.</p>
+      <div class="fa-sign">Saileela TV — Shraddha. Saburi. Samarpan.</div>
+      <a class="fa-more" href="about.html">Read our full story →</a>
+    </div>
+    <div class="foot-grid">
     <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name notranslate" translate="no" style="font-family:Fraunces;font-size:1.4rem">${brandName()}</span></div>
       <div class="malik-f">॥ श्रद्धा • सबुरी • समर्पण ॥</div>
       <p data-i18n="foot_tag">A premium devotional store, rooted in Shirdi. Chosen by hand, packed with care, delivered across India.</p>
-      <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shirdi, Ahilyanagar, Maharashtra 423109</div>
+      <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>A/P Nimgaon, Shirdi, Next to Vishwashani Apartment, Tal. Rahata – 423107, Maharashtra, India</div>
       <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
     </div>
     <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
     <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="saileela-tv.html">Saileela TV</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Help</h4><ul><li><a href="contact.html">Shipping</a></li><li><a href="contact.html">Returns</a></li><li><a href="contact.html">FAQ</a></li><li><a href="contact.html">Order support</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li></ul></div>
     <div><h4>Follow</h4>
       <div class="socials">
         <a href="https://www.youtube.com/@SaileelaTV" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>
@@ -333,7 +342,8 @@ function renderFooter(){
       </div>
     </div>
   </div>
-  <div class="foot-bottom"><span>© 2026 Saileela · Shirdi, Maharashtra · An independent devotee store, not affiliated with Shree Saibaba Sansthan Trust.</span>
+  <div class="foot-bottom"><span>© 2026 Sai Leela Devotainment Private Limited · Not affiliated with Shree Saibaba Sansthan Trust, Shirdi.</span>
+    <div class="foot-legal"><a href="privacy.html">Privacy</a><a href="shipping.html">Shipping</a><a href="refund.html">Refund &amp; Return</a><a href="cancellation.html">Cancellation</a></div>
     <div class="pay"><span class="chip">UPI</span><span class="chip">Razorpay</span><span class="chip">Cards</span><span class="chip">COD</span></div></div>
   </div></footer>`;
   document.getElementById('site-footer').innerHTML=html;
