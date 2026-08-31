@@ -87,7 +87,8 @@ const DEFAULT_SETTINGS={
   heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
-  whatsapp:'+91 6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109'
+  whatsapp:'+91 6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109',
+  razorpayKeyId:'rzp_test_SVLMlFzDiKlOIl' /* PUBLIC key id only — never put the Key Secret here (client code is public) */
 };
 const DEFAULT_TV={
   nowTitle:'Sai Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
@@ -470,6 +471,39 @@ const Saileela={
   settings(){return Store.load().settings;},
   tv(){return Store.load().tv;},
   placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
+  /* Razorpay Checkout (browser half). Uses the PUBLIC Key ID only.
+     NOTE: this cannot verify the payment server-side — safe for test mode; real
+     verification (Key Secret + signature check) happens on the backend after go-live. */
+  razorpayKey(){ return (Store.load().settings.razorpayKeyId || DEFAULT_SETTINGS.razorpayKeyId || '').trim(); },
+  loadRazorpay(cb){
+    if(window.Razorpay){ cb(true); return; }
+    var s=document.createElement('script'); s.src='https://checkout.razorpay.com/v1/checkout.js';
+    s.onload=function(){ cb(!!window.Razorpay); }; s.onerror=function(){ cb(false); };
+    document.head.appendChild(s);
+  },
+  payWithRazorpay(order, onSuccess){
+    var key=this.razorpayKey();
+    if(!key){ alert('Online payment is not set up yet. Please choose Cash on Delivery.'); return; }
+    this.loadRazorpay(function(ok){
+      if(!ok){ alert('Could not load the payment gateway. Please check your connection or choose Cash on Delivery.'); return; }
+      var opts={
+        key:key,
+        amount:Math.round((order.total||0)*100),   /* in paise */
+        currency:'INR',
+        name:'Saileela',
+        description:'Order from Saileela — Shirdi',
+        prefill:{ name:order.name||'', contact:order.phone||'', email:'' },
+        notes:{ address:order.address||'' },
+        theme:{ color:'#C4281A' },
+        handler:function(resp){ onSuccess(resp); }
+      };
+      try{
+        var rzp=new window.Razorpay(opts);
+        rzp.on('payment.failed', function(r){ alert('Payment failed'+((r&&r.error&&r.error.description)?': '+r.error.description:'')+'. You can try again or choose Cash on Delivery.'); });
+        rzp.open();
+      }catch(e){ alert('Payment could not start. Please try again.'); }
+    });
+  },
   applyContent(){const s=Store.load().settings;document.querySelectorAll('[data-bind]').forEach(el=>{const k=el.dataset.bind;if(s[k]!=null)el.innerHTML=s[k];});},
   productCard(p,i=0){
     const b=(p.badge||'').toLowerCase();
