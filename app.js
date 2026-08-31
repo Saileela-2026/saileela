@@ -88,7 +88,8 @@ const DEFAULT_SETTINGS={
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
   whatsapp:'+91 6262072020', email:'hello@saileela.store', phone:'', address:'Shirdi, Maharashtra 423109',
-  razorpayKeyId:'rzp_test_SVLMlFzDiKlOIl' /* PUBLIC key id only — never put the Key Secret here (client code is public) */
+  razorpayKeyId:'rzp_test_SVLMlFzDiKlOIl', /* PUBLIC key id only — never put the Key Secret here (client code is public) */
+  pickup:{ name:'Radio Asha', company:'AK 1 Lifespaces LLP', address:'In front of ITI College, Burudgaon Road', city:'Ahmednagar', state:'Maharashtra', pincode:'414003' } /* Shiprocket pickup location */
 };
 const DEFAULT_TV={
   nowTitle:'Sai Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',

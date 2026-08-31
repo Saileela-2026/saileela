@@ -38,9 +38,16 @@
         <div class="row total"><span>Total</span><b>${Saileela.money(total)}</b></div>
         <div style="margin-top:18px"><div style="font-size:.82rem;font-weight:600;margin-bottom:8px">Payment method</div>
           <div class="pay-opts">${['UPI','Card','Cash on delivery'].map(o=>`<label class="pay-opt ${pay===o?'sel':''}" onclick="setPay('${o}')"><input type="radio" name="pay" ${pay===o?'checked':''}> ${o}</label>`).join('')}</div></div>
-        <div class="field"><label>Deliver to</label><input id="bName" placeholder="Full name"></div>
-        <div class="field"><input id="bPhone" placeholder="Phone number"></div>
-        <div class="field"><input id="bAddr" placeholder="Address, city, PIN code"></div>
+        <div style="font-size:.82rem;font-weight:600;margin:20px 0 10px">Delivery details</div>
+        <div class="field"><label>Mobile Number</label><div class="phone-in"><span>+91</span><input id="bPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div></div>
+        <div class="field"><label>Full Name</label><input id="bName" placeholder="Full name"></div>
+        <div class="field"><label>Complete Address</label><textarea id="bAddr" rows="2" placeholder="House / flat no., building, street, area"></textarea></div>
+        <div class="field"><label>Landmark <span style="text-transform:none;letter-spacing:0;color:var(--ink-faint)">(optional)</span></label><input id="bLandmark" placeholder="Nearby landmark"></div>
+        <div class="field-row">
+          <div class="field"><label>Pincode</label><input id="bPin" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit PIN"></div>
+          <div class="field"><label>City</label><input id="bCity" placeholder="City"></div>
+        </div>
+        <div class="field"><label>State</label><input id="bState" placeholder="State"></div>
         <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="placeOrder()">Place order · ${Saileela.money(total)}</button>
         <div class="drawer-foot" style="border:none;background:none;padding:14px 0 0"><div class="note">🕉 Ships from Shirdi · secure Razorpay checkout · 7-day returns</div></div>
       </div></div>`;
@@ -53,7 +60,23 @@
     const st=Saileela.settings(); const thr=+st.freeShipThreshold||999; const fee=+st.shipFee||60;
     const sub=Saileela.Cart.subtotal(); const ship=sub>=thr?0:fee;
     const g=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
-    const order={items:items.map(c=>({id:c.id,n:c.n,p:c.p,qty:c.qty})),subtotal:sub,shipping:ship,total:sub+ship,pay:pay,name:g('bName'),phone:g('bPhone'),address:g('bAddr')};
+    const phone=g('bPhone').replace(/\D/g,''), pin=g('bPin').replace(/\D/g,'');
+    const name=g('bName'), addr=g('bAddr'), landmark=g('bLandmark'), city=g('bCity'), state=g('bState');
+    // validation (needed for shipping, so applies to COD + online)
+    if(!name){ alert('Please enter your full name.'); return; }
+    if(phone.length!==10){ alert('Please enter a valid 10-digit mobile number.'); return; }
+    if(!addr){ alert('Please enter your complete address.'); return; }
+    if(pin.length!==6){ alert('Please enter a valid 6-digit pincode.'); return; }
+    if(!city){ alert('Please enter your city.'); return; }
+    if(!state){ alert('Please enter your state.'); return; }
+    const fullAddress=addr+(landmark?(', near '+landmark):'')+', '+city+', '+state+' - '+pin;
+    const order={
+      items:items.map(c=>({id:c.id,n:c.n,p:c.p,qty:c.qty})),
+      subtotal:sub, shipping:ship, total:sub+ship, pay:pay,
+      name, phone,
+      address:fullAddress,               /* composite, for admin display */
+      addressLine:addr, landmark, pincode:pin, city, state  /* structured, for Shiprocket */
+    };
     const finish=(payInfo)=>{
       if(payInfo) order.payment=payInfo;
       Saileela.placeOrder(order);
@@ -64,7 +87,6 @@
       root.innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="m8 12 2.5 2.5L16 9"/></svg><h2 style="color:var(--kumkum-deep);margin:0 0 8px">Thank you 🙏</h2>${paidLine}<a href="shop.html" class="btn btn-primary">Continue shopping</a></div>`;
     };
     if(pay==='Cash on delivery'){ finish(null); return; }
-    if(!order.name||!order.phone||!order.address){ alert('Please fill your name, phone and address before paying online.'); return; }
     Saileela.payWithRazorpay(order, (resp)=>{ finish({id:resp.razorpay_payment_id||'(test)', mode:'razorpay-test'}); });
   };
   document.addEventListener('cart:render',render);
