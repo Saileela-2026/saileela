@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Saileela Store — From Shirdi, for every Sai devotee</title>
+<title>Saileela Store — From Shirdi, for every Shree Sai devotee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -92,7 +92,7 @@
 <section class="block story-band"><div class="wrap">
   <div class="story-band-copy reveal">
     <div class="eyebrow">Rooted in Shirdi</div>
-    <h2>From Shirdi, for Sai<br>devotees everywhere</h2>
+    <h2>From Shirdi, for Shree Sai<br>devotees everywhere</h2>
     <p>Saileela isn't a faceless warehouse. We're a small team of devotees in Shirdi who choose every piece by hand and send it out with the care we'd give our own home mandir.</p>
     <p>Backed by the Saileela TV devotional brand, we bring the warmth and authenticity of Shirdi to devotees across the world — one thoughtfully packed order at a time.</p>
     <a href="about.html" class="btn btn-line">Our Story</a>
@@ -101,13 +101,13 @@
 
 <!-- 10. PREMIUM GIFTING -->
 <section class="block" style="background:var(--paper-2)"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow">Thoughtful gifting</div><h2>Gifts with meaning</h2><p>Premium Sai hampers and devotional keepsakes for family, festivals and special occasions.</p></div>
+  <div class="head reveal"><div class="eyebrow">Thoughtful gifting</div><h2>Gifts with meaning</h2><p>Premium Shree Sai hampers and devotional keepsakes for family, festivals and special occasions.</p></div>
   <div class="prod-grid" id="giftGrid"></div>
 </div></section>
 
 <!-- 11. SAILEELA TV (dark) -->
 <section class="block exclusive"><div class="wrap">
-  <div class="head reveal"><div class="eyebrow">On air, all day</div><h2>Saileela TV</h2><p>Beyond the store, Saileela is a devotional television home — live aarti, bhajans, discourses and Sai stories, on DTH, cable and OTT.</p></div>
+  <div class="head reveal"><div class="eyebrow">On air, all day</div><h2>Saileela TV</h2><p>Beyond the store, Saileela is a devotional television home — live aarti, bhajans, discourses and Shree Sai stories, on DTH, cable and OTT.</p></div>
   <div class="reveal tv-teaser">
     <div class="player" id="homeLive"><span class="live-tag"><span class="dot"></span>LIVE</span><span class="now-chip">Now playing · <b id="homeNow">Prabhat Bhajan Sandhya</b></span><video id="homeLiveVideo" controls playsinline muted autoplay preload="none"></video></div>
     <div><h3 style="color:#fff;font-size:1.6rem;margin:0 0 12px">Devotion. Every day.</h3><p style="color:rgba(251,247,238,.8);margin:0 0 22px">Tune in for live programming, follow the daily schedule, and find us across DTH, cable and OTT platforms.</p><a href="saileela-tv.html" class="btn btn-gold">Watch live</a></div>
@@ -137,7 +137,7 @@
     document.getElementById('exHero').innerHTML=`<div class="ex-img">${f.img?`<img class="ph-img" src="${f.img}" alt="${f.n}">`:`<span class="ph-mark">${Saileela.ICON[f.icon]}</span>`}<span class="ph-shadow"></span></div><div class="ex-info"><div class="eyebrow">Saileela Exclusive</div><h3>${f.n}</h3><div class="exbadge">Signature Edition • Curated in Shirdi</div><p>${f.desc||''}</p><div class="exprice">${Saileela.money(f.p)}${f.o?` <s style="opacity:.6;font-size:.7em">${Saileela.money(f.o)}</s>`:''}</div><a class="btn btn-foil" href="product.html?id=${f.id}">Discover</a></div>`;
     document.getElementById('exGrid').innerHTML=exclList.filter(x=>x.id!==f.id).slice(0,4).map((x,i)=>Saileela.productCard(x,i)).join('');
   }
-  const cats=[['Sai Idols & Murtis','Brass · Marble · Silver','kalash','Idols','cat-idols.jpg'],['Pooja Essentials','Diyas · Incense · Samagri','incense','Pooja Samagri','cat-pooja.jpg'],['Books & Parayan','Satcharitra & aartis','book','Books','cat-books.jpg'],['Frames & Décor','Photos · Palki · Wall art','frame','Frames','cat-frames.jpg'],['Mala & Accessories','Rudraksha · Shawls','mala','Malas','cat-malas.jpg'],['Gifting & Hampers','Festive · Return gifts','hamper','Gifting','cat-gifting.jpg']];
+  const cats=[['Shree Sai Idols & Murtis','Brass · Marble · Silver','kalash','Idols','cat-idols.jpg'],['Pooja Essentials','Diyas · Incense · Samagri','incense','Pooja Samagri','cat-pooja.jpg'],['Books & Parayan','Satcharitra & aartis','book','Books','cat-books.jpg'],['Frames & Décor','Photos · Palki · Wall art','frame','Frames','cat-frames.jpg'],['Mala & Accessories','Rudraksha · Shawls','mala','Malas','cat-malas.jpg'],['Gifting & Hampers','Festive · Return gifts','hamper','Gifting','cat-gifting.jpg']];
   document.getElementById('catGrid').innerHTML=cats.map((c)=>`<a href="shop.html?cat=${encodeURIComponent(c[3])}" class="cat"><div class="cat-photo">${c[4]?`<img src="${c[4]}" alt="${c[0]}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2">`:`<span class="ph-mark">${Saileela.ICON[c[2]]}</span>`}<span class="ph-shadow"></span></div><div class="cat-body"><h3>${c[0]}</h3><span>${c[1]}</span><div class="arrow">Shop now <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
   // New Arrivals (badge=new first, then fill)
   const na=[...Saileela.CATALOG].sort((a,b)=>((b.badge||'').toLowerCase()==='new'?1:0)-((a.badge||'').toLowerCase()==='new'?1:0)).slice(0,4);

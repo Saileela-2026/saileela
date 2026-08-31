@@ -151,16 +151,16 @@ const tint=i=>'';   /* niches styled in CSS */
 /* ================= DATA LAYER (localStorage + JSON export/import) ================= */
 const DEFAULT_PRODUCTS=[
   {id:'p1',n:'Sandal Agarbatti — Gift Box',p:299,o:399,icon:'incense',cat:'Pooja Samagri',r:4.9,c:820,badge:'new',stock:120,active:true,desc:'A premium box of long-burning sandalwood agarbatti, ideal for daily aarti and a calm, fragrant home mandir.'},
-  {id:'p2',n:'Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',stock:60,active:true,desc:'The beloved life and teachings of Sai Baba, in a clean, readable Marathi edition on quality paper.'},
+  {id:'p2',n:'Shree Sai Satcharitra — Marathi',p:449,o:null,icon:'book',cat:'Books',r:5.0,c:1240,badge:'',stock:60,active:true,desc:'The beloved life and teachings of Shree Sai Baba, in a clean, readable Marathi edition on quality paper.'},
   {id:'p3',n:'Rudraksha 108 Mala',p:699,o:899,icon:'mala',cat:'Malas',r:4.8,c:560,badge:'',stock:75,active:true,desc:'A traditional 108-bead rudraksha mala, hand-knotted and finished for daily japa and everyday wear.'},
-  {id:'p4',n:'Marble Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',stock:24,active:true,desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
+  {id:'p4',n:'Marble Shree Sai Murti — 9"',p:2899,o:3499,icon:'kalash',cat:'Idols',r:4.9,c:410,badge:'Bestseller',stock:24,active:true,desc:'A finely carved marble murti with hand-painted detailing, a serene centrepiece for your home shrine.'},
   {id:'p5',n:'Saffron Prayer Shawl',p:849,o:1099,icon:'shawl',cat:'Apparel',r:4.7,c:295,badge:'',stock:40,active:true,desc:'A soft saffron shawl with a gold border, comfortable for prayer, parayan and festival wear.'},
   {id:'p6',n:'Sai Leela Photo Frame',p:599,o:799,icon:'frame',cat:'Frames',r:4.8,c:670,badge:'',stock:90,active:true,desc:'An elegant framed photo with a warm gold finish, ready to hang or stand in your pooja space.'},
   {id:'p7',n:'Lotus Brass Diya Set',p:499,o:null,icon:'lotus',cat:'Pooja Samagri',r:4.9,c:930,badge:'new',stock:110,active:true,desc:'A set of lotus-shaped brass diyas that bring a soft, steady glow to your daily worship.'},
   {id:'p8',n:'Brass Palki Showpiece',p:1999,o:2499,icon:'palki',cat:'Frames',r:4.9,c:180,badge:'',stock:18,active:true,desc:'A detailed brass palki showpiece, a graceful decorative tribute for mandir or living room.'},
   {id:'p9',n:'Brass Shirdi Diya',p:1499,o:1899,icon:'diya',cat:'Pooja Samagri',r:4.9,c:340,badge:'Exclusive',stock:30,active:true,desc:'A heavyweight brass diya from our Saileela Exclusive line, crafted by Shirdi artisans.'},
   {id:'p10',n:'Saileela Signature Hamper',p:2499,o:2999,icon:'hamper',cat:'Gifting',r:5.0,c:210,badge:'Exclusive',stock:22,active:true,desc:'A hand-curated gift hamper of devotional essentials, beautifully boxed — our most-loved gift.'},
-  {id:'p11',n:'Silver Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
+  {id:'p11',n:'Silver Shree Sai Pocket Shrine',p:3299,o:null,icon:'kalash',cat:'Idols',r:4.9,c:96,badge:'Exclusive',stock:15,active:true,desc:'A pocket-sized silver-finish shrine to carry Baba with you, wherever the day takes you.'},
   {id:'p12',n:'Devotional Gift Wrap Add-on',p:99,o:null,icon:'lotus',cat:'Gifting',r:4.8,c:150,badge:'',stock:300,active:true,desc:'Premium festive wrapping with a handwritten note — add a blessing to any order.'}
 ];
 const DEFAULT_CATS=['Idols','Pooja Samagri','Books','Frames','Apparel','Malas','Gifting'];
@@ -171,7 +171,7 @@ const DEFAULT_SETTINGS={
   announceMsg:'<b>Guruvar drop</b> every Thursday from Shirdi',
   freeShipThreshold:999, shipFee:60,
   heroTagline:'॥ हर हर साई • घर घर साई ॥',
-  heroTitle:'The one-stop store for<br>every <em>Sai devotee</em>',
+  heroTitle:'The one-stop store for<br>every <em>Shree Sai devotee</em>',
   heroSub:'Idols, books, frames, malas &amp; pooja essentials — chosen by hand in Shirdi and delivered to your door.',
   festivalName:'Vijayadashami Special Hampers',
   festivalDate:'2026-10-20',
@@ -181,20 +181,20 @@ const DEFAULT_TV={
   nowTitle:'Prabhat Bhajan Sandhya', liveUrl:'',
   programmes:[
     {n:'Prabhat Bhajan Sandhya',w:'Daily · 5:30 AM',d:'Start the day with soulful morning bhajans and devotional keertan.',icon:'diya'},
-    {n:'Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
-    {n:'Sai Satcharitra Parayan',w:'Daily · 9:00 AM',d:'A chapter-a-day reading of Baba life and leelas, in Marathi & Hindi.',icon:'book'},
-    {n:'Sai Katha & Pravachan',w:'Daily · 11:00 AM',d:'Discourses and stories from respected speakers on Baba teachings.',icon:'kalash'},
-    {n:'Bal Sai — Kids Stories',w:'Weekends · 4:00 PM',d:'Animated Sai stories and values, made for young devotees.',icon:'frame'},
+    {n:'Shree Sai Aarti Live',w:'Daily · 7:00 AM & 6:30 PM',d:'Join the morning and evening aarti with live darshan-style visuals.',icon:'lotus'},
+    {n:'Shree Sai Satcharitra Parayan',w:'Daily · 9:00 AM',d:'A chapter-a-day reading of Baba life and leelas, in Marathi & Hindi.',icon:'book'},
+    {n:'Shree Sai Katha & Pravachan',w:'Daily · 11:00 AM',d:'Discourses and stories from respected speakers on Baba teachings.',icon:'kalash'},
+    {n:'Bal Shree Sai — Kids Stories',w:'Weekends · 4:00 PM',d:'Animated Shree Sai stories and values, made for young devotees.',icon:'frame'},
     {n:'Sai Leela — Devotee Diaries',w:'Guruvar · 8:00 PM',d:'Real devotees share the miracles and grace they have experienced.',icon:'hands'}
   ],
   schedule:[
     {t:'5:30 AM',n:'Prabhat Bhajan Sandhya',d:'Morning bhajans & keertan'},
-    {t:'7:00 AM',n:'Sai Aarti Live',d:'Kakad-time morning aarti'},
-    {t:'9:00 AM',n:'Sai Satcharitra Parayan',d:'Daily chapter reading'},
-    {t:'11:00 AM',n:'Sai Katha & Pravachan',d:'Discourse of the day'},
+    {t:'7:00 AM',n:'Shree Sai Aarti Live',d:'Kakad-time morning aarti'},
+    {t:'9:00 AM',n:'Shree Sai Satcharitra Parayan',d:'Daily chapter reading'},
+    {t:'11:00 AM',n:'Shree Sai Katha & Pravachan',d:'Discourse of the day'},
     {t:'1:00 PM',n:'Bhajan & Abhang',d:'Devotional music hour'},
-    {t:'4:00 PM',n:'Bal Sai Stories',d:'For young devotees'},
-    {t:'6:30 PM',n:'Sai Aarti Live',d:'Evening aarti'},
+    {t:'4:00 PM',n:'Bal Shree Sai Stories',d:'For young devotees'},
+    {t:'6:30 PM',n:'Shree Sai Aarti Live',d:'Evening aarti'},
     {t:'8:00 PM',n:'Sai Leela — Devotee Diaries',d:'Devotee experiences'},
     {t:'10:00 PM',n:'Shej Bhajan',d:'Night devotional wind-down'}
   ],
@@ -281,7 +281,7 @@ function renderFooter(){
   <footer><div class="wrap"><div class="foot-grid">
     <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="52" height="52"><span class="brand-name" style="font-family:Fraunces;font-size:1.45rem">Saileela Store</span></div>
       <div class="malik-f">॥ श्रद्धा • सबुरी • समर्पण ॥</div>
-      <p>A complete Shirdi solution for Sai devotees — authentic products today, hotels, cabs and pooja services soon.</p>
+      <p>A complete Shirdi solution for Shree Sai devotees — authentic products today, hotels, cabs and pooja services soon.</p>
       <div class="foot-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>A/P Nimgaon, Shirdi, Next to Vishwashani Apartment, Tal. Rahata – 423107, Maharashtra, India</div>
       <div class="socials">
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>

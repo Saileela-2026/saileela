@@ -25,12 +25,12 @@ const DEFAULT_PRODUCTS=[
   {id:'sagunopasna-kit',n:'Shree Sai Sagunopasna Kit',p:2499,o:2999,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:25,active:true,excl:true,featured:true,
    img:'sagunopasna-kit-box-v3.jpg',
    images:['sagunopasna-kit-box-v3.jpg','sagunopasna-kit-box-2-v3.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-kalash-2.jpg','kit-katori-2.jpg','kit-diya-2.jpg','kit-agarbatti-stand-2.jpg','kit-bell-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
-   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
-   desc:'A thoughtfully curated devotional kit for performing Shree Sai Sagunopasana with श्रद्धा and devotion. Ideal for daily worship, special occasions and gifting to Sai devotees. Every item is chosen by hand and carefully packed in Shirdi.'},
+   contents:['Marble Shree Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Brass Kalash','Brass Katori','Brass Diya','Brass Agarbatti Stand','Brass Ghanti (hand bell)','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Shree Sai Chandan Tika','Shree Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   desc:'A thoughtfully curated devotional kit for performing Shree Sai Sagunopasana with श्रद्धा and devotion. Ideal for daily worship, special occasions and gifting to Shree Sai devotees. Every item is chosen by hand and carefully packed in Shirdi.'},
   {id:'divya-darshan-kit',n:'Shree Sai Divya Darshan Kit',p:1599,o:2100,icon:'hamper',cat:'Pooja Samagri',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
    img:'divya-darshan-box.jpg',
    images:['divya-darshan-box.jpg','kit-murti-2.jpg','kit-mukut-2.jpg','kit-vastra-red-2.jpg','kit-vastra-pink-2.jpg','kit-mala.jpg','kit-dhaga.jpg','kit-itra.jpg','kit-chandan-tika-2.jpg','kit-chandan-agarbatti-2.jpg'],
-   contents:['Marble Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Sai Chandan Tika','Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
+   contents:['Marble Shree Sai Baba Murti','Decorative Mukut (crown)','Vastra — 2 pieces','Tulsi Mala','Sacred Dhaga','Kesariya Chandan Itra','Shree Sai Chandan Tika','Shree Sai Chandan Agarbatti','Shree Sai Sagunopasna Pustika','Shree Sainath Stavanmanjiri'],
    desc:'A Saileela Exclusive and Best Seller devotional kit designed to bring a divine Shirdi-inspired worship experience into your home. It contains the same devotional items as the Shree Sai Sagunopasna Kit, excluding all five brass pooja pots.'},
   {id:'divya-swaroop-kit',n:'Shree Sai Divya Swaroop Kit',p:1199,o:1600,icon:'kalash',cat:'Idols',r:5.0,c:0,badge:'Bestseller',stock:30,active:true,excl:true,
    img:'divya-swaroop-box-v2.jpg',
@@ -62,7 +62,7 @@ const DEFAULT_PRODUCTS=[
   {id:'agar-mogra',n:'Sai Tattva Agarbatti — Mogra',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-mogra.jpg',images:['agar-mogra.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Mogra incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
   {id:'agar-parikrama',n:'Sai Tattva Agarbatti — Parikrama 4-in-1',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-parikrama.jpg',images:['agar-parikrama.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Parikrama 4-in-1 incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
   {id:'agar-pineapple',n:'Sai Tattva Agarbatti — Pineapple',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-pineapple.jpg',images:['agar-pineapple.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Pineapple incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
-  {id:'agar-sairose',n:'Sai Tattva Agarbatti — Sai Rose',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-sairose.jpg',images:['agar-sairose.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Sai Rose incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
+  {id:'agar-sairose',n:'Sai Tattva Agarbatti — Shree Sai Rose',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,weight:250,img:'agar-sairose.jpg',images:['agar-sairose.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — premium Shree Sai Rose incense sticks in a 250 gm jar, for daily pooja and a fragrant, devotional home.'},
   {id:'masala-samadhi',n:'Sai Tattva Natural Masala — Samadhi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-samadhi.jpg',images:['masala-samadhi.jpg','masala-samadhi-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Samadhi natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
   {id:'masala-chavadi',n:'Sai Tattva Natural Masala — Chavadi',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-chavadi.jpg',images:['masala-chavadi.jpg','masala-chavadi-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Chavadi natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
   {id:'masala-dwarkamai',n:'Sai Tattva Natural Masala — Dwarkamai',p:250,o:null,icon:'incense',cat:'Pooja Samagri',subcat:'Incense Stick',r:5.0,c:0,badge:'',stock:100,active:true,img:'masala-dwarkamai.jpg',images:['masala-dwarkamai.jpg','masala-dwarkamai-2.jpg'],desc:'Sai Tattva ‘Sugandh Shirdi Ki’ — Dwarkamai natural masala incense sticks from the Shirdi Sai Baba collection, hand-rolled for a rich, long-lasting devotional fragrance.'},
@@ -92,30 +92,30 @@ const DEFAULT_SETTINGS={
   pickup:{ name:'Radio Asha', company:'AK 1 Lifespaces LLP', address:'In front of ITI College, Burudgaon Road', city:'Ahmednagar', state:'Maharashtra', pincode:'414003' } /* Shiprocket pickup location */
 };
 const DEFAULT_TV={
-  nowTitle:'Sai Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
+  nowTitle:'Shree Sai Bhajan Sandhya', liveUrl:'https://stream.ottlive.co.in/saileelatv/index.m3u8',
   programmes:[
     {n:'Kakad Aarti',img:'aarti-kakad.jpg',href:'saileela-tv.html',w:'Daily · 5:15 AM',live:1},
     {n:'Madhyan Aarti',img:'aarti-madhyan.jpg',href:'saileela-tv.html',w:'Daily · 12:00 PM',live:1},
     {n:'Dhoop Aarti',img:'aarti-dhoop.jpg',href:'saileela-tv.html',w:'Daily · 6:15 PM',live:1},
     {n:'Shej Aarti',img:'aarti-shej.jpg',href:'saileela-tv.html',w:'Daily · 10:00 PM',live:1},
     {n:'Mere Sai Mera Vishwas',yt:'fYG_bvdwPdY',href:'https://youtu.be/fYG_bvdwPdY',w:'Experiences'},
-    {n:'Sai Bhakti Dhara',yt:'02tDl8VI9Uk',href:'https://youtu.be/02tDl8VI9Uk',w:'Devotional songs'},
+    {n:'Shree Sai Bhakti Dhara',yt:'02tDl8VI9Uk',href:'https://youtu.be/02tDl8VI9Uk',w:'Devotional songs'},
     {n:'Shree Sai Satcharit (Leela)',yt:'PKI2BO9BegQ',href:'https://youtu.be/PKI2BO9BegQ',w:'Parayan'},
     {n:'Yatra Sai Dham Ki',yt:'3KOxZTy4cOA',href:'https://youtu.be/3KOxZTy4cOA',w:'Pilgrimage'},
     {n:'Baba ke Darbar Mein',yt:'SW4d7xGJ4Gk',href:'https://www.youtube.com/live/SW4d7xGJ4Gk',w:'Live darshan'}
   ],
   festivals:[
-    {n:'Shree Ramnavami Utsav',w:'Chaitra · Mar–Apr'},
-    {n:'Shree Gurupurnima Utsav',w:'Ashadha · July'},
-    {n:'Shree Saibaba Punyatithi Utsav',w:'Vijayadashami · Sep–Oct'},
-    {n:'Shirdi Parikrama Mahotsav',w:'13 February'},
-    {n:'Shree Sai Satcharit Parayan',w:'7 days · Shravan Month'}
+    {n:'Shree Gurupurnima Utsav',href:'https://www.youtube.com/live/FCGpvVJwjGY'},
+    {n:'Shree Ramnavami Utsav',href:'https://www.youtube.com/live/ndqrNzobTQ0'},
+    {n:'Shirdi Parikrama Mahotsav',href:'https://www.youtube.com/live/sdD7X0t0EHQ'},
+    {n:'Shree Saibaba Punyatithi Utsav',href:'https://www.youtube.com/live/cVWV19UlmhY'},
+    {n:'Shree Sai Satcharit Parayan',href:'https://www.youtube.com/live/pGn0rIh-0DQ'}
   ],
   schedule:[
     {"t": "12:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
     {"t": "1:00 AM", "n": "Special Programme", "d": "Talk show"},
-    {"t": "2:00 AM", "n": "Sai Bhajan Sandhya", "d": "Musical"},
-    {"t": "4:00 AM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "2:00 AM", "n": "Shree Sai Bhajan Sandhya", "d": "Musical"},
+    {"t": "4:00 AM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "5:00 AM", "n": "Temple Opening & Bhupali", "d": "Live · Marathi", "live": 1},
     {"t": "5:15 AM", "n": "Kakad Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "5:45 AM", "n": "Mangal Snan", "d": "Live · Marathi", "live": 1},
@@ -123,13 +123,13 @@ const DEFAULT_TV={
     {"t": "6:30 AM", "n": "Stavanmanjiri", "d": "Devotional"},
     {"t": "7:00 AM", "n": "Shri Sai Satcharitra", "d": "Devotional"},
     {"t": "7:30 AM", "n": "108 Namawali & 11 Vachan", "d": "Devotional"},
-    {"t": "8:00 AM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "8:00 AM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "9:00 AM", "n": "Special Programme", "d": "Talk show"},
     {"t": "10:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
     {"t": "11:00 AM", "n": "108 Namawali & 11 Vachan", "d": "Devotional"},
     {"t": "11:30 AM", "n": "Mantrapushpanjali", "d": "Devotional"},
     {"t": "12:00 PM", "n": "Madhyan Aarti", "d": "Live · Marathi", "live": 1},
-    {"t": "12:30 PM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "12:30 PM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "1:00 PM", "n": "Serial STHH", "d": "Talk show"},
     {"t": "1:30 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
     {"t": "2:00 PM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
@@ -146,13 +146,13 @@ const DEFAULT_TV={
     {"t": "10:00 PM", "n": "Shej Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "10:30 PM", "n": "Serial STHH", "d": "Talk show"},
     {"t": "11:00 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
-    {"t": "11:30 PM", "n": "Saibaba Ki Adbhut Lilayein", "d": "Story telling"}
+    {"t": "11:30 PM", "n": "Shree Saibaba Ki Adbhut Lilayein", "d": "Story telling"}
   ],
   scheduleThursday:[
     {"t": "12:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
     {"t": "1:00 AM", "n": "Special Programme", "d": "Talk show"},
-    {"t": "2:00 AM", "n": "Sai Bhajan Sandhya", "d": "Musical"},
-    {"t": "4:00 AM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "2:00 AM", "n": "Shree Sai Bhajan Sandhya", "d": "Musical"},
+    {"t": "4:00 AM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "5:00 AM", "n": "Temple Opening & Bhupali", "d": "Live · Marathi", "live": 1},
     {"t": "5:15 AM", "n": "Kakad Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "5:45 AM", "n": "Mangal Snan", "d": "Live · Marathi", "live": 1},
@@ -160,13 +160,13 @@ const DEFAULT_TV={
     {"t": "6:30 AM", "n": "Stavanmanjiri", "d": "Devotional"},
     {"t": "7:00 AM", "n": "Shri Sai Satcharitra", "d": "Devotional"},
     {"t": "7:30 AM", "n": "108 Namawali & 11 Vachan", "d": "Devotional"},
-    {"t": "8:00 AM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "8:00 AM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "9:00 AM", "n": "Special Programme", "d": "Talk show"},
     {"t": "10:00 AM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
     {"t": "11:00 AM", "n": "108 Namawali & 11 Vachan", "d": "Devotional"},
     {"t": "11:30 AM", "n": "Mantrapushpanjali", "d": "Devotional"},
     {"t": "12:00 PM", "n": "Madhyan Aarti", "d": "Live · Marathi", "live": 1},
-    {"t": "12:30 PM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "12:30 PM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "1:00 PM", "n": "Serial STHH", "d": "Talk show"},
     {"t": "1:30 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
     {"t": "2:00 PM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
@@ -179,12 +179,12 @@ const DEFAULT_TV={
     {"t": "7:30 PM", "n": "Serial STHH", "d": "Devotional"},
     {"t": "8:00 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
     {"t": "8:30 PM", "n": "Mere Sai Mera Vishwas", "d": "Experiences"},
-    {"t": "9:00 PM", "n": "Sai Bhakti Dhara", "d": "Songs"},
+    {"t": "9:00 PM", "n": "Shree Sai Bhakti Dhara", "d": "Songs"},
     {"t": "9:15 PM", "n": "Palkhi", "d": "Live · Marathi", "live": 1},
     {"t": "10:00 PM", "n": "Shej Aarti", "d": "Live · Marathi", "live": 1},
     {"t": "10:30 PM", "n": "Serial STHH", "d": "Talk show"},
     {"t": "11:00 PM", "n": "Dr. Ashutosh Kumar", "d": "Talk show"},
-    {"t": "11:30 PM", "n": "Saibaba Ki Adbhut Lilayein", "d": "Story telling"}
+    {"t": "11:30 PM", "n": "Shree Saibaba Ki Adbhut Lilayein", "d": "Story telling"}
   ],
     distribution:{
     dth:[{name:'DishTV',num:'Ch 1094'},{name:'d2h',num:'Ch 1216'},{name:'DishTV ZiNG',num:'Ch 1094'}],
@@ -198,7 +198,7 @@ const DEFAULT_TV={
     {plat:'WhatsApp',count:'Join',label:'daily blessings channel',cta:'Join',url:'https://chat.whatsapp.com/J492w3BHCMG27rG8omCZb3',color:'#25d366'}
   ]
 };
-const DATA_KEY='saileela_data_v19';
+const DATA_KEY='saileela_data_v20';
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
@@ -315,14 +315,6 @@ function renderFooter(){
     <span class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Z"/></svg> Prefer WhatsApp? Get updates on WhatsApp</span>
   </div></section>
   <footer><div class="wrap">
-    <div class="foot-about">
-      <div class="fa-tag">From Shirdi. For Sai bhakts. Inspired by Sai.</div>
-      <p>Saileela TV's journey began in Shirdi in 2018, during the historic centenary year of Shri Sai Baba's Mahasamadhi. Conceived as an offering from Sai bhakts to Sai bhakts, Saileela was created with one enduring purpose — to bring Shirdi closer to devotees, wherever they may be.</p>
-      <p>Rooted in Shraddha, Saburi and Samarpan, Saileela brings devotion to life through darshan, Aarti, stories of Sai Baba, devotional music and the experiences of devotees — carrying Baba's universal message, "Sabka Malik Ek", across boundaries of religion, language and geography.</p>
-      <p>What began as a devotional television initiative now reaches devotees across DTH, Cable TV, OTT and social media, while Saileela's own digital home carries live darshan, Sai Aarti and other devotional experiences.</p>
-      <div class="fa-sign">Saileela TV — Shraddha. Saburi. Samarpan.</div>
-      <a class="fa-more" href="about-saileela-tv.html">Read more about Saileela TV →</a>
-    </div>
     <div class="foot-grid">
     <div class="foot-brand"><div class="brand"><img class="brand-logo" src="saileela-logo.png" alt="Saileela" width="50" height="50"><span class="brand-name notranslate" translate="no" style="font-family:Fraunces;font-size:1.4rem">${brandName()}</span></div>
       <div class="malik-f">॥ श्रद्धा • सबुरी • समर्पण ॥</div>
@@ -331,7 +323,7 @@ function renderFooter(){
       <p class="foot-future">Coming later — Shirdi Stay • Local Travel • Devotee Assistance</p>
     </div>
     <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
-    <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="about-saileela-tv.html">About Saileela TV</a></li><li><a href="saileela-tv.html">Saileela TV</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="about-saileela-tv.html">About Saileela TV</a></li><li><a href="saileela-tv.html">Saileela TV Live</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Help</h4><ul><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li></ul></div>
     <div><h4>Follow</h4>
       <div class="socials">
@@ -436,7 +428,7 @@ function startLiveActivity(){
       {ic:'🙏', s:'Easy payment', t:'Cash on Delivery available nationwide'},
       {ic:'🎁', s:'Ganpati special', t:'Shree Divya Ganesh Jyoti — light up your mandap', href:'product.html?id=divya-ganesh-jyoti'},
       {ic:'🌼', s:'Ganeshotsav', t:'Explore our festive gifting picks', href:'shop.html?cat=Gifting'},
-      {ic:'🕉️', s:'Saileela', t:'Har Har Sai • Ghar Ghar Sai', href:'index.html'}
+      {ic:'🕉️', s:'Saileela', t:'Har Har Shree Sai • Ghar Ghar Shree Sai', href:'index.html'}
     ];
     // Editorial spotlights from the real catalog (exclusives / bestsellers)
     try{
