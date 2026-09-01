@@ -81,7 +81,7 @@ const DEFAULT_SETTINGS={
   storeName:'Saileela Store', currency:'₹',
   announceDeva:'॥ हर हर साई • घर घर साई ॥',
   announceMsg:'<b>Guruvar drop</b> every Thursday from Shirdi',
-  freeShipThreshold:999, shipFee:49, shipFeeSmall:79,
+  freeShipThreshold:999, shipFee:49, shipFeeSmall:79, codFee:100,
   heroTagline:'॥ हर हर साई • घर घर साई ॥',
   heroTitle:'Everything a Sai<br>Devotee <em>Needs</em>',
   heroSub:'Thoughtfully selected in Shirdi. Delivered to your home.',
@@ -89,6 +89,7 @@ const DEFAULT_SETTINGS={
   festivalDate:'2026-10-20',
   whatsapp:'+91 6262072020', email:'saililatv@gmail.com', phone:'', address:'A/P Nimgaon, Shirdi, Next to Vishwashani Apartment, Tal. Rahata – 423107, Maharashtra, India',
   razorpayKeyId:'rzp_test_SVLMlFzDiKlOIl', /* PUBLIC key id only — never put the Key Secret here (client code is public) */
+  apiBase:'', /* set to your CloudPanel API URL (e.g. https://api.saileela.tv) to enable Shiprocket order push */
   pickup:{ name:'Radio Asha', company:'AK 1 Lifespaces LLP', address:'In front of ITI College, Burudgaon Road', city:'Ahmednagar', state:'Maharashtra', pincode:'414003' } /* Shiprocket pickup location */
 };
 const DEFAULT_TV={
@@ -199,14 +200,17 @@ const DEFAULT_TV={
   ]
 };
 const DATA_KEY='saileela_data_v22';
+const ORDERS_KEY='saileela_orders'; /* orders live in their own key so catalog version bumps never wipe order history */
 const Store={
   _d:null,
   defaults(){return JSON.parse(JSON.stringify({products:DEFAULT_PRODUCTS,cats:DEFAULT_CATS,settings:DEFAULT_SETTINGS,tv:DEFAULT_TV,orders:[]}));},
   load(){ if(this._d)return this._d; let d=null; try{d=JSON.parse(localStorage.getItem(DATA_KEY))}catch(e){} const def=this.defaults(); d=d||{};
-    this._d={ products:Array.isArray(d.products)?d.products:def.products, cats:Array.isArray(d.cats)?d.cats:def.cats, orders:Array.isArray(d.orders)?d.orders:[], settings:Object.assign({},def.settings,d.settings||{}), tv:Object.assign({},def.tv,d.tv||{}) };
+    let ord=null; try{ord=JSON.parse(localStorage.getItem(ORDERS_KEY))}catch(e){}
+    if(!Array.isArray(ord)) ord=Array.isArray(d.orders)?d.orders:[]; /* migrate orders from the old versioned blob */
+    this._d={ products:Array.isArray(d.products)?d.products:def.products, cats:Array.isArray(d.cats)?d.cats:def.cats, orders:ord, settings:Object.assign({},def.settings,d.settings||{}), tv:Object.assign({},def.tv,d.tv||{}) };
     this._d.tv.distribution=Object.assign({},def.tv.distribution,(d.tv&&d.tv.distribution)||{});
     return this._d; },
-  save(){ try{localStorage.setItem(DATA_KEY,JSON.stringify(this._d))}catch(e){} document.dispatchEvent(new Event('data:change')); },
+  save(){ try{localStorage.setItem(DATA_KEY,JSON.stringify(this._d)); localStorage.setItem(ORDERS_KEY,JSON.stringify(this._d.orders||[]));}catch(e){} document.dispatchEvent(new Event('data:change')); },
   set(d){ this._d=d; this.save(); },
   reset(){ this._d=this.defaults(); this.save(); },
   exportJSON(){ return JSON.stringify(this.load(),null,2); },
@@ -475,6 +479,15 @@ const Saileela={
   /* Standard India-ecommerce shipping: free above threshold, small flat fee below,
      with a slightly higher fee on very small carts (covers real courier cost). */
   shippingFor(sub){ const s=Store.load().settings; const free=+s.freeShipThreshold||999; if(sub>=free) return 0; return sub>=500 ? (+s.shipFee||49) : (+s.shipFeeSmall||79); },
+  /* Push a placed order to the Shiprocket backend (CloudPanel). No-op until settings.apiBase is set. */
+  pushToShiprocket(order){
+    try{
+      var base=(Store.load().settings.apiBase||'').replace(/\/+$/,''); if(!base) return;
+      fetch(base+'/api/ship/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order)})
+        .then(function(r){return r.json();}).then(function(d){ if(d&&d.ok) try{ var o=Store.load().orders.find(function(x){return x.id===order.id;}); if(o){o.shiprocket={order_id:d.order_id,shipment_id:d.shipment_id,status:d.status}; Store.save();} }catch(e){} })
+        .catch(function(){});
+    }catch(e){}
+  },
   tv(){return Store.load().tv;},
   placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
   /* Razorpay Checkout (browser half). Uses the PUBLIC Key ID only.
