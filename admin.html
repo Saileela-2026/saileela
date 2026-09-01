@@ -503,16 +503,40 @@ const STATUSES=['New','Packed','Shipped','Delivered','Cancelled'];
 function orders(){
   const d=D();const orders=d.orders||[];
   document.getElementById('view').innerHTML=`
-    <div class="topbar"><div><h1>Orders</h1><div class="sub">${orders.length} order(s) · captured from checkout on this device.</div></div>${orders.length?`<button class="btn ghost" onclick="clearOrders()">Clear all</button>`:''}</div>
-    ${orders.length?`<div class="panel"><div class="pb" style="padding:0;overflow:auto"><table><thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr></thead><tbody>${orders.map(o=>`<tr>
+    <div class="topbar"><div><h1>Orders</h1><div class="sub">${orders.length} order(s) · captured from checkout.</div></div>${orders.length?`<div style="display:flex;gap:8px"><button class="btn" onclick="exportOrders()">⬇ Download Excel</button><button class="btn ghost" onclick="clearOrders()">Clear all</button></div>`:''}</div>
+    ${orders.length?`<div class="panel"><div class="pb" style="padding:0;overflow:auto"><table><thead><tr><th>Order</th><th>Customer &amp; delivery address</th><th>Items</th><th>Amount</th><th>Payment</th><th>Status</th><th></th></tr></thead><tbody>${orders.map(o=>{
+      const addr=o.address||([o.addressLine,o.landmark,o.city,o.state].filter(Boolean).join(', ')+(o.pincode?(' - '+o.pincode):''));
+      const sr=o.shiprocket||{};
+      return `<tr>
       <td><b>#${o.id}</b><div class="hint">${new Date(o.ts).toLocaleString('en-IN')}</div></td>
-      <td>${esc(o.name||'—')}<div class="hint">${esc(o.phone||'')}</div></td>
+      <td><b>${esc(o.name||'—')}</b>
+        <div class="hint">📞 ${esc(o.phone||'—')}</div>
+        ${o.email?`<div class="hint">✉ ${esc(o.email)}</div>`:''}
+        <div class="hint" style="margin-top:5px;max-width:340px;white-space:normal;line-height:1.5">📍 ${esc(addr||'—')}</div></td>
       <td>${(o.items||[]).map(i=>esc(i.n)+' ×'+i.qty).join('<br>')}</td>
-      <td>${money(o.total)}</td>
-      <td>${esc(o.pay||'—')}</td>
+      <td><b>${money(o.total)}</b><div class="hint">${o.subtotal!=null?('Sub '+money(o.subtotal)):''}${o.shipping?(' · Ship '+money(o.shipping)):''}${o.codFee?(' · COD '+money(o.codFee)):''}</div></td>
+      <td>${esc(o.pay||'—')}${o.payment&&o.payment.id?`<div class="hint">${esc(o.payment.id)}</div>`:''}${sr.shipment_id?`<div class="hint">SR Ship #${esc(String(sr.shipment_id))}</div>`:''}</td>
       <td><select onchange="setStatus('${o.id}',this.value)" style="max-width:130px">${STATUSES.map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}</select></td>
       <td><button class="btn danger sm" onclick="delOrder('${o.id}')">Delete</button></td>
-    </tr>`).join('')}</tbody></table></div></div>`:`<div class="panel"><div class="pb" style="text-align:center;color:var(--muted);padding:50px">No orders yet.<div class="hint" style="margin-top:6px">Place a test order from the storefront checkout to see it here.</div></div></div>`}`;
+    </tr>`;}).join('')}</tbody></table></div></div>`:`<div class="panel"><div class="pb" style="text-align:center;color:var(--muted);padding:50px">No orders yet.<div class="hint" style="margin-top:6px">Place a test order from the storefront checkout to see it here.</div></div></div>`}`;
+}
+function csvCell(v){ v=(v==null?'':String(v)); return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
+function exportOrders(){
+  const orders=(D().orders||[]);
+  if(!orders.length){ alert('No orders to export.'); return; }
+  const H=['Order ID','Date','Customer Name','Phone','Email','Address','Landmark','City','State','Pincode','Items','Subtotal','Shipping','COD Fee','Total','Payment Method','Payment ID','Shiprocket Order ID','Shiprocket Shipment ID','Status'];
+  const lines=[H.map(csvCell).join(',')];
+  orders.forEach(o=>{
+    const sr=o.shiprocket||{};
+    const items=(o.items||[]).map(i=>(i.n||'')+' x'+i.qty).join('; ');
+    lines.push([o.id,new Date(o.ts).toLocaleString('en-IN'),o.name||'',o.phone||'',o.email||'',o.addressLine||o.address||'',o.landmark||'',o.city||'',o.state||'',o.pincode||'',items,
+      o.subtotal!=null?o.subtotal:'',o.shipping!=null?o.shipping:'',o.codFee!=null?o.codFee:'',o.total!=null?o.total:'',o.pay||'',(o.payment&&o.payment.id)||'',sr.order_id||'',sr.shipment_id||'',o.status||''].map(csvCell).join(','));
+  });
+  const csv='\uFEFF'+lines.join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='saileela-orders-'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function setStatus(id,s){const d=D();const o=d.orders.find(x=>x.id===id);if(o){o.status=s;Store.save();}}
 function delOrder(id){const d=D();if(!confirm('Delete order #'+id+'?'))return;d.orders=d.orders.filter(x=>x.id!==id);Store.save();orders();}
