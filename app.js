@@ -90,6 +90,7 @@ const DEFAULT_SETTINGS={
   whatsapp:'+91 6262072020', email:'saililatv@gmail.com', phone:'', address:'A/P Nimgaon, Shirdi, Next to Vishwashani Apartment, Tal. Rahata – 423107, Maharashtra, India',
   razorpayKeyId:'rzp_test_SVLMlFzDiKlOIl', /* PUBLIC key id only — never put the Key Secret here (client code is public) */
   apiBase:'', /* set to your CloudPanel API URL (e.g. https://api.saileela.tv) to enable Shiprocket order push */
+  gstin:'', /* optional — GST number shown on the invoice if filled */
   pickup:{ name:'Radio Asha', company:'AK 1 Lifespaces LLP', address:'In front of ITI College, Burudgaon Road', city:'Ahmednagar', state:'Maharashtra', pincode:'414003' } /* Shiprocket pickup location */
 };
 const DEFAULT_TV={
@@ -328,7 +329,7 @@ function renderFooter(){
     </div>
     <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#exclusive">Saileela Exclusive</a></li><li><a href="shop.html?cat=Gifting">Gifting &amp; Hampers</a></li></ul></div>
     <div><h4>Saileela</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="about-saileela-tv.html">About Saileela TV</a></li><li><a href="saileela-tv.html">Saileela TV Live</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Help</h4><ul><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="orders.html">My Orders</a></li><li><a href="shipping.html">Shipping Policy</a></li><li><a href="refund.html">Refund &amp; Returns</a></li><li><a href="cancellation.html">Cancellation</a></li><li><a href="contact.html">Contact &amp; support</a></li></ul></div>
     <div><h4>Follow</h4>
       <div class="socials">
         <a href="https://www.youtube.com/@SaileelaTV" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.5-5c-.3-1-1-1.7-2-2C18.5 4.5 12 4.5 12 4.5s-6.5 0-8.5.5c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5c.3 1 1 1.7 2 2 2 .5 8.5.5 8.5.5s6.5 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.5.5-5 .5-5Zm-13 3V9l5 3-5 3Z"/></svg></a>
@@ -490,6 +491,8 @@ const Saileela={
   },
   tv(){return Store.load().tv;},
   placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
+  getOrder(id){ return (Store.load().orders||[]).find(o=>o.id===id)||null; },
+  myOrders(){ return (Store.load().orders||[]).slice(); },
   /* Razorpay Checkout (browser half). Uses the PUBLIC Key ID only.
      NOTE: this cannot verify the payment server-side — safe for test mode; real
      verification (Key Secret + signature check) happens on the backend after go-live. */
