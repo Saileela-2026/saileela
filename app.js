@@ -281,6 +281,7 @@ function applyI18n(){const l=localStorage.getItem('saileela_lang')||'en';documen
 
 function renderHeader(){
   const _s=Store.load().settings;
+  let _acct=null; try{ _acct=JSON.parse(localStorage.getItem('saileela_account'))||null; }catch(e){}
   const page=document.body.dataset.page||'index.html';
   const links=NAV.map(([h,l,k])=>`<a href="${h}" class="${h.split('#')[0]===page?'active':''}">${k?T(k):l}</a>`).join('');
   const mlinks=NAV.map(([h,l,k])=>`<a href="${h}" onclick="Saileela.closeAll()">${k?T(k):l}</a>`).join('');
@@ -299,12 +300,14 @@ function renderHeader(){
       ${langSel}
       <button class="icon-btn" aria-label="Search" onclick="Saileela.openSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
       <a class="icon-btn" href="shop.html?wish=1" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-6.5-4.2-9-8C1.4 9.3 3 6 6.3 6 8.6 6 12 8.3 12 8.3S15.4 6 17.7 6C21 6 22.6 9.3 21 12c-2.5 3.8-9 8-9 8Z"/></svg><span class="wish-count" id="wishCount">0</span></a>
+      <a class="icon-btn acct-btn" href="account.html" aria-label="${_acct?('Account · '+(_acct.name||'')):'Login / Account'}" title="${_acct?(_acct.name||'My Account'):'Login / Account'}">${_acct?`<span class="acct-ini">${((_acct.name||'').trim().charAt(0)||'•').toUpperCase()}</span>`:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c.7-3.5 4-5.5 7.5-5.5s6.8 2 7.5 5.5"/></svg>`}</a>
       <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h13l-1.2 9.5a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount">0</span></a>
       <button class="icon-btn burger" id="burger" aria-label="Menu" onclick="var m=document.getElementById('mnav');if(m)m.classList.add('open');var s=document.getElementById('scrim');if(s)s.classList.add('open');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div></div></header>
   <div class="mnav" id="mnav" aria-hidden="true">
     <button class="icon-btn close" id="mnavClose" aria-label="Close menu" onclick="Saileela.closeAll()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     ${langSelM}
+    <a href="account.html" onclick="Saileela.closeAll()">${_acct?('👤 '+(_acct.name||'My Account')):'Login / Account'}</a>
     ${mlinks}</div>`;
   document.getElementById('site-header').innerHTML=html;
   var _mn=document.getElementById('mnav'); if(_mn&&_mn.parentElement!==document.body) document.body.appendChild(_mn);
@@ -493,6 +496,11 @@ const Saileela={
   placeOrder(o){const d=Store.load();o.id='SL'+String(Date.now()).slice(-6);o.ts=Date.now();o.status='New';d.orders.unshift(o);Store.save();return o.id;},
   getOrder(id){ return (Store.load().orders||[]).find(o=>o.id===id)||null; },
   myOrders(){ return (Store.load().orders||[]).slice(); },
+  /* ---- device-local account (Option A: no verification, this-device only) ---- */
+  account(){ try{ return JSON.parse(localStorage.getItem('saileela_account'))||null; }catch(e){ return null; } },
+  login(name,mobile){ const a={name:(name||'').trim(),mobile:(mobile||'').replace(/\D/g,'')}; try{localStorage.setItem('saileela_account',JSON.stringify(a));}catch(e){} return a; },
+  logout(){ try{localStorage.removeItem('saileela_account');}catch(e){} },
+  ordersForMe(){ const a=this.account(); const all=Store.load().orders||[]; return a&&a.mobile?all.filter(o=>String(o.phone||'')===a.mobile):[]; },
   /* Razorpay Checkout (browser half). Uses the PUBLIC Key ID only.
      NOTE: this cannot verify the payment server-side — safe for test mode; real
      verification (Key Secret + signature check) happens on the backend after go-live. */

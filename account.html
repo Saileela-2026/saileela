@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account — Saileela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="account.html">
+<div id="site-header"></div>
+<section class="page-hero"><div class="wrap"><div class="crumb"><a href="index.html">Home</a><span>›</span>My Account</div><h1 id="acTitle">My Account</h1></div></section>
+<section class="block"><div class="wrap" style="max-width:760px;margin:0 auto" id="acView"></div></section>
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+(function(){
+  const host=document.getElementById('acView');
+  const M=Saileela.money;
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function render(){
+    const a=Saileela.account();
+    if(!a){
+      host.innerHTML=`<div class="panel-card ac-login">
+        <h2>Sign in</h2>
+        <p class="muted">Enter your name and mobile number to see your orders on this device.</p>
+        <div class="field"><label>Full Name</label><input id="acName" placeholder="Your name"></div>
+        <div class="field"><label>Mobile Number</label><div class="phone-in"><span>+91</span><input id="acMob" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div></div>
+        <button class="btn btn-primary" id="acGo" style="width:100%">Sign in</button>
+        <p class="ac-note">Your account is saved on <b>this device</b>. Sign in on the same device to see the orders you placed here. Full cross-device accounts (with secure login) are coming soon.</p>
+      </div>`;
+      document.getElementById('acGo').addEventListener('click',()=>{
+        const n=document.getElementById('acName').value.trim();
+        const m=document.getElementById('acMob').value.replace(/\D/g,'');
+        if(!n){ alert('Please enter your name.'); return; }
+        if(m.length!==10){ alert('Please enter a valid 10-digit mobile number.'); return; }
+        Saileela.login(n,m); (typeof renderHeader==="function"&&renderHeader()); render();
+      });
+      return;
+    }
+    document.getElementById('acTitle').textContent='Namaste, '+(a.name||'').split(' ')[0]+' 🙏';
+    const orders=Saileela.ordersForMe();
+    const cart=Saileela.Cart.detailed();
+    const orderList = orders.length
+      ? '<div class="ord-list">'+orders.map(o=>`<a class="ord-row" href="order.html?id=${o.id}"><div><b>#${o.id}</b><div class="muted">${new Date(o.ts).toLocaleDateString('en-IN',{year:'numeric',month:'short',day:'numeric'})} · ${(o.items||[]).reduce((n,i)=>n+i.qty,0)} item(s)</div></div><div class="ord-row-r"><b>${M(o.total)}</b><span class="ord-badge sm">${o.status||'New'}</span></div></a>`).join('')+'</div>'
+      : '<p class="muted">No orders yet on this device. Explore the <a href="shop.html">shop</a> to get started.</p>';
+    const cartGlance = cart.length
+      ? `<div class="ac-cart"><div class="muted">${cart.reduce((n,i)=>n+i.qty,0)} item(s) · ${M(Saileela.Cart.subtotal())}</div><a href="cart.html" class="btn btn-ghost sm">View cart →</a></div>`
+      : '<p class="muted">Your cart is empty.</p>';
+    host.innerHTML=`
+      <div class="panel-card ac-profile">
+        <div class="ac-avatar">${((a.name||'').trim().charAt(0)||'•').toUpperCase()}</div>
+        <div style="flex:1"><b style="font-size:1.05rem">${esc(a.name)}</b><div class="muted">+91 ${esc(a.mobile)}</div></div>
+        <button class="btn btn-ghost sm" id="acEdit">Edit</button>
+        <button class="btn btn-ghost sm" id="acOut">Sign out</button>
+      </div>
+      <h3 class="ac-h">Order history</h3>
+      ${orderList}
+      <h3 class="ac-h">Saved cart</h3>
+      ${cartGlance}
+      <p class="ac-note">Your account and orders are saved on <b>this device</b>. Order status shown is as recorded on this device. Full cross-device accounts with live tracking are coming soon.</p>`;
+    document.getElementById('acOut').addEventListener('click',()=>{ if(confirm('Sign out on this device?')){ Saileela.logout(); (typeof renderHeader==="function"&&renderHeader()); render(); document.getElementById('acTitle').textContent='My Account'; } });
+    document.getElementById('acEdit').addEventListener('click',()=>{ Saileela.logout(); render(); document.getElementById('acTitle').textContent='My Account'; });
+  }
+  render();
+})();
+</script>
+</body></html>

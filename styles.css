@@ -865,3 +865,14 @@ a.fest-card:hover{transform:translateY(-3px);border-color:var(--marigold,#EF7F1A
   .block{padding:0!important}
   .invoice{border:none;border-radius:0;padding:0}
 }
+
+/* ---------- account (device-local login) ---------- */
+.acct-btn .acct-ini{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--kumkum);color:#fff;font-family:"Manrope";font-weight:800;font-size:.8rem}
+.ac-login{max-width:440px;margin:0 auto}
+.ac-login h2{font-family:"Fraunces",serif;margin:0 0 6px}
+.ac-note{font-size:.78rem;color:var(--ink-faint);line-height:1.6;margin-top:16px;background:var(--paper-3);border:1px solid rgba(199,154,58,.3);border-radius:10px;padding:12px 14px}
+.ac-profile{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ac-avatar{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:linear-gradient(160deg,var(--kumkum),var(--kumkum-deep));color:#fff;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:1.3rem}
+.ac-h{font-family:"Fraunces",serif;font-size:1.15rem;color:var(--night);margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line-l)}
+.ac-cart{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:14px 18px}
+.btn.sm{padding:.5em 1em;font-size:.82rem}
